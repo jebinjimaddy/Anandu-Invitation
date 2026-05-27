@@ -26,7 +26,7 @@ html, body {
    ========================================================================== */
 #envelope-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100vw; height: 150vh;
+    top: 0; left: 0; width: 100vw; height: 100vh;
     background: radial-gradient(circle at center, #2F0B0A 0%, #120101 100%);
     z-index: 3000;
     display: flex;
@@ -91,7 +91,7 @@ html, body {
 
 /* FIXED: Front pocket sides and bottom flap using a precise polygon layout mask */
 .envelope-body-front {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0; width: 100%; height: 150%;
     background-color: #5E1210;
     /* Draws an open pocket silhouette: Left-top -> Right-top -> Right-bottom -> Left-bottom */
     clip-path: polygon(0% 45%, 50% 65%, 100% 45%, 100% 100%, 0% 100%);
