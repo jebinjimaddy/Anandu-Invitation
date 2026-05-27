@@ -74,7 +74,6 @@ window.addEventListener('mousemove', (e) => {
     mouseY = e.clientY;
 });
 
-// Support for Mobile/Touch interactivity
 window.addEventListener('touchmove', (e) => {
     if(e.touches.length > 0) {
         mouseX = e.touches[0].clientX;
@@ -91,7 +90,7 @@ class YellowPetal {
     }
 
     reset() {
-        this.w = Math.random() * 8 + 10; // Width sizing ranges
+        this.w = Math.random() * 8 + 10; 
         this.h = this.w * (Math.random() * 0.2 + 0.9);
         this.el.style.width = `${this.w}px`;
         this.el.style.height = `${this.h}px`;
@@ -104,64 +103,54 @@ class YellowPetal {
         this.rotation = Math.random() * 360;
         this.rotationSpeed = Math.random() * 2 - 1;
         
-        // Sway parameters
         this.swayAngle = Math.random() * Math.PI * 2;
         this.swaySpeed = Math.random() * 0.02 + 0.01;
         this.swayRadius = Math.random() * 1.5 + 0.5;
 
-        // Interactive offset storage variables
         this.offsetX = 0;
         this.offsetY = 0;
     }
 
     update() {
-        // Base down-fall mechanics
         this.y += this.speedY;
         this.swayAngle += this.swaySpeed;
         this.x += this.speedX + Math.sin(this.swayAngle) * this.swayRadius;
         this.rotation += this.rotationSpeed;
 
-        // Proximity calculation for mouse evasion interaction
         const currentTotalX = this.x + this.offsetX;
         const currentTotalY = this.y + this.offsetY;
 
         const diffX = currentTotalX - mouseX;
         const diffY = currentTotalY - mouseY;
         const distance = Math.sqrt(diffX * diffX + diffY * diffY);
-        const evasionRadius = 90; // Proximity threshold
+        const evasionRadius = 90; 
 
         if (distance < evasionRadius) {
             const force = (evasionRadius - distance) / evasionRadius;
-            // Push petals outward away from current mouse plot vector point
             const pushX = (diffX / distance) * force * 12;
             const pushY = (diffY / distance) * force * 12;
             
             this.offsetX += pushX;
             this.offsetY += pushY;
         } else {
-            // Smoothly ease back into natural falling pathways
             this.offsetX *= 0.95;
             this.offsetY *= 0.95;
         }
 
-        // Render positions smoothly onto browser canvas layers
         this.el.style.top = `${this.y + this.offsetY}px`;
         this.el.style.left = `${this.x + this.offsetX}px`;
         this.el.style.transform = `rotate(${this.rotation}deg) rotateY(${this.rotation * 0.5}deg)`;
 
-        // Reset if it drops past the viewport bounds
         if (this.y > window.innerHeight + 20 || this.x < -20 || this.x > window.innerWidth + 20) {
             this.reset();
         }
     }
 }
 
-// Generate the objects
 for (let i = 0; i < totalPetals; i++) {
     petalsArray.push(new YellowPetal());
 }
 
-// Global physics loop runner
 function animatePetals() {
     for (let i = 0; i < petalsArray.length; i++) {
         petalsArray[i].update();
@@ -179,7 +168,6 @@ cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         
-        // Find cursor positions relative to center point of each card module
         const cardWidth = rect.width;
         const cardHeight = rect.height;
         const centerX = rect.left + cardWidth / 2;
@@ -188,7 +176,6 @@ cards.forEach(card => {
         const mouseRelativeX = e.clientX - centerX;
         const mouseRelativeY = e.clientY - centerY;
 
-        // Map tilt thresholds precisely (Max values: 12 degrees tilt)
         const tiltX = (mouseRelativeY / (cardHeight / 2)) * -12;
         const tiltY = (mouseRelativeX / (cardWidth / 2)) * 12;
 
@@ -196,7 +183,6 @@ cards.forEach(card => {
     });
 
     card.addEventListener('mouseleave', () => {
-        // Return back effortlessly when cursor goes focus out
         card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     });
 });
