@@ -42,9 +42,9 @@
     </div>
 
     <main id="dashboard-viewport" class="dashboard-hidden">
-        <div class="dashboard-single-frame">
+        <div class="dashboard-scroll-container">
             
-            <section id="card-hero" class="dash-card active-card">
+            <section id="card-hero" class="dash-card">
                 <div class="south-elements-overlay">
                     <div class="mantapa-arch"></div>
                     <div class="jasmine-garland"></div>
@@ -59,8 +59,7 @@
                     <p class="subtitle">WE CORDIALLY INVITE YOU TO THE WEDDING OF</p>
                     <h1 class="couple-names-text">Anandu & Navya</h1>
                     <p class="wedding-date-hero">Sunday, 12th July 2026</p>
-                    
-                    <button class="nav-next-btn button-text" onclick="switchCard('card-timer')">View Countdown ➔</button>
+                    <p class="scroll-hint-text">Scroll Down to Explore ➔</p>
                 </div>
             </section>
 
@@ -87,11 +86,6 @@
                             <span class="time-label">Secs</span>
                         </div>
                     </div>
-
-                    <div class="nav-button-row">
-                        <button class="nav-prev-btn button-text" onclick="switchCard('card-hero')">🏃 Back</button>
-                        <button class="nav-next-btn button-text" onclick="switchCard('card-family')">Blessings ➔</button>
-                    </div>
                 </div>
             </section>
 
@@ -103,11 +97,6 @@
                         <p class="family-line"><strong>Anandu Krishnan</strong><br><span class="parent-sub">S/o Mrs. Rajani & Mr. Anil Kumar</span></p>
                         <p class="amp-divider">&</p>
                         <p class="family-line"><strong>Navya John</strong><br><span class="parent-sub">D/o Mrs. Annie Robert & Mr. John Robert</span></p>
-                    </div>
-
-                    <div class="nav-button-row">
-                        <button class="nav-prev-btn button-text" onclick="switchCard('card-timer')">🏃 Back</button>
-                        <button class="nav-next-btn button-text" onclick="switchCard('card-schedule')">Schedule ➔</button>
                     </div>
                 </div>
             </section>
@@ -138,11 +127,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="nav-button-row">
-                        <button class="nav-prev-btn button-text" onclick="switchCard('card-family')">🏃 Back</button>
-                        <button class="nav-next-btn button-text" onclick="switchCard('card-venue')">The Venue ➔</button>
-                    </div>
                 </div>
             </section>
 
@@ -172,10 +156,6 @@
                     </div>
 
                 </div>
-                <div class="nav-button-row center-row">
-                    <button class="nav-prev-btn button-text" onclick="switchCard('card-schedule')">🏃 Back</button>
-                    <button class="nav-next-btn button-text" onclick="switchCard('card-rsvp')">RSVP Now ➔</button>
-                </div>
             </section>
 
             <section id="card-rsvp" class="dash-card">
@@ -194,8 +174,6 @@
                     </form>
                     
                     <p class="wishes-note">Warmly Welcomed by: Athul, Melvin & Family Members</p>
-                    
-                    <button class="nav-prev-btn button-text" style="margin-top:15px;" onclick="switchCard('card-hero')">↩️ Back to Start</button>
                 </div>
             </section>
 

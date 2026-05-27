@@ -14,6 +14,8 @@ openEnvelopeBtn.addEventListener('click', () => {
     
     setTimeout(() => {
         dashboardView.classList.remove('dashboard-hidden');
+        // Instantly force initialization of active state check on entry
+        handleScrollTransition();
     }, 600);
     
     music.play().then(() => {
@@ -34,21 +36,36 @@ toggleBtn.addEventListener('click', () => {
 });
 
 // ==========================================================================
-// 2. NEW ACTIVE CARD SEQUENTIAL TRANSITION ENGINE (FADE OUT -> FADE IN)
+// 2. SCROLL REVEAL INTERSECTION OBSERVER ENGINE
 // ==========================================================================
-function switchCard(nextCardId) {
-    const currentActiveCard = document.querySelector('.dash-card.active-card');
-    const targetNextCard = document.getElementById(nextCardId);
-    
-    if (!targetNextCard || currentActiveCard === targetNextCard) return;
-    
-    // Step A: Fade out and slide down the current visible card
-    currentActiveCard.classList.remove('active-card');
-    
-    // Step B: Wait for fade-out animation timeline completion, then trigger next card fade-in
-    setTimeout(() => {
-        targetNextCard.classList.add('active-card');
-    }, 400); // 400ms delay builds a flawless overlapping dissolve effect
+const scrollCards = document.querySelectorAll('.dash-card');
+
+const observerOptions = {
+    root: document.querySelector('.dashboard-scroll-container'),
+    rootMargin: '0px',
+    threshold: 0.35 // Trigger fade when 35% of the card is visible on viewport
+};
+
+const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active-card');
+        } else {
+            entry.target.classList.remove('active-card');
+        }
+    });
+}, observerOptions);
+
+scrollCards.forEach(card => cardObserver.observe(card));
+
+// Fallback manual trigger validation helper
+function handleScrollTransition() {
+    scrollCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top >= 0 && rect.top <= window.innerHeight * 0.5) {
+            card.classList.add('active-card');
+        }
+    });
 }
 
 // ==========================================================================
