@@ -22,38 +22,14 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
-    overflow-x: hidden;
+    overflow: hidden; /* Prevents long scrolling windows completely */
     background-color: #FAF6F0; 
     color: #4A3E3D; 
     font-family: 'Montserrat', sans-serif;
-    -webkit-text-size-adjust: 100%;
-}
-
-html {
-    scroll-behavior: smooth;
-    perspective: 1400px; /* Enhanced global perspective space for 3D card operations */
-}
-
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-
-/* Base structural view management */
-#main-invitation-layout {
-    transition: opacity 0.8s ease, filter 1s ease;
-    opacity: 1;
-}
-#main-invitation-layout.hidden-view {
-    opacity: 0;
-    height: 100vh;
-    overflow: hidden;
-    pointer-events: none;
-    filter: scale(0.96);
 }
 
 /* ==========================================================================
-   2. LUXURY 3D CARD GATEFOLD OPENING ENGINE
+   2. LUXURY BOX GATEFOLD OPENING EXPERIENCE
    ========================================================================== */
 #card-wrapper-3d {
     position: fixed;
@@ -61,49 +37,28 @@ html {
     left: 0;
     width: 100vw;
     height: 100vh;
-    height: 100dvh;
     z-index: 2000;
     display: flex;
-    perspective: 2000px; /* Local perspective depth for splitting leaves */
-    overflow: hidden;
+    perspective: 2200px;
     background: transparent;
-    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s;
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s ease, visibility 1.2s;
 }
 
-/* Individual Fold Gate architecture */
 .card-gate {
     width: 50%;
     height: 100%;
-    position: relative;
     background: radial-gradient(circle at center, #5A110E 0%, #2D0504 100%);
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.85);
     overflow: hidden;
     transform-style: preserve-3d;
-    will-change: transform;
     transition: transform 1.4s cubic-bezier(0.45, 0, 0.15, 1);
 }
 
-/* Set local rotational hinges */
-.left-gate {
-    transform-origin: left center;
-    border-right: 1px solid rgba(255, 215, 0, 0.25);
-}
-.right-gate {
-    transform-origin: right center;
-    border-left: 1px solid rgba(255, 215, 0, 0.25);
-}
+.left-gate { transform-origin: left center; border-right: 1px solid rgba(255, 215, 0, 0.25); }
+.right-gate { transform-origin: right center; border-left: 1px solid rgba(255, 215, 0, 0.25); }
 
-/* Surface decorative wrappers */
-.gate-surface-design {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-}
+.gate-surface-design { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-/* Symmetric Edge Borders */
 .gate-royal-border {
     position: absolute;
     top: 20px;
@@ -115,15 +70,13 @@ html {
 .left-gate .gate-royal-border { left: 20px; right: 10px; }
 .right-gate .gate-royal-border { left: 10px; right: 20px; }
 
-/* Center Medallion Seal Structure */
 #lock-medallion-container {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) translateZ(50px);
+    transform: translate(-50%, -50%) translateZ(60px);
     z-index: 2100;
     transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s;
-    will-change: transform, opacity;
 }
 
 .medallion-seal {
@@ -137,311 +90,198 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 15px;
 }
 
-.seal-inner-emblem {
-    font-size: 1.6rem;
-    color: #2D0504;
-    margin-bottom: 2px;
-    filter: drop-shadow(0 1px 2px rgba(255,255,255,0.3));
-}
+.seal-inner-emblem { font-size: 1.6rem; color: #2D0504; margin-bottom: 2px; }
+.seal-initials { font-family: 'Mollani', sans-serif; font-size: 1.5rem; color: #2D0504; margin: 0 0 12px 0; font-weight: bold; }
 
-.seal-initials {
-    font-family: 'Mollani', sans-serif;
-    font-size: 1.5rem;
-    color: #2D0504;
-    margin: 0 0 12px 0;
-    font-weight: bold;
-    text-shadow: 1px 1px 0px rgba(255,255,255,0.3);
-}
-
-/* CTA Open Button Styling */
 #open-btn {
-    background: #2D0504;
-    color: #FFD700;
-    border: 1px solid #FFD700;
-    padding: 10px 20px;
-    border-radius: 30px; 
-    font-size: 0.75rem;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    -webkit-tap-highlight-color: transparent;
+    background: #2D0504; color: #FFD700; border: 1px solid #FFD700;
+    padding: 10px 22px; border-radius: 30px; font-size: 0.75rem; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.3s ease;
 }
-#open-btn:hover {
-    background: #FFD700;
-    color: #2D0504;
-    transform: scale(1.05);
-}
+#open-btn:hover { background: #FFD700; color: #2D0504; transform: scale(1.05); }
+.pulse-glow-btn { animation: goldenPulse 2s infinite alternate; }
 
-.pulse-glow-btn {
-    animation: goldenPulse 2s infinite alternate;
-}
-
-/* TRIGGERED ACTIVATION ANIMATION CLASSES (Executed via JavaScript) */
-#card-wrapper-3d.card-is-opening .left-gate {
-    transform: rotateY(-115deg);
-}
-#card-wrapper-3d.card-is-opening .right-gate {
-    transform: rotateY(115deg);
-}
-#card-wrapper-3d.card-is-opening #lock-medallion-container {
-    transform: translate(-50%, -50%) scale(0.01) rotate(180deg);
-    opacity: 0;
-}
-#card-wrapper-3d.card-is-opening {
-    transform: scale(1.12) translateZ(300px);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
+/* Trigger Box Opening Effects */
+#card-wrapper-3d.card-is-opening .left-gate { transform: rotateY(-120deg); }
+#card-wrapper-3d.card-is-opening .right-gate { transform: rotateY(120deg); }
+#card-wrapper-3d.card-is-opening #lock-medallion-container { transform: translate(-50%, -50%) scale(0.01) rotate(180deg); opacity: 0; }
+#card-wrapper-3d.card-is-opening { transform: translateZ(400px); opacity: 0; visibility: hidden; pointer-events: none; }
 
 /* ==========================================================================
-   3. MARIGOLD PETALS LAYER ENGINE
+   3. 3D BOOK ALBUM SURFACE CONTROLLERS (THE INVITATION LEAVES)
    ========================================================================== */
-#petal-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1500;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.petal {
-    position: absolute;
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    border-radius: 15% 70% 15% 70%;
-    filter: drop-shadow(1px 2px 3px rgba(212, 130, 0, 0.2));
-    opacity: 0.85;
-    pointer-events: none;
-    will-change: transform, top, left;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* ==========================================================================
-   4. SOUTHERN WEDDING ELEMENTS (MANTAPA & JASMINE)
-   ========================================================================== */
-.south-elements-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.mantapa-arch {
-    position: absolute;
-    top: 0;
-    left: 5%;
-    width: 90%;
-    height: 35px;
-    background: radial-gradient(circle at top, transparent 20%, #D4A373 21%, #C87A53 35%, transparent 38%);
-    background-size: 40px 45px;
-    border-bottom: 4px double #B5653C;
-    opacity: 0.6;
-}
-
-.standard-arch { height: 20px; background-size: 30px 30px; }
-
-.mantapa-pillar {
-    position: absolute;
-    top: 0;
-    width: 12px;
-    height: 100%;
-    background: linear-gradient(90deg, #C87A53, #E6BA94, #B5653C);
-    box-shadow: inset 1px 0 3px rgba(0,0,0,0.1);
-    opacity: 0.35;
-}
-.pillar-left { left: 8px; border-right: 2px solid #9A4416; }
-.pillar-right { right: 8px; border-left: 2px solid #9A4416; }
-
-.jasmine-garland {
-    position: absolute;
-    top: 0;
-    left: 12%;
-    width: 6px;
-    height: 75%;
-    background-image: radial-gradient(#FFFFFF 45%, #E6C687 55%, transparent 65%);
-    background-size: 8px 14px;
-    background-repeat: repeat-y;
-    opacity: 0.7;
-    filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.06));
-}
-.right-garland { left: auto; right: 12%; }
-.short-garland { height: 40%; }
-
-/* Typography Rules */
-.couple-names-text {
-    font-family: 'Mollani', sans-serif;
-    color: #C85A32;
-    text-shadow: 2px 2px 0px #F5E6D3, 4px 4px 0px rgba(181, 101, 60, 0.25);
-}
-
-h1.couple-names-text { font-size: 3.4rem; margin: 15px 0 25px 0; }
-
-.section-title {
-    font-family: 'DhVanolines', sans-serif;
-    font-size: 2.8rem;
-    color: #C85A32;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 0px #F5E6D3;
-    margin-bottom: 8px;
-}
-
-.button-text {
-    font-family: 'Playfair Display', serif;
-    font-weight: 800;
-    font-style: italic;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-/* Lineage Cards Arrangement */
-.family-container { margin-top: 15px; }
-.family-line { font-size: 1.05rem; line-height: 1.4; color: #4A3E3D; margin: 10px 0; }
-.parent-sub { font-size: 0.85rem; color: #7A6563; display: inline-block; margin-top: 3px; }
-.amp-divider { font-family: 'Mollani', sans-serif; font-size: 1.6rem; color: #C87A53; margin: 5px 0; }
-
-/* ==========================================================================
-   5. FLOATING INVITATION DETAILS PANELS
-   ========================================================================== */
-.content {
-    max-width: 450px;
-    width: 88%;
-    z-index: 2;
-    padding: 35px 22px;
-    box-sizing: border-box;
-    background: rgba(255, 251, 245, 0.88); 
-    border: 1px solid rgba(200, 122, 83, 0.3);
-    border-radius: 24px; 
-    box-shadow: 0 12px 35px rgba(181, 101, 60, 0.1), 4px 4px 0px rgba(181, 101, 60, 0.15);
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
-}
-
-.couple-photo-frame {
-    width: 140px;
-    height: 140px;
-    margin: -10px auto 20px auto;
-    border-radius: 50%;
-    border: 4px solid #FFFFFF;
-    box-shadow: 0 8px 24px rgba(181, 101, 60, 0.15), 3px 3px 0px #C85A32;
-    overflow: hidden;
-    position: relative;
-    background: #FFFDF9;
+#book-viewport {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateZ(25px); 
+    perspective: 2500px; /* Crucial depth to view pages folding over in 3D */
+    background: linear-gradient(135deg, #FAF6F0 0%, #EFE6DA 100%);
+    transition: opacity 1s ease;
+}
+#book-viewport.hidden-view { opacity: 0; pointer-events: none; }
+
+.wedding-book {
+    position: relative;
+    width: 90%;
+    max-width: 440px;
+    height: 82vh;
+    max-height: 680px;
+    transform-style: preserve-3d;
 }
 
-.couple-photo-img { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2; }
-.frame-placeholder-initials { position: absolute; font-family: 'Mollani', sans-serif; font-size: 1.6rem; color: rgba(200, 90, 50, 0.4); z-index: 1; }
+/* Individual Book Leaf Base Structure */
+.book-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: left center; /* Spine axis placement */
+    will-change: transform;
+    transition: transform 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-/* Flawless Floating Classes */
-.interactive-tilt-card { animation: cardFloat 6s ease-in-out infinite; }
-.interactive-tilt-card:hover { animation-play-state: paused; box-shadow: 0 20px 45px rgba(181, 101, 60, 0.18), 0 4px 20px rgba(200, 90, 50, 0.1); }
+/* Page Card Content Container Panels */
+.page-content-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 35px 24px;
+    background: #FFFDF9;
+    border: 1px solid rgba(200, 122, 83, 0.25);
+    border-left: 5px solid #A45034; /* Elegant gold-shaded thick book bookbinder spine */
+    border-radius: 0 20px 20px 0;
+    box-shadow: 10px 10px 30px rgba(181, 101, 60, 0.08), 2px 2px 0px rgba(181, 101, 60, 0.1);
+    box-sizing: border-box;
+    backface-visibility: hidden; /* Important: prevents inverted back mirror artifacts */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-#hero .content { animation-duration: 5s; }
-#family-panel .content { animation-duration: 5.8s; }
-#countdown-panel .content { animation-duration: 6.5s; }
-#schedule-panel .content.timeline-content { animation-duration: 0s; } 
-#venue-panel .content { animation-duration: 6s; }
-#rsvp .content { animation-duration: 7s; }
-
+.hero-page-bg {
+    background: linear-gradient(rgba(255, 251, 245, 0.65), rgba(255, 251, 245, 0.9)), url('your-custom-couple-image.jpg') no-repeat center center/cover;
+}
 .patterned-card {
-    background: linear-gradient(rgba(255, 251, 245, 0.85), rgba(255, 251, 245, 0.85)), url('6676.jpg') repeat center center/auto !important;
+    background: linear-gradient(rgba(255, 251, 245, 0.88), rgba(255, 251, 245, 0.88)), url('6676.jpg') repeat center center/auto;
 }
 
-/* Journey Timelines Layout */
-.timeline-subtitle { font-size: 0.75rem; letter-spacing: 4px; color: #8A7674; margin-top: 0; margin-bottom: 25px; font-weight: bold; }
-.timeline-journey { position: relative; width: 100%; margin: 15px 0 5px 0; padding-left: 24px; text-align: left; box-sizing: border-box; }
-.timeline-path { position: absolute; top: 15px; left: 11px; width: 2px; height: calc(100% - 30px); border-left: 2px dashed rgba(200, 90, 50, 0.45); z-index: 1; }
-.journey-node { position: relative; width: 100%; margin-bottom: 30px; z-index: 2; }
+.card-inner-body {
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+/* 3D BOOK TURNING SYSTEM STYLES (Flipped Class triggered via JS) */
+.book-page.flipped-over {
+    transform: rotateY(-180deg);
+}
+
+/* Dynamic Page Nav Row */
+.page-navigation-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 25px;
+}
+
+/* Premium Page Turning Interaction Links */
+.turn-page-btn {
+    background: transparent;
+    color: #C85A32;
+    border: 1px solid rgba(200, 90, 50, 0.5);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.turn-page-btn:hover {
+    background: rgba(200, 90, 50, 0.06);
+    border-color: #C85A32;
+}
+
+/* ==========================================================================
+   4. LAYOUT DESIGN DETAILS (TIMELINE, TIMER, GARLANDS)
+   ========================================================================== */
+#petal-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1500; pointer-events: none; }
+.petal { position: absolute; background: linear-gradient(135deg, #FFD700, #FFA500); border-radius: 15% 70% 15% 70%; opacity: 0.85; filter: drop-shadow(1px 2px 3px rgba(212, 130, 0, 0.2)); will-change: transform, top, left; }
+
+.south-elements-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.mantapa-arch { position: absolute; top: 0; left: 5%; width: 90%; height: 25px; background: radial-gradient(circle at top, transparent 20%, #D4A373 21%, #C87A53 35%, transparent 38%) 0 0/30px 35px; border-bottom: 3px double #B5653C; opacity: 0.5; }
+.standard-arch { height: 18px; }
+.mantapa-pillar { position: absolute; top: 0; width: 8px; height: 100%; background: linear-gradient(90deg, #C87A53, #E6BA94, #B5653C); opacity: 0.25; }
+.pillar-left { left: 4px; } .pillar-right { right: 4px; }
+
+.jasmine-garland { position: absolute; top: 0; left: 8%; width: 6px; height: 100%; background-image: radial-gradient(#FFFFFF 45%, #E6C687 55%, transparent 65%); background-size: 8px 14px; background-repeat: repeat-y; opacity: 0.6; }
+.right-garland { left: auto; right: 8%; }
+.short-garland { height: 40%; }
+
+/* Frame Modules */
+.couple-photo-frame { width: 130px; height: 130px; margin: 0 auto 15px auto; border-radius: 50%; border: 4px solid #FFFFFF; box-shadow: 0 8px 20px rgba(181, 101, 60, 0.12), 3px 3px 0px #C85A32; overflow: hidden; position: relative; display: flex; justify-content: center; align-items: center; background: #FFFDF9; }
+.couple-photo-img { width: 100%; height: 100%; object-fit: cover; }
+.frame-placeholder-initials { position: absolute; font-family: 'Mollani', sans-serif; font-size: 1.5rem; color: rgba(200, 90, 50, 0.35); }
+
+/* Typography */
+.couple-names-text { font-family: 'Mollani', sans-serif; color: #C85A32; text-shadow: 1px 1px 0px #F5E6D3, 2px 2px 0px rgba(181, 101, 60, 0.2); font-size: 2.8rem; margin: 10px 0 20px 0; }
+.section-title { font-family: 'DhVanolines', sans-serif; font-size: 2.4rem; color: #C85A32; text-shadow: 1px 1px 0px #F5E6D3; margin: 0 0 5px 0; }
+.button-text { font-family: 'Playfair Display', serif; font-weight: 800; font-style: italic; letter-spacing: 1px; text-transform: uppercase; }
+.subtitle { letter-spacing: 4px; font-size: 0.8rem; color: #C85A32; font-weight: bold; }
+.date { font-size: 1.3rem; letter-spacing: 1px; margin-top: 15px; font-weight: 700; color: #C85A32; }
+
+/* Lineage Details */
+.family-line { font-size: 0.95rem; line-height: 1.4; color: #4A3E3D; margin: 8px 0; }
+.parent-sub { font-size: 0.8rem; color: #7A6563; }
+.amp-divider { font-family: 'Mollani', sans-serif; font-size: 1.4rem; color: #C87A53; margin: 2px 0; }
+
+/* Timeline Modules */
+.timeline-subtitle { font-size: 0.7rem; letter-spacing: 3px; color: #8A7674; margin-bottom: 15px; font-weight: bold; }
+.timeline-journey { position: relative; width: 100%; padding-left: 15px; text-align: left; box-sizing: border-box; }
+.timeline-path { position: absolute; top: 10px; left: 6px; width: 2px; height: calc(100% - 20px); border-left: 2px dashed rgba(200, 90, 50, 0.4); }
+.journey-node { position: relative; width: 100%; margin-bottom: 15px; }
 .journey-node:last-child { margin-bottom: 0; }
-.node-marker { position: absolute; left: -24px; top: 12px; width: 24px; height: 24px; background: #FAF6F0; border: 1px solid #C85A32; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.85rem; z-index: 3; transform: translateX(-50%); }
-.shadow-marker { box-shadow: 2px 2px 0px rgba(200, 90, 50, 0.25); }
+.node-marker { position: absolute; left: -15px; top: 8px; width: 20px; height: 20px; background: #FAF6F0; border: 1px solid #C85A32; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.75rem; transform: translateX(-50%); box-shadow: 1px 1px 0px rgba(200, 90, 50, 0.2); }
+.transparent-card { background: rgba(255, 255, 255, 0.45); border: 1px dashed rgba(200, 122, 83, 0.25); border-radius: 12px; padding: 10px 14px; width: 100%; box-sizing: border-box; }
+.transparent-card h3 { margin: 0 0 2px 0; font-size: 1rem; color: #4A3E3D; }
+.journey-time { font-size: 0.85rem; color: #C85A32; font-weight: bold; margin: 0 0 4px 0; }
+.journey-desc { margin: 0; font-size: 0.78rem; line-height: 1.4; color: #6B5B5A; }
 
-.transparent-card {
-    background: rgba(255, 255, 255, 0.4) !important;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px dashed rgba(200, 122, 83, 0.3) !important;
-    box-shadow: 3px 3px 12px rgba(181, 101, 60, 0.05) !important;
-    border-radius: 16px; padding: 16px 18px; width: 100%; box-sizing: border-box; transition: background 0.3s ease;
-}
-.transparent-card:hover { background: rgba(255, 251, 245, 0.75) !important; }
-.transparent-card h3 { margin: 0 0 5px 0; font-size: 1.15rem; color: #4A3E3D; font-weight: 700; }
-.journey-time { font-size: 0.95rem; color: #C85A32; font-weight: bold; margin: 0 0 8px 0; letter-spacing: 0.5px; }
-.journey-desc { margin: 0; font-size: 0.85rem; line-height: 1.5; color: #6B5B5A; }
+/* Timer Layouts */
+.time-left-subtitle { font-size: 0.75rem; letter-spacing: 3px; color: #8A7674; margin-bottom: 20px; font-weight: 700; }
+.timer-container { display: flex; justify-content: center; gap: 8px; }
+.time-block { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(200, 122, 83, 0.35); min-width: 65px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; border-radius: 10px; box-shadow: 2px 2px 0px #C85A32; }
+.time-number { font-family: 'DhVanolines', sans-serif; font-size: 1.6rem; color: #C85A32; }
+.time-label { font-size: 0.65rem; text-transform: uppercase; color: #5A4B4A; font-weight: bold; }
 
-/* Countdown Clock Modules */
-.time-left-subtitle { font-size: 0.8rem; letter-spacing: 5px; color: #8A7674; margin-top: 0; margin-bottom: 30px; font-weight: 700; }
-.timer-container { display: flex; justify-content: center; gap: 12px; max-width: 100%; margin: 0 auto; }
-.time-block { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(200, 122, 83, 0.4); min-width: 70px; padding: 12px 6px; display: flex; flex-direction: column; align-items: center; border-radius: 12px; box-shadow: 2px 2px 0px #C85A32; }
-.time-number { font-family: 'DhVanolines', sans-serif; font-size: 1.8rem; color: #C85A32; margin-bottom: 5px; }
-.time-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #5A4B4A; font-weight: bold; }
+/* Venue Config */
+.venue { font-size: 0.9rem; line-height: 1.5; color: #4A3E3D; margin: 10px 0; }
+.venue-title { font-size: 1.1rem; font-weight: 700; color: #C85A32; }
+.wishes-note { font-size: 0.8rem; color: #7A6563; margin-top: 10px; }
+.divider { width: 50px; border: 0; border-top: 2px dashed #C85A32; margin: 15px auto; }
+.map-btn { display: inline-block; padding: 10px 24px; color: #C85A32; border: 1px solid #C85A32; border-radius: 50px; text-decoration: none; font-size: 0.75rem; }
 
-/* Panels layout grids */
-.panel { width: 100%; height: 100vh; height: 100svh; display: flex; justify-content: center; align-items: center; text-align: center; padding: 30px 20px; position: relative; overflow: hidden; }
-#hero { background: linear-gradient(rgba(250,246,240,0.52), rgba(250,246,240,0.82)), url('your-custom-couple-image.jpg') no-repeat center center/cover; }
-.asset-bg-panel { background-color: #FAF2E6; }
-#countdown-panel { background-color: #F7F1E6; }
-#schedule-panel { background-color: #F4ECE0; }
-#venue-panel { background-color: #EFE6DA; }
-#rsvp { background-color: #EDE2D5; }
+/* Form Config */
+.rsvp-form input, .rsvp-form select { display: block; width: 100%; max-width: 250px; margin: 10px auto; padding: 10px 14px; border: 1px solid rgba(200, 122, 83, 0.4); background: #FFFFFF; font-size: 0.85rem; border-radius: 10px; }
+.submit-btn { background: #C85A32; color: white; border: none; padding: 12px 36px; border-radius: 50px; font-size: 0.8rem; cursor: pointer; box-shadow: 2px 2px 0px rgba(74, 62, 61, 0.2); }
 
-.subtitle { letter-spacing: 5px; font-size: 0.85rem; color: #C85A32; font-weight: bold; line-height: 1.5; }
-.date { font-size: 1.5rem; letter-spacing: 2px; margin-top: 25px; font-weight: 700; color: #C85A32; }
-.venue { font-size: 0.98rem; line-height: 1.6; margin: 15px 0; color: #4A3E3D; }
-.venue-title { font-size: 1.2rem; font-weight: 700; color: #C85A32; }
-.wishes-note { font-size: 0.9rem; line-height: 1.5; color: #7A6563; margin-top: 15px; }
-.divider { width: 60px; border: 0; border-top: 2px dashed #C85A32; margin: 20px auto; }
-.scroll-indicator { margin-top: 20px; font-size: 0.8rem; letter-spacing: 3px; color: #C85A32; font-weight: bold; animation: bounce 2s infinite; }
+/* Sticky Audios */
+.audio-btn { position: fixed; top: 15px; right: 15px; z-index: 1800; background: rgba(250, 246, 240, 0.9); border: 1px solid #C87A53; color: #4A3E3D; padding: 8px 16px; border-radius: 30px; font-size: 0.72rem; cursor: pointer; box-shadow: 2px 2px 0px #C85A32; }
 
-/* Audio Floating Elements */
-.audio-btn { position: fixed; top: 15px; right: 15px; z-index: 1800; background: rgba(250, 246, 240, 0.9); border: 1px solid #C87A53; color: #4A3E3D; padding: 8px 16px; border-radius: 30px; cursor: pointer; font-size: 0.72rem; box-shadow: 2px 2px 0px #C85A32; -webkit-tap-highlight-color: transparent; }
-
-/* Map Button Hooks */
-.map-btn { display: inline-block; margin-top: 5px; padding: 12px 28px; color: #C85A32; border: 2px solid #C85A32; border-radius: 50px; text-decoration: none; font-size: 0.8rem; transition: all 0.2s ease; -webkit-tap-highlight-color: transparent; }
-.map-btn:hover { background: #C85A32; color: #FFFFFF; }
-
-/* RSVP form inputs validation wrapper styles */
-.rsvp-form input, .rsvp-form select { display: block; width: 100%; max-width: 280px; margin: 12px auto; padding: 12px 16px; border: 1px solid rgba(200, 122, 83, 0.5); background: #FFFFFF; color: #4A3E3D; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; border-radius: 12px; }
-.rsvp-form input:focus, .rsvp-form select:focus { border-color: #C85A32; outline: none; }
-.submit-btn { background: #C85A32; color: white; border: none; padding: 14px 40px; border-radius: 50px; font-size: 0.9rem; cursor: pointer; box-shadow: 3px 3px 0px rgba(74, 62, 61, 0.3); transition: transform 0.1s, box-shadow 0.1s; -webkit-tap-highlight-color: transparent; }
-.submit-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px rgba(74, 62, 61, 0.3); }
-
-/* Animation Keyframes Mapping */
 @keyframes goldenPulse {
-    0% { box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3), 0 0 0 0 rgba(255, 215, 0, 0.2); }
-    100% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5), 0 0 0 12px rgba(255, 215, 0, 0); }
-}
-@keyframes cardFloat {
-    0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
-    50% { transform: translateY(-8px) rotateX(1deg) rotateY(-0.5deg); }
-    100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
-}
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-6px); }
-    60% { transform: translateY(-3px); }
+    0% { box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); }
+    100% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5); }
 }
 
 @media (max-width: 360px) {
-    .timer-container { gap: 6px; }
-    .time-block { min-width: 60px; padding: 10px 4px; }
-    .time-number { font-size: 1.5rem; }
-    .content { padding: 30px 15px; }
-    h1.couple-names-text { font-size: 2.8rem; }
-    .couple-photo-frame { width: 120px; height: 120px; }
-    .medallion-seal { width: 190px; height: 190px; }
+    .wedding-book { height: 86vh; }
+    .timer-container { gap: 4px; }
+    .time-block { min-width: 58px; }
+    .couple-names-text { font-size: 2.3rem; }
 }
