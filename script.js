@@ -59,13 +59,12 @@ updateCountdown();
 const timerInterval = setInterval(updateCountdown, 1000);
 
 // ==========================================================================
-// NEW: INTERACTIVE CURSOR-ATTRACTING YELLOW PETALS ENGINE
+// HIGH-ACCURACY VELOCITY POINTER-TRACKING PETALS ENGINE
 // ==========================================================================
 const container = document.getElementById('petal-container');
-const totalPetals = 15;
+const totalPetals = 16;
 const petalsArray = [];
 
-// Track screen interactions
 let mouseX = -1000;
 let mouseY = -1000;
 let isUserInteracting = false;
@@ -84,7 +83,6 @@ window.addEventListener('touchmove', (e) => {
     }
 });
 
-// Clear track coordinates when user leaves the window space
 window.addEventListener('mouseout', () => {
     isUserInteracting = false;
 });
@@ -106,21 +104,21 @@ class YellowPetal {
         this.x = Math.random() * window.innerWidth;
         this.y = -20 - (Math.random() * 100);
         
-        this.speedY = Math.random() * 1.5 + 1.2;
-        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1.2 + 1.0;
+        this.speedX = Math.random() * 0.8 - 0.4;
         this.rotation = Math.random() * 360;
-        this.rotationSpeed = Math.random() * 2 - 1;
+        this.rotationSpeed = Math.random() * 1.5 - 0.75;
         
         this.swayAngle = Math.random() * Math.PI * 2;
         this.swaySpeed = Math.random() * 0.02 + 0.01;
-        this.swayRadius = Math.random() * 1.5 + 0.5;
+        this.swayRadius = Math.random() * 1.2 + 0.4;
 
         this.offsetX = 0;
         this.offsetY = 0;
     }
 
     update() {
-        // Natural gravity and wind sway calculations
+        // Base environmental physics forces
         this.y += this.speedY;
         this.swayAngle += this.swaySpeed;
         this.x += this.speedX + Math.sin(this.swayAngle) * this.swayRadius;
@@ -129,78 +127,18 @@ class YellowPetal {
         const currentTotalX = this.x + this.offsetX;
         const currentTotalY = this.y + this.offsetY;
 
-        // Inverted physics logic: Calculate distance vectors toward the cursor position
         if (isUserInteracting) {
             const diffX = mouseX - currentTotalX;
             const diffY = mouseY - currentTotalY;
             const distance = Math.sqrt(diffX * diffX + diffY * diffY);
-            const attractionRadius = 250; // Distance thresholds where petals hear the pull
+            
+            // Interaction threshold boundary
+            const attractionRadius = 300; 
 
-            if (distance < attractionRadius && distance > 10) {
-                // Stronger pull parameters based on how close the leaf is
-                const pullForce = (attractionRadius - distance) / attractionRadius;
+            if (distance < attractionRadius && distance > 5) {
+                // Determine normalized heading vectors
+                const angle = Math.atan2(diffY, diffX);
                 
-                // Pull step speeds smoothly blending with default fall velocities
-                this.offsetX += (diffX / distance) * pullForce * 1.8;
-                this.offsetY += (diffY / distance) * pullForce * 1.8;
-            } else {
-                // Return smoothly to normal fall trajectories when outside cursor radius
-                this.offsetX *= 0.96;
-                this.offsetY *= 0.96;
-            }
-        } else {
-            // Apply air resistance dampening when no user cursor exists
-            this.offsetX *= 0.96;
-            this.offsetY *= 0.96;
-        }
-
-        this.el.style.top = `${this.y + this.offsetY}px`;
-        this.el.style.left = `${this.x + this.offsetX}px`;
-        this.el.style.transform = `rotate(${this.rotation}deg) rotateY(${this.rotation * 0.5}deg)`;
-
-        // Reset positions immediately if leaves slip cleanly past the screen borders
-        if (this.y > window.innerHeight + 20 || this.x < -20 || this.x > window.innerWidth + 20) {
-            this.reset();
-        }
-    }
-}
-
-for (let i = 0; i < totalPetals; i++) {
-    petalsArray.push(new YellowPetal());
-}
-
-function animatePetals() {
-    for (let i = 0; i < petalsArray.length; i++) {
-        petalsArray[i].update();
-    }
-    requestAnimationFrame(animatePetals);
-}
-animatePetals();
-
-// ==========================================================================
-// SMART 3D PERSPECTIVE HOVER CORNER TILT FOR FLOATING CARDS
-// ==========================================================================
-const cards = document.querySelectorAll('.interactive-tilt-card');
-
-cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        
-        const cardWidth = rect.width;
-        const cardHeight = rect.height;
-        const centerX = rect.left + cardWidth / 2;
-        const centerY = rect.top + cardHeight / 2;
-        
-        const mouseRelativeX = e.clientX - centerX;
-        const mouseRelativeY = e.clientY - centerY;
-
-        const tiltX = (mouseRelativeY / (cardHeight / 2)) * -12;
-        const tiltY = (mouseRelativeX / (cardWidth / 2)) * 12;
-
-        card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.03, 1.03, 1.03)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-    });
-});
+                // Calculate pull velocity scaling based on proximity
+                const proximityScale = (attractionRadius - distance) / attractionRadius;
+                const targetedPullVelocity = proximityScale * 3.5;
