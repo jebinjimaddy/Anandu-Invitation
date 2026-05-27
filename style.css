@@ -9,9 +9,58 @@ html {
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: #1a1a1a; /* Switched to a dark, edgy canvas */
+    background-color: #1a1a1a;
     color: #ffffff;
     overflow-x: hidden;
+}
+
+/* --- Flower Fall Overlay Engine --- */
+#petal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1500; /* Sits right below buttons/popups, but above text layouts */
+    pointer-events: none; /* Allows users to scroll and tap straight through it */
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    background: linear-gradient(135deg, #ffb7c5, #ff8da1); /* Soft romantic rose gradient */
+    border-radius: 15% 70% 15% 70%; /* Distorts box into an elegant leaf structure */
+    width: 15px;
+    height: 15px;
+    top: -20px;
+    opacity: 0.8;
+    animation: fall linear infinite, sway ease-in-out infinite;
+}
+
+/* Custom timing offsets for natural variance */
+.petal:nth-child(1)  { left: 10%; width: 14px; height: 12px; animation-duration: 7s, 3s; animation-delay: 0s, 0s; }
+.petal:nth-child(2)  { left: 25%; width: 18px; height: 16px; animation-duration: 9s, 4s; animation-delay: 1s, 0.5s; }
+.petal:nth-child(3)  { left: 40%; width: 12px; height: 11px; animation-duration: 6s, 2.5s; animation-delay: 0.5s, 1s; }
+.petal:nth-child(4)  { left: 55%; width: 16px; height: 14px; animation-duration: 8s, 3.5s; animation-delay: 2s, 0s; }
+.petal:nth-child(5)  { left: 70%; width: 15px; height: 15px; animation-duration: 10s, 4s; animation-delay: 1.5s, 1.5s; }
+.petal:nth-child(6)  { left: 85%; width: 13px; height: 12px; animation-duration: 7.5s, 3s; animation-delay: 0s, 2s; }
+.petal:nth-child(7)  { left: 95%; width: 17px; height: 15px; animation-duration: 8.5s, 3.8s; animation-delay: 3s, 0.5s; }
+.petal:nth-child(8)  { left: 15%; width: 15px; height: 13px; animation-duration: 6.8s, 2.8s; animation-delay: 2.5s, 1.2s; }
+.petal:nth-child(9)  { left: 48%; width: 19px; height: 17px; animation-duration: 9.5s, 4.2s; animation-delay: 0.8s, 0s; }
+.petal:nth-child(10) { left: 65%; width: 11px; height: 10px; animation-duration: 5.5s, 2.2s; animation-delay: 1.2s, 1.8s; }
+.petal:nth-child(11) { left: 35%; width: 14px; height: 14px; animation-duration: 8.2s, 3.2s; animation-delay: 4s, 0.2s; }
+.petal:nth-child(12) { left: 78%; width: 16px; height: 13px; animation-duration: 7.2s, 2.9s; animation-delay: 1.7s, 0.7s; }
+
+/* Vertically drops the flowers */
+@keyframes fall {
+    0% { top: -5%; }
+    100% { top: 105%; }
+}
+
+/* Sways them drifting left/right and spinning in 3D */
+@keyframes sway {
+    0%, 100% { transform: translateX(0) rotate(0deg) rotateY(0deg); }
+    50% { transform: translateX(40px) rotate(180deg) rotateY(360deg); }
 }
 
 /* --- Graffiti Typography --- */
@@ -19,20 +68,20 @@ body {
     font-family: 'Permanent Marker', cursive;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #00ffcc; /* Vibrant neon paint color */
-    text-shadow: 3px 3px 0px #ff0055, -1px -1px 0px #000; /* Stencil outline look */
+    color: #00ffcc;
+    text-shadow: 3px 3px 0px #ff0055, -1px -1px 0px #000;
 }
 
 h1.tag-text {
     font-size: 4rem;
-    transform: rotate(-2deg); /* Gives it a raw, hand-painted angle */
+    transform: rotate(-2deg);
     margin: 20px 0;
 }
 
 .section-title {
     font-family: 'Permanent Marker', cursive;
     font-size: 2.8rem;
-    color: #ff0055; /* Hot pink accent paint */
+    color: #ff0055;
     letter-spacing: 2px;
 }
 
@@ -43,12 +92,11 @@ h1.tag-text {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.15; /* Keeps textures subtle so text is readable */
+    opacity: 0.15;
     pointer-events: none;
     z-index: 1;
 }
 
-/* High-contrast web textures mimicking wall art patterns */
 .texture-1 {
     background-image: radial-gradient(circle at 20% 30%, #ff0055 10%, transparent 20%), 
                       radial-gradient(circle at 75% 60%, #00ffcc 12%, transparent 25%);
@@ -146,7 +194,7 @@ h1.tag-text {
 }
 
 #details {
-    background-color: #1e1e24; /* Dark charcoal concrete gray */
+    background-color: #1e1e24;
 }
 
 #rsvp {
@@ -155,7 +203,7 @@ h1.tag-text {
 
 .content {
     max-width: 600px;
-    z-index: 2; /* Forces text to layer over the graffiti backgrounds */
+    z-index: 2;
 }
 
 .subtitle { letter-spacing: 6px; font-size: 0.9rem; color: #00ffcc; font-weight: bold; }
