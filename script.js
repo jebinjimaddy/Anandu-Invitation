@@ -1,26 +1,28 @@
 // ==========================================================================
-// 3D BOX EXPLOSION & DASHBOARD ENTRY INTERACTION
+// 3D ENVELOPE OPENING & DASHBOARD ENTRY INTERACTION
 // ==========================================================================
 const music = document.getElementById('bg-music');
 const toggleBtn = document.getElementById('music-toggle');
-const openBoxBtn = document.getElementById('open-box-btn');
-const surpriseOverlay = document.getElementById('surprise-box-overlay');
+const openEnvelopeBtn = document.getElementById('open-envelope-btn');
+const envelopeOverlay = document.getElementById('envelope-overlay');
 const dashboardView = document.getElementById('dashboard-viewport');
 
 music.volume = 0.4;
 
-openBoxBtn.addEventListener('click', () => {
-    // 1. Fire CSS Box Wall & Lid Burst State Classes
-    surpriseOverlay.classList.add('box-exploded');
+openEnvelopeBtn.addEventListener('click', () => {
+    // 1. Unseal and pop open top flap via class mappings
+    envelopeOverlay.classList.add('envelope-opened');
     
-    // 2. Bring the main invitation dashboard forward gracefully
-    dashboardView.classList.remove('dashboard-hidden');
+    // 2. Bring the main invitation dashboard smoothly into screen view focus
+    setTimeout(() => {
+        dashboardView.classList.remove('dashboard-hidden');
+    }, 600); // Gives time for the letter slide animation to feature clearly
     
-    // 3. Audio System initialization
+    // 3. Play background music
     music.play().then(() => {
         toggleBtn.textContent = "🔊 Music On";
     }).catch(err => {
-        console.log("Audio contextual playback restriction managed.", err);
+        console.log("Audio block active until user context registers.", err);
     });
 });
 
@@ -35,7 +37,7 @@ toggleBtn.addEventListener('click', () => {
 });
 
 // ==========================================================================
-// COUNTDOWN TIMER MODULE (Target Date: July 12, 2026 at 10:30 AM)
+// COUNTDOWN TIMER ENGINE (Target Date: July 12, 2026 at 10:30 AM)
 // ==========================================================================
 const targetDate = new Date("July 12, 2026 10:30:00").getTime();
 
@@ -62,7 +64,7 @@ updateCountdown();
 const timerInterval = setInterval(updateCountdown, 1000);
 
 // ==========================================================================
-// HYBRID PHYSICS: FOLLOW POINTER + EXPLODE AWAY ON TAP/CLICK
+// FLOWER PETAL INTERACTION PHYSICS
 // ==========================================================================
 const container = document.getElementById('petal-container');
 const totalPetals = 16;
@@ -142,7 +144,7 @@ function animatePetals() {
 animatePetals();
 
 // ==========================================================================
-// GYROSCOPIC TILT INTERACTIONS (FLOATING DASHBOARD MOTION MAPPING)
+// MOUSE MOVE PARALLAX TILT EFFECTS ON DASHBOARD CARDS
 // ==========================================================================
 const cards = document.querySelectorAll('.interactive-tilt-card');
 
@@ -153,8 +155,8 @@ cards.forEach(card => {
         const centerX = rect.left + cardWidth / 2; const centerY = rect.top + cardHeight / 2;
         const mouseRelativeX = e.clientX - centerX; const mouseRelativeY = e.clientY - centerY;
 
-        const tiltX = (mouseRelativeY / (cardHeight / 2)) * -10;
-        const tiltY = (mouseRelativeX / (cardWidth / 2)) * 10;
+        const tiltX = (mouseRelativeY / (cardHeight / 2)) * -8;
+        const tiltY = (mouseRelativeX / (cardWidth / 2)) * 8;
 
         card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
     });
