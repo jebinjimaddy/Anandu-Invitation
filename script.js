@@ -1,5 +1,5 @@
 // ==========================================================================
-// 3D ENVELOPE OPENING & DASHBOARD ENTRY INTERACTION
+// 1. 3D ENVELOPE OPENING & INITIAL ENTRY
 // ==========================================================================
 const music = document.getElementById('bg-music');
 const toggleBtn = document.getElementById('music-toggle');
@@ -10,19 +10,16 @@ const dashboardView = document.getElementById('dashboard-viewport');
 music.volume = 0.4;
 
 openEnvelopeBtn.addEventListener('click', () => {
-    // 1. Unseal and pop open top flap via class mappings
     envelopeOverlay.classList.add('envelope-opened');
     
-    // 2. Bring the main invitation dashboard smoothly into screen view focus
     setTimeout(() => {
         dashboardView.classList.remove('dashboard-hidden');
-    }, 600); // Gives time for the letter slide animation to feature clearly
+    }, 600);
     
-    // 3. Play background music
     music.play().then(() => {
         toggleBtn.textContent = "🔊 Music On";
     }).catch(err => {
-        console.log("Audio block active until user context registers.", err);
+        console.log("Audio contexts locked until secondary interaction.", err);
     });
 });
 
@@ -37,7 +34,25 @@ toggleBtn.addEventListener('click', () => {
 });
 
 // ==========================================================================
-// COUNTDOWN TIMER ENGINE (Target Date: July 12, 2026 at 10:30 AM)
+// 2. NEW ACTIVE CARD SEQUENTIAL TRANSITION ENGINE (FADE OUT -> FADE IN)
+// ==========================================================================
+function switchCard(nextCardId) {
+    const currentActiveCard = document.querySelector('.dash-card.active-card');
+    const targetNextCard = document.getElementById(nextCardId);
+    
+    if (!targetNextCard || currentActiveCard === targetNextCard) return;
+    
+    // Step A: Fade out and slide down the current visible card
+    currentActiveCard.classList.remove('active-card');
+    
+    // Step B: Wait for fade-out animation timeline completion, then trigger next card fade-in
+    setTimeout(() => {
+        targetNextCard.classList.add('active-card');
+    }, 400); // 400ms delay builds a flawless overlapping dissolve effect
+}
+
+// ==========================================================================
+// 3. COUNTDOWN TIMER SYSTEM (Target: July 12, 2026)
 // ==========================================================================
 const targetDate = new Date("July 12, 2026 10:30:00").getTime();
 
@@ -64,7 +79,7 @@ updateCountdown();
 const timerInterval = setInterval(updateCountdown, 1000);
 
 // ==========================================================================
-// FLOWER PETAL INTERACTION PHYSICS
+// 4. FLOWER PETAL PHYSICS SIMULATION ENGAGEMENT
 // ==========================================================================
 const container = document.getElementById('petal-container');
 const totalPetals = 16;
@@ -142,25 +157,3 @@ function animatePetals() {
     requestAnimationFrame(animatePetals);
 }
 animatePetals();
-
-// ==========================================================================
-// MOUSE MOVE PARALLAX TILT EFFECTS ON DASHBOARD CARDS
-// ==========================================================================
-const cards = document.querySelectorAll('.interactive-tilt-card');
-
-cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const cardWidth = rect.width; const cardHeight = rect.height;
-        const centerX = rect.left + cardWidth / 2; const centerY = rect.top + cardHeight / 2;
-        const mouseRelativeX = e.clientX - centerX; const mouseRelativeY = e.clientY - centerY;
-
-        const tiltX = (mouseRelativeY / (cardHeight / 2)) * -8;
-        const tiltY = (mouseRelativeX / (cardWidth / 2)) * 8;
-
-        card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
-    });
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-    });
-});
