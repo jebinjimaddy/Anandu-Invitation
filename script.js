@@ -20,9 +20,9 @@ openBtn.addEventListener('click', () => {
 toggleBtn.addEventListener('click', () => {
     if (music.paused) {
         music.play();
-        toggleBtn.textContent = "🔊 Music On";
+        toggleBtn.textContent = "🔊";
     } else {
         music.pause();
-        toggleBtn.textContent = "🔇 Music Off";
+        toggleBtn.textContent = "🔇";
     }
 });
