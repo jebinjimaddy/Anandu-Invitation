@@ -33,13 +33,16 @@ html, body {
 
 html {
     scroll-behavior: smooth;
+    perspective: 1000px; /* Enables beautiful 3D Card Tilting Spaces */
 }
 
 *, *:before, *:after {
     box-sizing: inherit;
 }
 
-/* --- Rose/Lotus Petal Fall Overlay Engine --- */
+/* ==========================================================================
+   INTERACTIVE MARIGOLD YELLOW PETALS ENGINE
+   ========================================================================== */
 #petal-container {
     position: fixed;
     top: 0;
@@ -53,35 +56,14 @@ html {
 
 .petal {
     position: absolute;
-    background: linear-gradient(135deg, #FF7E95, #E64C65);
+    /* Beautiful Marigold Yellow Palette Gradient */
+    background: linear-gradient(135deg, #FFD700, #FFA500);
     border-radius: 15% 70% 15% 70%;
-    width: 14px;
-    height: 14px;
-    top: -20px;
-    opacity: 0.75;
-    animation: fall linear infinite, sway ease-in-out infinite;
-}
-
-.petal:nth-child(1)  { left: 10%; width: 14px; height: 12px; animation-duration: 7s, 3s; animation-delay: 0s, 0s; }
-.petal:nth-child(2)  { left: 25%; width: 18px; height: 16px; animation-duration: 9s, 4s; animation-delay: 1s, 0.5s; }
-.petal:nth-child(3)  { left: 40%; width: 12px; height: 11px; animation-duration: 6s, 2.5s; animation-delay: 0.5s, 1s; }
-.petal:nth-child(4)  { left: 55%; width: 16px; height: 14px; animation-duration: 8s, 3.5s; animation-delay: 2s, 0s; }
-.petal:nth-child(5)  { left: 70%; width: 15px; height: 15px; animation-duration: 10s, 4s; animation-delay: 1.5s, 1.5s; }
-.petal:nth-child(6)  { left: 85%; width: 13px; height: 12px; animation-duration: 7.5s, 3s; animation-delay: 0s, 2s; }
-.petal:nth-child(7)  { left: 95%; width: 17px; height: 15px; animation-duration: 8.5s, 3.8s; animation-delay: 3s, 0.5s; }
-.petal:nth-child(8)  { left: 15%; width: 15px; height: 13px; animation-duration: 6.8s, 2.8s; animation-delay: 2.5s, 1.2s; }
-.petal:nth-child(9)  { left: 48%; width: 19px; height: 17px; animation-duration: 9.5s, 4.2s; animation-delay: 0.8s, 0s; }
-.petal:nth-child(10) { left: 65%; width: 11px; height: 10px; animation-duration: 5.5s, 2.2s; animation-delay: 1.2s, 1.8s; }
-.petal:nth-child(11) { left: 35%; width: 14px; height: 14px; animation-duration: 8.2s, 3.2s; animation-delay: 4s, 0.2s; }
-.petal:nth-child(12) { left: 78%; width: 16px; height: 13px; animation-duration: 7.2s, 2.9s; animation-delay: 1.7s, 0.7s; }
-
-@keyframes fall {
-    0% { top: -5%; }
-    100% { top: 105%; }
-}
-@keyframes sway {
-    0%, 100% { transform: translateX(0) rotate(0deg) rotateY(0deg); }
-    50% { transform: translateX(35px) rotate(180deg) rotateY(180deg); }
+    filter: drop-shadow(1px 2px 3px rgba(212, 130, 0, 0.2));
+    opacity: 0.85;
+    pointer-events: none;
+    will-change: transform, top, left;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* ==========================================================================
@@ -195,7 +177,9 @@ h1.couple-names-text {
     margin: 5px 0;
 }
 
-/* --- Base Floating Card Structures --- */
+/* ==========================================================================
+   2. UPDATED FLOATING CARDS DESIGN WITH ROUNDED EDGES & 3D INTERACTIVITY
+   ========================================================================== */
 .content {
     max-width: 450px;
     width: 88%;
@@ -204,18 +188,35 @@ h1.couple-names-text {
     box-sizing: border-box;
     background: rgba(255, 251, 245, 0.88); 
     border: 1px solid rgba(200, 122, 83, 0.3);
-    box-shadow: 0 10px 30px rgba(181, 101, 60, 0.08), 5px 5px 0px rgba(181, 101, 60, 0.2);
+    
+    /* ELEGANT NEW ROUNDED CORNERS */
+    border-radius: 24px; 
+    
+    box-shadow: 0 12px 35px rgba(181, 101, 60, 0.1), 4px 4px 0px rgba(181, 101, 60, 0.15);
+    
+    /* Interactive States initialization */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+}
+
+/* Fluid Animation Classes */
+.interactive-tilt-card {
     animation: cardFloat 6s ease-in-out infinite;
+}
+.interactive-tilt-card:hover {
+    animation-play-state: paused; /* Pause subtle float loop when dragging / tracking cursor tilt */
+    box-shadow: 0 20px 45px rgba(181, 101, 60, 0.18), 0 4px 20px rgba(200, 90, 50, 0.1);
 }
 
 #hero .content { animation-duration: 5s; }
 #family-panel .content { animation-duration: 5.8s; }
 #countdown-panel .content { animation-duration: 6.5s; }
-#schedule-panel .content.timeline-content { animation-duration: 0s; } 
+#schedule-panel .content.timeline-content { animation-duration: 0s; } /* Keeps line-tracking paths strictly anchored */
 #venue-panel .content { animation-duration: 6s; }
 #rsvp .content { animation-duration: 7s; }
 
-/* Custom Textures from 6676.jpg applied inside cards */
+/* Custom Textures applied cleanly within rounded containers */
 .patterned-card {
     background: linear-gradient(rgba(255, 251, 245, 0.85), rgba(255, 251, 245, 0.85)), url('6676.jpg') repeat center center/auto !important;
 }
@@ -283,13 +284,14 @@ h1.couple-names-text {
     box-shadow: 2px 2px 0px rgba(200, 90, 50, 0.25);
 }
 
-/* Semi-Transparent Glass Journey Node Cards */
+/* Semi-Transparent Glass Journey Node Cards with Rounded Edges */
 .transparent-card {
     background: rgba(255, 255, 255, 0.4) !important;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px dashed rgba(200, 122, 83, 0.3) !important;
     box-shadow: 3px 3px 12px rgba(181, 101, 60, 0.05) !important;
+    border-radius: 16px; /* Smooth card inner-stops */
     padding: 16px 18px;
     width: 100%;
     box-sizing: border-box;
@@ -347,7 +349,8 @@ h1.couple-names-text {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 3px 3px 0px #C85A32;
+    border-radius: 12px; /* Uniform rounded sub-blocks */
+    box-shadow: 2px 2px 0px #C85A32;
 }
 
 .time-number {
@@ -416,6 +419,7 @@ h1.couple-names-text {
     color: #C85A32;
     border: 2px solid #C85A32;
     padding: 13px 40px;
+    border-radius: 50px; /* Smooth rounded pill shape CTA button */
     font-weight: 700;
     font-size: 1.05rem;
     cursor: pointer;
@@ -510,6 +514,7 @@ h1.couple-names-text {
     border: 1px solid #C87A53;
     color: #4A3E3D;
     padding: 8px 14px;
+    border-radius: 30px;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
@@ -522,9 +527,10 @@ h1.couple-names-text {
 .map-btn {
     display: inline-block;
     margin-top: 5px;
-    padding: 10px 20px;
+    padding: 10px 24px;
     color: #C85A32;
     border: 2px solid #C85A32;
+    border-radius: 50px;
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: bold;
@@ -542,13 +548,13 @@ h1.couple-names-text {
     width: 100%;
     max-width: 280px;
     margin: 12px auto;
-    padding: 12px;
+    padding: 12px 16px;
     border: 1px solid rgba(200, 122, 83, 0.5);
     background: #FFFFFF;
     color: #4A3E3D;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
-    border-radius: 0px;
+    border-radius: 12px; /* Smooth rounded input curves */
 }
 .rsvp-form input:focus, .rsvp-form select:focus {
     border-color: #C85A32;
@@ -560,20 +566,25 @@ h1.couple-names-text {
     color: white;
     border: none;
     padding: 12px 35px;
+    border-radius: 50px;
     font-size: 1.1rem;
     cursor: pointer;
     box-shadow: 3px 3px 0px rgba(74, 62, 61, 0.3);
-    transition: transform 0.1s;
+    transition: transform 0.1s, box-shadow 0.1s;
     -webkit-tap-highlight-color: transparent;
+}
+.submit-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px rgba(74, 62, 61, 0.3);
 }
 
 /* ==========================================================================
    INTERACTIVE KEYFRAMES
    ========================================================================== */
 @keyframes cardFloat {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0px); }
+    0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+    50% { transform: translateY(-8px) rotateX(1deg) rotateY(-0.5deg); }
+    100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
 }
 
 @keyframes bounce {
