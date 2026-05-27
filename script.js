@@ -59,7 +59,7 @@ updateCountdown();
 const timerInterval = setInterval(updateCountdown, 1000);
 
 // ==========================================================================
-// HIGH-ACCURACY VELOCITY POINTER-TRACKING PETALS ENGINE
+// HYBRID PHYSICS: FOLLOW POINTER + EXPLODE AWAY ON TAP/CLICK
 // ==========================================================================
 const container = document.getElementById('petal-container');
 const totalPetals = 16;
@@ -68,6 +68,12 @@ const petalsArray = [];
 let mouseX = -1000;
 let mouseY = -1000;
 let isUserInteracting = false;
+
+// Tap Explosion State Variables
+let tapX = -1000;
+let tapY = -1000;
+let tapShockwaveRadius = 0;
+const maxShockwaveRadius = 220; // Distance the tap blast travels outward
 
 window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
@@ -85,6 +91,26 @@ window.addEventListener('touchmove', (e) => {
 
 window.addEventListener('mouseout', () => {
     isUserInteracting = false;
+});
+
+// Trigger Shockwave on Click/Tap
+function triggerScatterBlast(clientX, clientY) {
+    tapX = clientX;
+    tapY = clientY;
+    tapShockwaveRadius = 10; // Start shockwave ring
+}
+
+window.addEventListener('mousedown', (e) => {
+    // Ignore clicks if clicking links/buttons to prevent breaking UI interactions
+    if(e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return;
+    triggerScatterBlast(e.clientX, e.clientY);
+});
+
+window.addEventListener('touchstart', (e) => {
+    if(e.touches.length > 0) {
+        if(e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return;
+        triggerScatterBlast(e.touches[0].clientX, e.touches[0].clientY);
+    }
 });
 
 class YellowPetal {
@@ -118,7 +144,7 @@ class YellowPetal {
     }
 
     update() {
-        // Base environmental physics forces
+        // Base environment gravitational pull
         this.y += this.speedY;
         this.swayAngle += this.swaySpeed;
         this.x += this.speedX + Math.sin(this.swayAngle) * this.swayRadius;
@@ -127,31 +153,47 @@ class YellowPetal {
         const currentTotalX = this.x + this.offsetX;
         const currentTotalY = this.y + this.offsetY;
 
-        if (isUserInteracting) {
+        let appliedForceThisFrame = false;
+
+        // 1. CLICK / TAP EXPLOSION ENGINE (Takes absolute priority)
+        if (tapShockwaveRadius > 0) {
+            const dxTap = currentTotalX - tapX;
+            const dyTap = currentTotalY - tapY;
+            const distToTap = Math.sqrt(dxTap * dxTap + dyTap * dyTap);
+
+            // If a petal gets caught inside the expanding shockwave perimeter ring
+            if (distToTap < tapShockwaveRadius + 60 && distToTap > tapShockwaveRadius - 60) {
+                const blastAngle = Math.atan2(dyTap, dxTap);
+                // Push them away rapidly proportional to proximity
+                const power = (maxShockwaveRadius - tapShockwaveRadius) / maxShockwaveRadius;
+                this.offsetX += Math.cos(blastAngle) * power * 18;
+                this.offsetY += Math.sin(blastAngle) * power * 18;
+                appliedForceThisFrame = true;
+            }
+        }
+
+        // 2. CURSOR FOLLOW TRACTION (Runs when tap shockwaves aren't actively clearing area)
+        if (!appliedForceThisFrame && isUserInteracting) {
             const diffX = mouseX - currentTotalX;
             const diffY = mouseY - currentTotalY;
             const distance = Math.sqrt(diffX * diffX + diffY * diffY);
             
-            // Interaction threshold boundary
             const attractionRadius = 300; 
 
-            if (distance < attractionRadius && distance > 5) {
-                // Determine normalized heading vectors
+            if (distance < attractionRadius && distance > 15) {
                 const angle = Math.atan2(diffY, diffX);
-                
-                // Calculate pull velocity scaling based on proximity
                 const proximityScale = (attractionRadius - distance) / attractionRadius;
-                const targetedPullVelocity = proximityScale * 3.5; 
+                const targetedPullVelocity = proximityScale * 3.8; 
 
-                // Blend pointer pull vectors cleanly over existing offsets
-                this.offsetX += Math.cos(angle) * targetedPullVelocity * 0.15;
-                this.offsetY += Math.sin(angle) * targetedPullVelocity * 0.15;
+                // Pull vectors toward pointer coordinates
+                this.offsetX += Math.cos(angle) * targetedPullVelocity * 0.16;
+                this.offsetY += Math.sin(angle) * targetedPullVelocity * 0.16;
             } else {
-                // Smooth friction dampening back to standard trajectories
+                // Natural friction decay
                 this.offsetX *= 0.94;
                 this.offsetY *= 0.94;
             }
-        } else {
+        } else if (!appliedForceThisFrame) {
             this.offsetX *= 0.94;
             this.offsetY *= 0.94;
         }
@@ -160,18 +202,30 @@ class YellowPetal {
         this.el.style.left = `${this.x + this.offsetX}px`;
         this.el.style.transform = `rotate(${this.rotation}deg) rotateY(${this.rotation * 0.3}deg)`;
 
-        // Reset if petals pass layout borders
+        // Respawn conditions
         if (this.y > window.innerHeight + 20 || this.x < -20 || this.x > window.innerWidth + 20) {
             this.reset();
         }
     }
 }
 
+// Instantiate Petals
 for (let i = 0; i < totalPetals; i++) {
     petalsArray.push(new YellowPetal());
 }
 
+// Animation Orchestration Loop
 function animatePetals() {
+    // Expand the global tap ripple boundaries incrementally across frames
+    if (tapShockwaveRadius > 0) {
+        tapShockwaveRadius += 6; 
+        if (tapShockwaveRadius > maxShockwaveRadius) {
+            tapShockwaveRadius = 0; // Terminate wave calculation
+            tapX = -1000;
+            tapY = -1000;
+        }
+    }
+
     for (let i = 0; i < petalsArray.length; i++) {
         petalsArray[i].update();
     }

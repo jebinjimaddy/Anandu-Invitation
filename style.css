@@ -137,7 +137,7 @@ h1.couple-names-text {
 .curtain-names {
     font-size: 3.2rem;
     margin: 15px 0;
-    color: #FFD700 !important; /* Premium Gold for dark background */
+    color: #FFD700 !important; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 215, 0, 0.3) !important;
 }
 
@@ -150,9 +150,13 @@ h1.couple-names-text {
     margin-bottom: 8px;
 }
 
+/* HIGH-END UNIQUE BUTTON TYPOGRAPHY CLASS */
 .button-text {
-    font-family: 'DhVanolines', sans-serif;
-    letter-spacing: 1px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 /* Lineage Details Layout */
@@ -395,7 +399,7 @@ h1.couple-names-text {
 }
 
 /* ==========================================================================
-   3. HIGH-END MAJESTIC CURTAIN OVERLAY (PREMIUM PAGE REWORK)
+   3. HIGH-END MAJESTIC CURTAIN OVERLAY
    ========================================================================== */
 #invitation-curtain {
     position: fixed;
@@ -404,10 +408,7 @@ h1.couple-names-text {
     width: 100vw;
     height: 100vh;
     height: 100dvh;
-    
-    /* Elegant Dark Traditional Velvet Maroon Base Gradient */
     background: radial-gradient(circle at center, #5A110E 0%, #2D0504 100%);
-    
     z-index: 2000;
     display: flex;
     justify-content: center;
@@ -416,7 +417,6 @@ h1.couple-names-text {
     transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s ease;
 }
 
-/* Luxury Royal Gold Border Framing */
 .curtain-royal-border {
     position: absolute;
     top: 20px;
@@ -466,15 +466,14 @@ h1.couple-names-text {
     margin: 25px auto 40px auto;
 }
 
-/* Animated Golden Pulsing CTA Button */
+/* Re-styled Premium Entry CTA Button */
 #open-btn {
     background: #FFD700;
     color: #2D0504;
     border: none;
-    padding: 15px 45px;
+    padding: 16px 48px;
     border-radius: 50px; 
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     cursor: pointer;
     box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3), inset 0 -2px 6px rgba(0,0,0,0.2);
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -496,7 +495,7 @@ h1.couple-names-text {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: scale(1.05); /* Smooth outward transition */
+    transform: scale(1.05); 
 }
 
 /* --- Panel Grid Layouts & Imagery Setups --- */
@@ -513,13 +512,11 @@ h1.couple-names-text {
     overflow: hidden;
 }
 
-/* Custom Background Path Hook Placement */
 #hero {
     background: linear-gradient(rgba(250,246,240,0.52), rgba(250,246,240,0.82)), 
                 url('your-custom-couple-image.jpg') no-repeat center center/cover;
 }
 
-/* Other Sections with subtle background accents */
 .asset-bg-panel { background-color: #FAF2E6; }
 #countdown-panel { background-color: #F7F1E6; }
 #schedule-panel { background-color: #F4ECE0; }
@@ -567,7 +564,7 @@ h1.couple-names-text {
     animation: bounce 2s infinite;
 }
 
-/* --- Fixed Floating Controls --- */
+/* --- Fixed Audio Control Button --- */
 .audio-btn {
     position: fixed;
     top: 15px;
@@ -576,27 +573,24 @@ h1.couple-names-text {
     background: rgba(250, 246, 240, 0.9);
     border: 1px solid #C87A53;
     color: #4A3E3D;
-    padding: 8px 14px;
+    padding: 8px 16px;
     border-radius: 30px;
     cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
-    font-weight: bold;
+    font-size: 0.72rem;
     box-shadow: 2px 2px 0px #C85A32;
     -webkit-tap-highlight-color: transparent;
 }
 
-/* --- Map Button --- */
+/* --- Navigation Map Button --- */
 .map-btn {
     display: inline-block;
     margin-top: 5px;
-    padding: 10px 24px;
+    padding: 12px 28px;
     color: #C85A32;
     border: 2px solid #C85A32;
     border-radius: 50px;
     text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: bold;
+    font-size: 0.8rem;
     transition: all 0.2s ease;
     -webkit-tap-highlight-color: transparent;
 }
@@ -605,7 +599,7 @@ h1.couple-names-text {
     color: #FFFFFF;
 }
 
-/* --- RSVP Form Architecture --- */
+/* --- RSVP Form Layout --- */
 .rsvp-form input, .rsvp-form select {
     display: block;
     width: 100%;
@@ -628,9 +622,9 @@ h1.couple-names-text {
     background: #C85A32;
     color: white;
     border: none;
-    padding: 12px 35px;
+    padding: 14px 40px;
     border-radius: 50px;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     cursor: pointer;
     box-shadow: 3px 3px 0px rgba(74, 62, 61, 0.3);
     transition: transform 0.1s, box-shadow 0.1s;
