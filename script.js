@@ -7,23 +7,22 @@ music.volume = 0.4;
 
 openBtn.addEventListener('click', () => {
     curtain.classList.add('fade-away');
-        
-            music.play().then(() => {
-                    toggleBtn.textContent = "🔊 Music On";
-                        }).catch(error => {
-                                console.log("Audio auto-play blocked by browser security.", error);
-                                    });
+    
+    music.play().then(() => {
+        toggleBtn.textContent = "🔊 Music On";
+    }).catch(error => {
+        console.log("Audio auto-play blocked by browser security.", error);
+    });
 
-                                        document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
-                                        });
+    document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
+});
 
-                                        toggleBtn.addEventListener('click', () => {
-                                            if (music.paused) {
-                                                    music.play();
-                                                            toggleBtn.textContent = "🔊 Music On";
-                                                                } else {
-                                                                        music.pause();
-                                                                                toggleBtn.textContent = "🔇 Music Off";
-                                                                                    }
-                                                                                    });
-                                                                                    
+toggleBtn.addEventListener('click', () => {
+    if (music.paused) {
+        music.play();
+        toggleBtn.textContent = "🔊 Music On";
+    } else {
+        music.pause();
+        toggleBtn.textContent = "🔇 Music Off";
+    }
+});
