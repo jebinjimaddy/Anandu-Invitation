@@ -9,7 +9,7 @@ openBtn.addEventListener('click', () => {
     curtain.classList.add('fade-away');
     
     music.play().then(() => {
-        toggleBtn.textContent = "🔊 Music On";
+        toggleBtn.textContent = "🔊";
     }).catch(error => {
         console.log("Audio auto-play blocked by browser security.", error);
     });
