@@ -1,385 +1,335 @@
 /* ==========================================================================
    1. CUSTOM FONT DECLARATION
-   ========================================================================== */
-@font-face {
-    font-family: 'CustomGraffiti'; /* The name you will use throughout your CSS */
-    src: url('fonts/MyCustomGraffiti.woff2') format('woff2'), /* Most optimized format */
-         url('fonts/Hugh\ is\ Life\ Personal\ Use\ .ttf') format('truetype'); /* Fallback for older devices */
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap; /* Prevents invisible text while loading */
-}
+      ========================================================================== */
+      @font-face {
+          font-family: 'HughIsLife';
+              src: url('fonts/Hugh is Life Personal Use .ttf') format('truetype');
+                  font-weight: normal;
+                      font-style: normal;
+                          font-display: swap;
+                          }
 
-/* --- Global Resets & Smooth Scroll --- */
-html {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+                          /* --- Global Resets & Mobile Multi-Browser Smooth Scroll --- */
+                          html, body {
+                              margin: 0;
+                                  padding: 0;
+                                      width: 100%;
+                                          height: 100%;
+                                              box-sizing: border-box;
+                                                  overflow-x: hidden;
+                                                      background-color: #141416; /* Deep onyx matte canvas */
+                                                          color: #ffffff;
+                                                              font-family: 'Montserrat', sans-serif;
+                                                                  -webkit-text-size-adjust: 100%;
+                                                                  }
 
-body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #1a1a1a;
-    color: #ffffff;
-    overflow-x: hidden;
-}
+                                                                  html {
+                                                                      scroll-behavior: smooth;
+                                                                      }
 
-/* --- Flower Fall Overlay Engine --- */
-#petal-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1500; /* Sits right below buttons/popups, but above text layouts */
-    pointer-events: none; /* Allows users to scroll and tap straight through it */
-    overflow: hidden;
-}
+                                                                      *, *:before, *:after {
+                                                                          box-sizing: inherit;
+                                                                          }
 
-.petal {
-    position: absolute;
-    background: linear-gradient(135deg, #ffb7c5, #ff8da1); /* Soft romantic rose gradient */
-    border-radius: 15% 70% 15% 70%; /* Distorts box into an elegant leaf structure */
-    width: 15px;
-    height: 15px;
-    top: -20px;
-    opacity: 0.8;
-    animation: fall linear infinite, sway ease-in-out infinite;
-}
+                                                                          /* --- Flower Fall Overlay Engine --- */
+                                                                          #petal-container {
+                                                                              position: fixed;
+                                                                                  top: 0;
+                                                                                      left: 0;
+                                                                                          width: 100%;
+                                                                                              height: 100%;
+                                                                                                  z-index: 1500;
+                                                                                                      pointer-events: none;
+                                                                                                          overflow: hidden;
+                                                                                                          }
 
-/* Custom timing offsets for natural variance */
-.petal:nth-child(1)  { left: 10%; width: 14px; height: 12px; animation-duration: 7s, 3s; animation-delay: 0s, 0s; }
-.petal:nth-child(2)  { left: 25%; width: 18px; height: 16px; animation-duration: 9s, 4s; animation-delay: 1s, 0.5s; }
-.petal:nth-child(3)  { left: 40%; width: 12px; height: 11px; animation-duration: 6s, 2.5s; animation-delay: 0.5s, 1s; }
-.petal:nth-child(4)  { left: 55%; width: 16px; height: 14px; animation-duration: 8s, 3.5s; animation-delay: 2s, 0s; }
-.petal:nth-child(5)  { left: 70%; width: 15px; height: 15px; animation-duration: 10s, 4s; animation-delay: 1.5s, 1.5s; }
-.petal:nth-child(6)  { left: 85%; width: 13px; height: 12px; animation-duration: 7.5s, 3s; animation-delay: 0s, 2s; }
-.petal:nth-child(7)  { left: 95%; width: 17px; height: 15px; animation-duration: 8.5s, 3.8s; animation-delay: 3s, 0.5s; }
-.petal:nth-child(8)  { left: 15%; width: 15px; height: 13px; animation-duration: 6.8s, 2.8s; animation-delay: 2.5s, 1.2s; }
-.petal:nth-child(9)  { left: 48%; width: 19px; height: 17px; animation-duration: 9.5s, 4.2s; animation-delay: 0.8s, 0s; }
-.petal:nth-child(10) { left: 65%; width: 11px; height: 10px; animation-duration: 5.5s, 2.2s; animation-delay: 1.2s, 1.8s; }
-.petal:nth-child(11) { left: 35%; width: 14px; height: 14px; animation-duration: 8.2s, 3.2s; animation-delay: 4s, 0.2s; }
-.petal:nth-child(12) { left: 78%; width: 16px; height: 13px; animation-duration: 7.2s, 2.9s; animation-delay: 1.7s, 0.7s; }
+                                                                                                          .petal {
+                                                                                                              position: absolute;
+                                                                                                                  background: linear-gradient(135deg, #ffb7c5, #ff8da1);
+                                                                                                                      border-radius: 15% 70% 15% 70%;
+                                                                                                                          width: 15px;
+                                                                                                                              height: 15px;
+                                                                                                                                  top: -20px;
+                                                                                                                                      opacity: 0.8;
+                                                                                                                                          animation: fall linear infinite, sway ease-in-out infinite;
+                                                                                                                                          }
 
-/* Vertically drops the flowers */
-@keyframes fall {
-    0% { top: -5%; }
-    100% { top: 105%; }
-}
+                                                                                                                                          /* Custom timing offsets for natural variance */
+                                                                                                                                          .petal:nth-child(1)  { left: 10%; width: 14px; height: 12px; animation-duration: 7s, 3s; animation-delay: 0s, 0s; }
+                                                                                                                                          .petal:nth-child(2)  { left: 25%; width: 18px; height: 16px; animation-duration: 9s, 4s; animation-delay: 1s, 0.5s; }
+                                                                                                                                          .petal:nth-child(3)  { left: 40%; width: 12px; height: 11px; animation-duration: 6s, 2.5s; animation-delay: 0.5s, 1s; }
+                                                                                                                                          .petal:nth-child(4)  { left: 55%; width: 16px; height: 14px; animation-duration: 8s, 3.5s; animation-delay: 2s, 0s; }
+                                                                                                                                          .petal:nth-child(5)  { left: 70%; width: 15px; height: 15px; animation-duration: 10s, 4s; animation-delay: 1.5s, 1.5s; }
+                                                                                                                                          .petal:nth-child(6)  { left: 85%; width: 13px; height: 12px; animation-duration: 7.5s, 3s; animation-delay: 0s, 2s; }
+                                                                                                                                          .petal:nth-child(7)  { left: 95%; width: 17px; height: 15px; animation-duration: 8.5s, 3.8s; animation-delay: 3s, 0.5s; }
+                                                                                                                                          .petal:nth-child(8)  { left: 15%; width: 15px; height: 13px; animation-duration: 6.8s, 2.8s; animation-delay: 2.5s, 1.2s; }
+                                                                                                                                          .petal:nth-child(9)  { left: 48%; width: 19px; height: 17px; animation-duration: 9.5s, 4.2s; animation-delay: 0.8s, 0s; }
+                                                                                                                                          .petal:nth-child(10) { left: 65%; width: 11px; height: 10px; animation-duration: 5.5s, 2.2s; animation-delay: 1.2s, 1.8s; }
+                                                                                                                                          .petal:nth-child(11) { left: 35%; width: 14px; height: 14px; animation-duration: 8.2s, 3.2s; animation-delay: 4s, 0.2s; }
+                                                                                                                                          .petal:nth-child(12) { left: 78%; width: 16px; height: 13px; animation-duration: 7.2s, 2.9s; animation-delay: 1.7s, 0.7s; }
 
-/* Sways them drifting left/right and spinning in 3D */
-@keyframes sway {
-    0%, 100% { transform: translateX(0) rotate(0deg) rotateY(0deg); }
-    50% { transform: translateX(40px) rotate(180deg) rotateY(360deg); }
-}
+                                                                                                                                          @keyframes fall {
+                                                                                                                                              0% { top: -5%; }
+                                                                                                                                                  100% { top: 105%; }
+                                                                                                                                                  }
 
-/* ==========================================================================
-   2. APPLYING THE CUSTOM FONT
-   ========================================================================== */
-.tag-text {
-    font-family: 'CustomGraffiti', 'Permanent Marker', cursive; /* Uses custom font first, falls back to Google Font */
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #00ffcc;
-    text-shadow: 3px 3px 0px #ff0055, -1px -1px 0px #000;
-}
+                                                                                                                                                  @keyframes sway {
+                                                                                                                                                      0%, 100% { transform: translateX(0) rotate(0deg) rotateY(0deg); }
+                                                                                                                                                          50% { transform: translateX(40px) rotate(180deg) rotateY(360deg); }
+                                                                                                                                                          }
 
-h1.tag-text {
-    font-size: 4rem;
-    transform: rotate(-2deg);
-    margin: 20px 0;
-}
+                                                                                                                                                          /* --- Graffiti Typography (Bright Non-Neon Style) --- */
+                                                                                                                                                          .tag-text {
+                                                                                                                                                              font-family: 'HughIsLife', sans-serif;
+                                                                                                                                                                  letter-spacing: 2px;
+                                                                                                                                                                      color: #FFB200; /* Rich Bright Amber Gold */
+                                                                                                                                                                          /* Bold 3D Offset instead of neon shadow blur */
+                                                                                                                                                                              text-shadow: 4px 4px 0px #7A1CAC; 
+                                                                                                                                                                              }
 
-.section-title {
-    font-family: 'CustomGraffiti', 'Permanent Marker', cursive; /* Swapped out here too */
-    font-size: 2.8rem;
-    color: #ff0055;
-    letter-spacing: 2px;
-}
+                                                                                                                                                                              h1.tag-text {
+                                                                                                                                                                                  font-size: 3.8rem;
+                                                                                                                                                                                      transform: rotate(-1deg);
+                                                                                                                                                                                          margin: 25px 0;
+                                                                                                                                                                                          }
 
-#open-btn {
-    background: transparent;
-    color: #00ffcc;
-    border: 3px solid #00ffcc;
-    padding: 15px 40px;
-    font-family: 'CustomGraffiti', sans-serif; /* Applied to button */
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    cursor: pointer;
-    box-shadow: 4px 4px 0px #ff0055;
-    transition: all 0.2s ease;
-}
+                                                                                                                                                                                          .section-title {
+                                                                                                                                                                                              font-family: 'HughIsLife', sans-serif;
+                                                                                                                                                                                                  font-size: 2.8rem;
+                                                                                                                                                                                                      color: #FFB200;
+                                                                                                                                                                                                          letter-spacing: 2px;
+                                                                                                                                                                                                              text-shadow: 3px 3px 0px #7A1CAC;
+                                                                                                                                                                                                              }
 
-.submit-btn {
-    background: #ff0055;
-    color: white;
-    border: none;
-    padding: 14px 40px;
-    font-family: 'CustomGraffiti', sans-serif; /* Applied to submit button */
-    font-size: 1.1rem;
-    cursor: pointer;
-    letter-spacing: 1px;
-    box-shadow: 4px 4px 0px #00ffcc;
-    transition: transform 0.1s;
-}
+                                                                                                                                                                                                              /* --- Styled Abstract Color Textures --- */
+                                                                                                                                                                                                              .graffiti-overlay {
+                                                                                                                                                                                                                  position: absolute;
+                                                                                                                                                                                                                      top: 0;
+                                                                                                                                                                                                                          left: 0;
+                                                                                                                                                                                                                              width: 100%;
+                                                                                                                                                                                                                                  height: 100%;
+                                                                                                                                                                                                                                      opacity: 0.18;
+                                                                                                                                                                                                                                          pointer-events: none;
+                                                                                                                                                                                                                                              z-index: 1;
+                                                                                                                                                                                                                                              }
 
-/* ... (Rest of your CSS file remains exactly the same) ... */
+                                                                                                                                                                                                                                              .texture-1 {
+                                                                                                                                                                                                                                                  background-image: radial-gradient(circle at 15% 25%, #7A1CAC 15%, transparent 30%), 
+                                                                                                                                                                                                                                                                        radial-gradient(circle at 80% 70%, #FFB200 10%, transparent 25%);
+                                                                                                                                                                                                                                                                            filter: blur(50px);
+                                                                                                                                                                                                                                                                            }
 
+                                                                                                                                                                                                                                                                            .texture-2 {
+                                                                                                                                                                                                                                                                                background: linear-gradient(45deg, rgba(0,0,0,0) 45%, #7A1CAC 50%, rgba(0,0,0,0) 55%);
+                                                                                                                                                                                                                                                                                    background-size: 80px 80px;
+                                                                                                                                                                                                                                                                                    }
 
+                                                                                                                                                                                                                                                                                    .texture-3 {
+                                                                                                                                                                                                                                                                                        background: radial-gradient(#FFB200 12%, transparent 13%);
+                                                                                                                                                                                                                                                                                            background-size: 35px 35px;
+                                                                                                                                                                                                                                                                                            }
 
-/* --- Graffiti Typography --- */
-/* .tag-text {
-    font-family: 'Permanent Marker', cursive;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #00ffcc;
-    text-shadow: 3px 3px 0px #ff0055, -1px -1px 0px #000;
-}
+                                                                                                                                                                                                                                                                                            /* --- Cross-Browser Fixed Curtain --- */
+                                                                                                                                                                                                                                                                                            #invitation-curtain {
+                                                                                                                                                                                                                                                                                                position: fixed;
+                                                                                                                                                                                                                                                                                                    top: 0;
+                                                                                                                                                                                                                                                                                                        left: 0;
+                                                                                                                                                                                                                                                                                                            width: 100vw;
+                                                                                                                                                                                                                                                                                                                height: 100vh;
+                                                                                                                                                                                                                                                                                                                    height: 100dvh;
+                                                                                                                                                                                                                                                                                                                        background-color: #0F0E11;
+                                                                                                                                                                                                                                                                                                                            z-index: 2000;
+                                                                                                                                                                                                                                                                                                                                display: flex;
+                                                                                                                                                                                                                                                                                                                                    justify-content: center;
+                                                                                                                                                                                                                                                                                                                                        align-items: center;
+                                                                                                                                                                                                                                                                                                                                            overflow: hidden;
+                                                                                                                                                                                                                                                                                                                                                transition: opacity 1s ease, visibility 1s ease;
+                                                                                                                                                                                                                                                                                                                                                }
 
-h1.tag-text {
-    font-size: 4rem;
-    transform: rotate(-2deg);
-    margin: 20px 0;
-}
+                                                                                                                                                                                                                                                                                                                                                #invitation-curtain.fade-away {
+                                                                                                                                                                                                                                                                                                                                                    opacity: 0;
+                                                                                                                                                                                                                                                                                                                                                        visibility: hidden;
+                                                                                                                                                                                                                                                                                                                                                            pointer-events: none;
+                                                                                                                                                                                                                                                                                                                                                            }
 
-.section-title {
-    font-family: 'Permanent Marker', cursive;
-    font-size: 2.8rem;
-    color: #ff0055;
-    letter-spacing: 2px;
-}
+                                                                                                                                                                                                                                                                                                                                                            .curtain-content {
+                                                                                                                                                                                                                                                                                                                                                                text-align: center;
+                                                                                                                                                                                                                                                                                                                                                                    padding: 20px;
+                                                                                                                                                                                                                                                                                                                                                                        z-index: 2;
+                                                                                                                                                                                                                                                                                                                                                                            width: 100%;
+                                                                                                                                                                                                                                                                                                                                                                            }
 
-/* --- Graffiti Texture Layering --- */
-.graffiti-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.15;
-    pointer-events: none;
-    z-index: 1;
-}
+                                                                                                                                                                                                                                                                                                                                                                            .curtain-subtitle {
+                                                                                                                                                                                                                                                                                                                                                                                font-size: 0.8rem;
+                                                                                                                                                                                                                                                                                                                                                                                    letter-spacing: 5px;
+                                                                                                                                                                                                                                                                                                                                                                                        color: #8E8A94;
+                                                                                                                                                                                                                                                                                                                                                                                            margin-bottom: 15px;
+                                                                                                                                                                                                                                                                                                                                                                                                font-weight: 700;
+                                                                                                                                                                                                                                                                                                                                                                                                }
 
-.texture-1 {
-    background-image: radial-gradient(circle at 20% 30%, #ff0055 10%, transparent 20%), 
-                      radial-gradient(circle at 75% 60%, #00ffcc 12%, transparent 25%);
-    filter: blur(40px);
-}
+                                                                                                                                                                                                                                                                                                                                                                                                .curtain-names {
+                                                                                                                                                                                                                                                                                                                                                                                                    font-size: 3rem;
+                                                                                                                                                                                                                                                                                                                                                                                                        margin-bottom: 45px;
+                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-.texture-2 {
-    background: linear-gradient(45deg, rgba(0,0,0,0) 45%, #ff0055 50%, rgba(0,0,0,0) 55%),
-                linear-gradient(-45deg, rgba(0,0,0,0) 48%, #00ffcc 50%, rgba(0,0,0,0) 52%);
-    background-size: 60px 60px;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                        #open-btn {
+                                                                                                                                                                                                                                                                                                                                                                                                            background: transparent;
+                                                                                                                                                                                                                                                                                                                                                                                                                color: #FFB200;
+                                                                                                                                                                                                                                                                                                                                                                                                                    border: 3px solid #FFB200;
+                                                                                                                                                                                                                                                                                                                                                                                                                        padding: 14px 42px;
+                                                                                                                                                                                                                                                                                                                                                                                                                            font-family: 'Montserrat', sans-serif;
+                                                                                                                                                                                                                                                                                                                                                                                                                                font-weight: 700;
+                                                                                                                                                                                                                                                                                                                                                                                                                                    font-size: 1rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                        letter-spacing: 2px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                            cursor: pointer;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                box-shadow: 4px 4px 0px #7A1CAC;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    transition: all 0.2s ease;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        -webkit-tap-highlight-color: transparent;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-.texture-3 {
-    background: radial-gradient(#ff0055 15%, transparent 16%),
-                radial-gradient(#00ffcc 15%, transparent 16%);
-    background-size: 40px 40px;
-    background-position: 0 0, 20px 20px;
-} */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        #open-btn:hover {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            background: #FFB200;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                color: #000000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    box-shadow: 0px 0px 0px transparent;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        transform: translateY(4px);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-/* --- Overlay Curtain Styles --- */
-#invitation-curtain {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #111111;
-    z-index: 2000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 1s ease, visibility 1s ease;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        /* --- Responsive Panel Grid --- */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        .panel {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            width: 100%;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                height: 100vh;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    height: 100svh;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        display: flex;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            justify-content: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                align-items: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    text-align: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        padding: 30px 20px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            position: relative;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                overflow: hidden;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
 
-#invitation-curtain.fade-away {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                #hero {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center/cover;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
 
-.curtain-content {
-    text-align: center;
-    padding: 20px;
-    z-index: 2;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    #details { background-color: #1A191F; }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    #rsvp { background-color: #111014; }
 
-.curtain-subtitle {
-    font-size: 0.85rem;
-    letter-spacing: 5px;
-    color: #aaaaaa;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .content {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        max-width: 500px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            width: 100%;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                z-index: 2;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
 
-.curtain-names {
-    font-size: 3.2rem;
-    margin-bottom: 40px;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .subtitle { letter-spacing: 6px; font-size: 0.85rem; color: #FFB200; font-weight: bold; }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .date { font-size: 1.6rem; letter-spacing: 4px; margin-top: 25px; font-weight: 300; }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .time { font-size: 1.1rem; color: #A4A0A9; }
 
-#open-btn {
-    background: transparent;
-    color: #00ffcc;
-    border: 3px solid #00ffcc;
-    padding: 15px 40px;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    cursor: pointer;
-    box-shadow: 4px 4px 0px #ff0055;
-    transition: all 0.2s ease;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .venue {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-size: 1rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        line-height: 1.5;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            margin: 15px 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                color: #E2DFE5;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
 
-#open-btn:hover {
-    background: #00ffcc;
-    color: #111111;
-    box-shadow: 0px 0px 0px transparent;
-    transform: translateY(4px);
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .divider {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    width: 60px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        border: 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            border-top: 2px dashed #7A1CAC;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                margin: 25px auto;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
 
-/* --- Section Layouts --- */
-.panel {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-    box-sizing: border-box;
-    overflow: hidden;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .quote {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-style: italic;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        color: #8E8A94;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-size: 0.95rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-#hero {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center/cover;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            .scroll-indicator {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                margin-top: 40px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-size: 0.8rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        letter-spacing: 3px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            color: #FFB200;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-weight: bold;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    animation: bounce 2s infinite;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
 
-#details {
-    background-color: #1e1e24;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    /* --- Fixed Floating Controls --- */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .audio-btn {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        position: fixed;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            top: 15px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                right: 15px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    z-index: 1800;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        background: rgba(15, 14, 17, 0.9);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            border: 2px solid #7A1CAC;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                color: white;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    padding: 8px 14px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        cursor: pointer;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-family: 'Montserrat', sans-serif;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-size: 0.75rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-weight: bold;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        box-shadow: 2px 2px 0px #FFB200;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            -webkit-tap-highlight-color: transparent;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-#rsvp {
-    background-color: #141416;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            /* --- Map Button --- */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            .map-btn {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                display: inline-block;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    margin-top: 10px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        padding: 10px 20px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            color: #FFB200;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                border: 2px solid #FFB200;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    text-decoration: none;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-size: 0.85rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-weight: bold;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                letter-spacing: 1px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    transition: all 0.2s ease;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        -webkit-tap-highlight-color: transparent;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-.content {
-    max-width: 600px;
-    z-index: 2;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        .map-btn:hover {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            background: #FFB200;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                color: #000000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
 
-.subtitle { letter-spacing: 6px; font-size: 0.9rem; color: #00ffcc; font-weight: bold; }
-.date { font-size: 1.8rem; letter-spacing: 4px; margin-top: 25px; font-weight: 300; }
-.time { font-size: 1.2rem; color: #aaaaaa; }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                /* --- RSVP Form Architecture --- */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .rsvp-form input, .rsvp-form select {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    display: block;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        width: 100%;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            max-width: 280px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                margin: 12px auto;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    padding: 12px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        border: 2px solid #2B2933;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            background: #1D1B22;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                color: white;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-family: 'Montserrat', sans-serif;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-size: 0.9rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            border-radius: 0px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-.venue {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin: 20px 0;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            .rsvp-form input:focus, .rsvp-form select:focus {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                border-color: #FFB200;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    outline: none;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
 
-.divider {
-    width: 60px;
-    border: 0;
-    border-top: 2px dashed #ff0055;
-    margin: 30px auto;
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .submit-btn {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        background: #7A1CAC;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            color: white;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                border: none;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    padding: 12px 35px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-family: 'HughIsLife', sans-serif;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-size: 1.2rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                cursor: pointer;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    letter-spacing: 1px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        box-shadow: 3px 3px 0px #FFB200;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            transition: transform 0.1s;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                -webkit-tap-highlight-color: transparent;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
 
-.quote {
-    font-style: italic;
-    color: #888888;
-}
-
-.scroll-indicator {
-    margin-top: 50px;
-    font-size: 0.85rem;
-    letter-spacing: 3px;
-    color: #ff0055;
-    font-weight: bold;
-    animation: bounce 2s infinite;
-}
-
-/* --- Floating Audio Button --- */
-.audio-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid #ff0055;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 0px;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem;
-    font-weight: bold;
-    box-shadow: 3px 3px 0px #00ffcc;
-}
-
-/* --- Map Button --- */
-.map-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 24px;
-    color: #00ffcc;
-    border: 2px solid #00ffcc;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: all 0.2s ease;
-}
-
-.map-btn:hover {
-    background: #00ffcc;
-    color: #111111;
-}
-
-/* --- RSVP Form Styling --- */
-.rsvp-form input, .rsvp-form select {
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin: 15px auto;
-    padding: 14px;
-    border: 2px solid #333333;
-    background: #222222;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    box-sizing: border-box;
-}
-
-.rsvp-form input:focus, .rsvp-form select:focus {
-    border-color: #00ffcc;
-    outline: none;
-}
-
-.submit-btn {
-    background: #ff0055;
-    color: white;
-    border: none;
-    padding: 14px 40px;
-    font-family: 'Rockybilly Regular', cursive;
-    font-size: 1.1rem;
-    cursor: pointer;
-    letter-spacing: 1px;
-    box-shadow: 4px 4px 0px #00ffcc;
-    transition: transform 0.1s;
-}
-
-.submit-btn:hover {
-    transform: scale(1.03);
-}
-
-/* --- Animations --- */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                /* --- Keyframe Layouts --- */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @keyframes bounce {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        40% { transform: translateY(-8px); }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            60% { transform: translateY(-4px); }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
