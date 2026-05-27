@@ -9,7 +9,7 @@ openBtn.addEventListener('click', () => {
     curtain.classList.add('fade-away');
     
     music.play().then(() => {
-        toggleBtn.textContent = "🔊 Music On";
+        toggleBtn.textContent = "🔊";
     }).catch(error => {
         console.log("Audio auto-play blocked by browser security.", error);
     });
@@ -20,10 +20,10 @@ openBtn.addEventListener('click', () => {
 toggleBtn.addEventListener('click', () => {
     if (music.paused) {
         music.play();
-        toggleBtn.textContent = "🔊 Music On";
+        toggleBtn.textContent = "🔊";
     } else {
         music.pause();
-        toggleBtn.textContent = "🔇 Music Off";
+        toggleBtn.textContent = "🔇";
     }
 });
 
