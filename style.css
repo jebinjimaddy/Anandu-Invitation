@@ -229,14 +229,15 @@ html, body {
     opacity: 1; transform: scale(1) translateY(0);
 }
 
+/* CHANGED TO SEMI-TRANSPARENT IVORY WITH BACKDROP BLUR */
 .card-body-content {
     width: 100%; max-width: 540px;
-    background: rgba(255, 252, 247, 0.85); 
-    backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-    border: 1.5px solid rgba(200, 122, 83, 0.18);
+    background: rgba(250, 246, 240, 0.45); 
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(200, 122, 83, 0.22);
     border-radius: 24px;
     padding: 40px 30px;
-    box-shadow: 0 15px 40px rgba(181, 101, 60, 0.06);
+    box-shadow: 0 15px 40px rgba(181, 101, 60, 0.04);
     box-sizing: border-box;
     position: relative;
     text-align: center;
@@ -292,7 +293,7 @@ html, body {
 .section-title { font-family: 'DhVanolines', sans-serif; font-size: 2.2rem; color: #C85A32; margin: 0 0 4px 0; }
 .dash-subtext { font-size: 0.68rem; letter-spacing: 3px; color: #8A7674; margin-bottom: 20px; font-weight: bold; }
 .timer-container { display: flex; justify-content: center; gap: 12px; }
-.time-block { background: #FFFFFF; border: 1px solid rgba(200, 122, 83, 0.2); min-width: 65px; padding: 12px 4px; display: flex; flex-direction: column; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+.time-block { background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(200, 122, 83, 0.2); min-width: 65px; padding: 12px 4px; display: flex; flex-direction: column; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
 .time-number { font-family: 'DhVanolines', sans-serif; font-size: 1.6rem; color: #C85A32; }
 .time-label { font-size: 0.65rem; text-transform: uppercase; color: #7A6563; font-weight: bold; margin-top: 2px; }
 
@@ -319,7 +320,7 @@ html, body {
 .embedded-map-container { flex: 1.2; height: 240px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(200,122,83,0.2); }
 
 /* Forms & Canvas Details */
-.rsvp-form input, .rsvp-form select { display: block; width: 100%; max-width: 260px; margin: 10px auto; padding: 11px 14px; border: 1px solid rgba(200, 122, 83, 0.25); background: #FFFFFF; font-size: 0.85rem; border-radius: 10px; }
+.rsvp-form input, .rsvp-form select { display: block; width: 100%; max-width: 260px; margin: 10px auto; padding: 11px 14px; border: 1px solid rgba(200, 122, 83, 0.25); background: rgba(255, 255, 255, 0.8); font-size: 0.85rem; border-radius: 10px; }
 .submit-btn { background: #C85A32; color: #FFFFFF; border: none; padding: 12px 30px; border-radius: 50px; font-size: 0.8rem; cursor: pointer; font-weight: bold; }
 .wishes-note { font-size: 0.78rem; color: #7A6563; margin-top: 15px; }
 
