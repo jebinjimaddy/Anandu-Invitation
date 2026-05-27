@@ -106,7 +106,7 @@ html, body {
 }
 
 #wax-seal-container {
-    position: absolute; top: 115px; left: 50%;
+    position: absolute; top: 95px; left: 50%;
     transform: translateX(-50%);
     z-index: 20;
     text-align: center;
@@ -115,24 +115,11 @@ html, body {
     cursor: pointer;
 }
 
-.wax-seal-stamp {
-    width: 70px; height: 70px;
-    background: radial-gradient(circle, #E6BA94 0%, #C87A53 60%, #9A4416 100%);
-    border-radius: 50%;
-    margin: 0 auto 15px auto;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.4), inset 0 2px 5px rgba(255,255,255,0.3);
-    position: relative;
-    display: flex; justify-content: center; align-items: center;
-    border: 1px dashed rgba(255,215,0,0.3);
-    animation: sealFloat 3s ease-in-out infinite;
-}
-.seal-initials { font-family: 'Playfair Display', serif; font-weight: bold; font-size: 1.1rem; color: #2D0504; pointer-events: none;}
-.seal-inner-ring { position: absolute; width: 54px; height: 54px; border: 1px double rgba(45, 5, 4, 0.3); border-radius: 50%; pointer-events: none;}
-
 #open-envelope-btn {
     background: #FFD700; color: #2D0504; border: none; padding: 10px 24px;
     border-radius: 30px; font-size: 0.75rem; font-weight: bold; cursor: pointer;
     box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3); transition: transform 0.2s ease;
+    margin-top: 15px;
 }
 
 #envelope-overlay.envelope-opened #wax-seal-container { opacity: 0; visibility: hidden; pointer-events: none; }
@@ -141,7 +128,59 @@ html, body {
 #envelope-overlay.envelope-opened { opacity: 0; visibility: hidden; pointer-events: none; transition-delay: 1.6s; }
 
 /* ==========================================================================
-   3. SCROLL-DRIVEN DASHBOARD VIEWPORT LAYOUT
+   3. SHARED PREMIUM MONOGRAM BADGE GRAPHIC (LANDING + ENVELOPE MATCH)
+   ========================================================================== */
+.luxury-monogram-badge {
+    position: relative;
+    width: 110px; height: 110px;
+    margin: 0 auto;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.badge-outer-ring {
+    position: absolute; width: 100%; height: 100%;
+    border: 1px solid rgba(200, 90, 50, 0.25);
+    border-radius: 50%;
+    border-top-color: #C85A32;
+    border-bottom-color: #C85A32;
+    transform: rotate(45deg);
+}
+
+.badge-inner-content {
+    width: 88px; height: 88px;
+    background: radial-gradient(circle, #FFFDF9 60%, #F5EADA 100%);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 8px 20px rgba(181, 101, 60, 0.12);
+    border: 1px solid rgba(200, 122, 83, 0.15);
+}
+
+.monogram-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #A34E2B 0%, #C85A32 50%, #E29272 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+}
+
+/* Specific scaling variables when the badge acts as the Envelope Lock Seal */
+.envelope-seal-adaptation {
+    width: 90px; height: 90px;
+    animation: sealFloat 3s ease-in-out infinite;
+}
+.envelope-seal-adaptation .badge-inner-content {
+    width: 72px; height: 72px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+}
+.envelope-seal-adaptation .monogram-text {
+    font-size: 1.3rem;
+}
+
+/* ==========================================================================
+   4. SCROLL-DRIVEN DASHBOARD VIEWPORT LAYOUT
    ========================================================================== */
 #dashboard-viewport {
     width: 100%; height: 100vh;
@@ -193,9 +232,7 @@ html, body {
     text-align: center;
 }
 
-/* ==========================================================================
-   4. NEW PREMIUM LOOK FOR THE HERO CARD (DE-CONGESTION SYSTEM)
-   ========================================================================== */
+/* PREMIUM SPACIOUS HERO CARD SYSTEM */
 .hero-card-body {
     padding: 55px 25px 45px 25px !important;
     display: flex;
@@ -205,122 +242,40 @@ html, body {
     min-height: 480px;
 }
 
-/* Luxury Monogram Badge Replacement */
-.luxury-monogram-badge {
-    position: relative;
-    width: 110px; height: 110px;
-    margin: 0 auto;
-    display: flex; justify-content: center; align-items: center;
-}
-
-.badge-outer-ring {
-    position: absolute; width: 100%; height: 100%;
-    border: 1px solid rgba(200, 90, 50, 0.25);
-    border-radius: 50%;
-    border-top-color: #C85A32;
-    border-bottom-color: #C85A32;
-    transform: rotate(45deg);
-}
-
-.badge-inner-content {
-    width: 88px; height: 88px;
-    background: radial-gradient(circle, #FFFDF9 60%, #F5EADA 100%);
-    border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    box-shadow: 0 8px 20px rgba(181, 101, 60, 0.12);
-    border: 1px solid rgba(200, 122, 83, 0.15);
-}
-
-.monogram-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    background: linear-gradient(135deg, #A34E2B 0%, #C85A32 50%, #E29272 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
-}
-
-/* Balanced Text Stack spacing */
 .hero-text-stack {
     margin: 35px 0;
     width: 100%;
 }
 
 .subtitle {
-    font-size: 0.68rem;
-    letter-spacing: 4px;
-    color: #8E7572;
-    font-weight: 600;
-    line-height: 1.8;
-    margin: 0 auto 20px auto;
-    max-width: 85%;
+    font-size: 0.68rem; letter-spacing: 4px; color: #8E7572; font-weight: 600; line-height: 1.8; margin: 0 auto 20px auto; max-width: 85%;
 }
 
 .couple-names-text {
-    font-family: 'Mollani', sans-serif;
-    color: #C85A32;
-    font-size: 2.8rem;
-    margin: 0 0 20px 0;
-    font-weight: normal;
-    line-height: 1.2;
-    letter-spacing: 1px;
+    font-family: 'Mollani', sans-serif; color: #C85A32; font-size: 2.8rem; margin: 0 0 20px 0; font-weight: normal; line-height: 1.2; letter-spacing: 1px;
 }
 
-/* Refined Date presentation */
 .date-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 5px;
+    display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 5px;
 }
-
 .date-decorative-line {
-    width: 25px;
-    height: 1px;
-    background-color: rgba(200, 90, 50, 0.3);
+    width: 25px; height: 1px; background-color: rgba(200, 90, 50, 0.3);
 }
-
 .wedding-date-hero {
-    font-size: 1.15rem;
-    letter-spacing: 1.5px;
-    font-weight: 600;
-    color: #4A3E3D;
-    margin: 0;
+    font-size: 1.15rem; letter-spacing: 1.5px; font-weight: 600; color: #4A3E3D; margin: 0;
 }
 
 .scroll-hint-text {
-    font-size: 0.72rem;
-    letter-spacing: 2px;
-    color: #C85A32;
-    font-weight: 700;
-    margin: 15px 0 0 0;
-    text-transform: uppercase;
+    font-size: 0.72rem; letter-spacing: 2px; color: #C85A32; font-weight: 700; margin: 15px 0 0 0; text-transform: uppercase;
 }
-
-.arrow-bounce {
-    display: inline-block;
-    animation: hintBounce 2s infinite;
-}
+.arrow-bounce { display: inline-block; animation: hintBounce 2s infinite; }
 
 /* ==========================================================================
    5. TIMELINE, VISUAL GARLANDS & MAP SETUP
    ========================================================================== */
-.south-elements-overlay { 
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; 
-}
-.mantapa-arch { 
-    position: absolute; top: 0; left: 0; width: 100%; height: 24px; 
-    background: radial-gradient(circle at top, transparent 25%, #C87A53 26%, transparent 34%) 0 0/24px 30px; 
-    border-bottom: 1px solid rgba(200, 90, 50, 0.2); opacity: 0.45; 
-}
-.jasmine-garland { 
-    position: absolute; top: 0; left: 15px; width: 8px; height: 90%; 
-    background-image: radial-gradient(#FFFFFF 40%, #E6C687 55%, transparent 65%); 
-    background-size: 8px 14px; background-repeat: repeat-y; opacity: 0.35; 
-}
+.south-elements-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+.mantapa-arch { position: absolute; top: 0; left: 0; width: 100%; height: 24px; background: radial-gradient(circle at top, transparent 25%, #C87A53 26%, transparent 34%) 0 0/24px 30px; border-bottom: 1px solid rgba(200, 90, 50, 0.2); opacity: 0.45; }
+.jasmine-garland { position: absolute; top: 0; left: 15px; width: 8px; height: 90%; background-image: radial-gradient(#FFFFFF 40%, #E6C687 55%, transparent 65%); background-size: 8px 14px; background-repeat: repeat-y; opacity: 0.35; }
 .right-garland { left: auto; right: 15px; }
 
 /* Clock Assembly */
@@ -353,12 +308,11 @@ html, body {
 .venue-highlight { font-size: 1.1rem; font-weight: 700; color: #C85A32; }
 .embedded-map-container { flex: 1.2; height: 240px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(200,122,83,0.2); }
 
-/* RSVP form input elements */
+/* Forms & Canvas Details */
 .rsvp-form input, .rsvp-form select { display: block; width: 100%; max-width: 260px; margin: 10px auto; padding: 11px 14px; border: 1px solid rgba(200, 122, 83, 0.25); background: #FFFFFF; font-size: 0.85rem; border-radius: 10px; }
 .submit-btn { background: #C85A32; color: #FFFFFF; border: none; padding: 12px 30px; border-radius: 50px; font-size: 0.8rem; cursor: pointer; font-weight: bold; }
 .wishes-note { font-size: 0.78rem; color: #7A6563; margin-top: 15px; }
 
-/* Background Canvas Utilities */
 #petal-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 .petal { position: absolute; background: linear-gradient(135deg, #FFD700, #FFA500); border-radius: 15% 70% 15% 70%; opacity: 0.7; will-change: transform; }
 .button-text { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; text-transform: uppercase; }
@@ -378,7 +332,14 @@ html, body {
     .couple-names-text { font-size: 2.3rem; margin-bottom: 15px; }
     .subtitle { max-width: 95%; margin-bottom: 15px; letter-spacing: 3px; }
     .hero-card-body { min-height: 420px; padding-top: 45px !important; }
+    
+    /* Responsive Badge Downscaling */
     .luxury-monogram-badge { width: 95px; height: 95px; }
     .badge-inner-content { width: 75px; height: 75px; }
     .monogram-text { font-size: 1.35rem; }
+    
+    .envelope-seal-adaptation { width: 85px; height: 85px; }
+    .envelope-seal-adaptation .badge-inner-content { width: 68px; height: 68px; }
+    .envelope-seal-adaptation .monogram-text { font-size: 1.2rem; }
+    #wax-seal-container { top: 105px; }
 }
