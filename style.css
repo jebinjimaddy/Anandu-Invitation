@@ -68,7 +68,7 @@ html, body {
     top: 10px; /* Aligned securely inside the pocket */
     left: 5%; 
     width: 90%; 
-    height: 240px;
+    height: 200px;
     background: #FFFDF9;
     border: 1px solid #E6BA94;
     border-radius: 8px;
@@ -91,7 +91,7 @@ html, body {
 
 /* FIXED: Front pocket sides and bottom flap using a precise polygon layout mask */
 .envelope-body-front {
-    position: absolute; top: 0; left: 0; width: 100%; height: 150%;
+    position: absolute; top: 0; left: 0; width: 150%; height: 200%;
     background-color: #5E1210;
     /* Draws an open pocket silhouette: Left-top -> Right-top -> Right-bottom -> Left-bottom */
     clip-path: polygon(0% 45%, 50% 65%, 100% 45%, 100% 100%, 0% 100%);
