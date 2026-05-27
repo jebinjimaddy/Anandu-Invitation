@@ -9,15 +9,63 @@ html {
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: #fcfbfa;
-    color: #333333;
+    background-color: #1a1a1a; /* Switched to a dark, edgy canvas */
+    color: #ffffff;
     overflow-x: hidden;
 }
 
-h1, h2 {
-    font-family: 'Cinzel', serif;
-    font-weight: 400;
+/* --- Graffiti Typography --- */
+.tag-text {
+    font-family: 'Permanent Marker', cursive;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #00ffcc; /* Vibrant neon paint color */
+    text-shadow: 3px 3px 0px #ff0055, -1px -1px 0px #000; /* Stencil outline look */
+}
+
+h1.tag-text {
+    font-size: 4rem;
+    transform: rotate(-2deg); /* Gives it a raw, hand-painted angle */
+    margin: 20px 0;
+}
+
+.section-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2.8rem;
+    color: #ff0055; /* Hot pink accent paint */
     letter-spacing: 2px;
+}
+
+/* --- Graffiti Texture Layering --- */
+.graffiti-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15; /* Keeps textures subtle so text is readable */
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* High-contrast web textures mimicking wall art patterns */
+.texture-1 {
+    background-image: radial-gradient(circle at 20% 30%, #ff0055 10%, transparent 20%), 
+                      radial-gradient(circle at 75% 60%, #00ffcc 12%, transparent 25%);
+    filter: blur(40px);
+}
+
+.texture-2 {
+    background: linear-gradient(45deg, rgba(0,0,0,0) 45%, #ff0055 50%, rgba(0,0,0,0) 55%),
+                linear-gradient(-45deg, rgba(0,0,0,0) 48%, #00ffcc 50%, rgba(0,0,0,0) 52%);
+    background-size: 60px 60px;
+}
+
+.texture-3 {
+    background: radial-gradient(#ff0055 15%, transparent 16%),
+                radial-gradient(#00ffcc 15%, transparent 16%);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
 }
 
 /* --- Overlay Curtain Styles --- */
@@ -27,7 +75,7 @@ h1, h2 {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #fcfbfa;
+    background-color: #111111;
     z-index: 2000;
     display: flex;
     justify-content: center;
@@ -44,38 +92,40 @@ h1, h2 {
 .curtain-content {
     text-align: center;
     padding: 20px;
+    z-index: 2;
 }
 
 .curtain-subtitle {
-    font-size: 0.8rem;
-    letter-spacing: 4px;
-    color: #8c8275;
-    margin-bottom: 10px;
+    font-size: 0.85rem;
+    letter-spacing: 5px;
+    color: #aaaaaa;
+    margin-bottom: 15px;
+    font-weight: 700;
 }
 
 .curtain-names {
-    font-size: 2.8rem;
-    color: #5a524a;
-    margin-bottom: 30px;
+    font-size: 3.2rem;
+    margin-bottom: 40px;
 }
 
 #open-btn {
-    background: #5a524a;
-    color: white;
-    border: none;
+    background: transparent;
+    color: #00ffcc;
+    border: 3px solid #00ffcc;
     padding: 15px 40px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.2rem;
     letter-spacing: 2px;
     cursor: pointer;
-    border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(90, 82, 74, 0.2);
-    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 4px 4px 0px #ff0055;
+    transition: all 0.2s ease;
 }
 
 #open-btn:hover {
-    background: #47413a;
-    transform: scale(1.05);
+    background: #00ffcc;
+    color: #111111;
+    box-shadow: 0px 0px 0px transparent;
+    transform: translateY(4px);
 }
 
 /* --- Section Layouts --- */
@@ -88,42 +138,54 @@ h1, h2 {
     padding: 20px;
     position: relative;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 #hero {
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center/cover;
-    color: white;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center/cover;
 }
 
 #details {
-    background-color: #f7f4f0;
+    background-color: #1e1e24; /* Dark charcoal concrete gray */
 }
 
 #rsvp {
-    background-color: #e8e2db;
+    background-color: #141416;
 }
 
-/* --- Typography & Elements --- */
 .content {
     max-width: 600px;
+    z-index: 2; /* Forces text to layer over the graffiti backgrounds */
 }
 
-h1 { font-size: 3.5rem; margin: 10px 0; }
-h2 { font-size: 2.5rem; margin-bottom: 20px; color: #5a524a; }
-.subtitle { letter-spacing: 5px; font-size: 0.9rem; }
-.date { font-size: 1.5rem; letter-spacing: 3px; margin-top: 20px; }
+.subtitle { letter-spacing: 6px; font-size: 0.9rem; color: #00ffcc; font-weight: bold; }
+.date { font-size: 1.8rem; letter-spacing: 4px; margin-top: 25px; font-weight: 300; }
+.time { font-size: 1.2rem; color: #aaaaaa; }
+
+.venue {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 20px 0;
+}
 
 .divider {
-    width: 50px;
+    width: 60px;
     border: 0;
-    border-top: 1px solid #b5a493;
+    border-top: 2px dashed #ff0055;
     margin: 30px auto;
+}
+
+.quote {
+    font-style: italic;
+    color: #888888;
 }
 
 .scroll-indicator {
     margin-top: 50px;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    color: #ff0055;
+    font-weight: bold;
     animation: bounce 2s infinite;
 }
 
@@ -133,34 +195,36 @@ h2 { font-size: 2.5rem; margin-bottom: 20px; color: #5a524a; }
     top: 20px;
     right: 20px;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid #dcd1c4;
-    padding: 10px 15px;
-    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ff0055;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 0px;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 3px 3px 0px #00ffcc;
 }
 
-/* --- Map Button Layout --- */
+/* --- Map Button --- */
 .map-btn {
     display: inline-block;
     margin-top: 15px;
     padding: 10px 24px;
-    color: #5a524a;
-    border: 1px solid #5a524a;
+    color: #00ffcc;
+    border: 2px solid #00ffcc;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
     letter-spacing: 1px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .map-btn:hover {
-    background: #5a524a;
-    color: white;
+    background: #00ffcc;
+    color: #111111;
 }
 
 /* --- RSVP Form Styling --- */
@@ -169,26 +233,35 @@ h2 { font-size: 2.5rem; margin-bottom: 20px; color: #5a524a; }
     width: 100%;
     max-width: 300px;
     margin: 15px auto;
-    padding: 12px;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    background: #ffffff;
+    padding: 14px;
+    border: 2px solid #333333;
+    background: #222222;
+    color: white;
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
 }
 
-.submit-btn {
-    background: #5a524a;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    cursor: pointer;
-    border-radius: 4px;
-    letter-spacing: 1px;
-    transition: background 0.3s;
+.rsvp-form input:focus, .rsvp-form select:focus {
+    border-color: #00ffcc;
+    outline: none;
 }
 
-.submit-btn:hover { background: #47413a; }
+.submit-btn {
+    background: #ff0055;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 4px 4px 0px #00ffcc;
+    transition: transform 0.1s;
+}
+
+.submit-btn:hover {
+    transform: scale(1.03);
+}
 
 /* --- Animations --- */
 @keyframes bounce {
