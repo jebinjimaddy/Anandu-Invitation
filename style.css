@@ -196,6 +196,8 @@ html, body {
     width: 100%; height: 100vh;
     background: linear-gradient(135deg, #FAF6F0 0%, #EFE6DA 100%);
     transition: opacity 1.2s ease;
+    position: relative;
+    z-index: 2;
 }
 #dashboard-viewport.dashboard-hidden {
     opacity: 0; height: 100vh; overflow: hidden; pointer-events: none;
@@ -208,7 +210,7 @@ html, body {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     position: relative;
-    z-index: 2; /* Sits over the falling petals layer */
+    z-index: 2; 
 }
 
 .dash-card {
@@ -223,17 +225,19 @@ html, body {
     transform: scale(0.95) translateY(30px);
     transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), 
                 transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Keeps cards nested correctly beneath the foreground particle layer */
+    z-index: 1; 
 }
 
 .dash-card.active-card {
     opacity: 1; transform: scale(1) translateY(0);
 }
 
-/* CHANGED TO SEMI-TRANSPARENT IVORY WITH BACKDROP BLUR */
+/* FROSTED IVORY TRANSLUCENCY CONFIGURATION */
 .card-body-content {
     width: 100%; max-width: 540px;
     background: rgba(250, 246, 240, 0.45); 
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     border: 1.5px solid rgba(200, 122, 83, 0.22);
     border-radius: 24px;
     padding: 40px 30px;
@@ -241,6 +245,7 @@ html, body {
     box-sizing: border-box;
     position: relative;
     text-align: center;
+    z-index: 5;
 }
 
 /* PREMIUM SPACIOUS HERO CARD SYSTEM */
@@ -328,23 +333,27 @@ html, body {
    6. PREMIUM MINIMALIST IVORY PETALS FALL SYSTEM
    ========================================================================== */
 #petal-container { 
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    z-index: 1; /* Positioned directly behind dashboards for global visibility */
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100vw; height: 100vh; 
+    /* Elevated above both the canvas backdrop and active scroll view containers */
+    z-index: 10; 
+    /* Strictly pass interactions down to text panels and buttons safely */
     pointer-events: none; 
 }
 .petal { 
     position: absolute; 
     background: linear-gradient(135deg, #FFFDF6 0%, #FDF8EC 100%); 
-    border: 1px solid rgba(230, 198, 135, 0.25);
+    border: 1px solid rgba(230, 198, 135, 0.35);
     border-radius: 12% 75% 12% 75%; 
-    opacity: 0.8; 
+    opacity: 0.9; 
     will-change: transform; 
-    box-shadow: inset 0 2px 4px rgba(255,255,255,0.6), 0 2px 6px rgba(181, 101, 60, 0.04);
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.7), 0 3px 8px rgba(181, 101, 60, 0.06);
 }
 
 .button-text { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; text-transform: uppercase; }
 .map-action-btn { display: inline-block; padding: 10px 20px; color: #C85A32; border: 1px solid #C85A32; border-radius: 50px; text-decoration: none; font-size: 0.75rem; }
-.audio-btn { position: fixed; top: 12px; right: 12px; z-index: 4000; background: rgba(255, 255, 255, 0.85); border: 1px solid #C87A53; color: #4A3E3D; padding: 6px 14px; border-radius: 30px; font-size: 0.7rem; cursor: pointer; }
+.audio-btn { position: fixed; top: 12px; right: 12px; z-index: 4000; background: rgba(255, 255, 255, 0.9); border: 1px solid #C87A53; color: #4A3E3D; padding: 6px 14px; border-radius: 30px; font-size: 0.7rem; cursor: pointer; }
 
 @keyframes sealFloat { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-5px); } }
 @keyframes hintBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }

@@ -102,7 +102,7 @@ const timerInterval = setInterval(updateCountdown, 1000);
 // 4. FLOWER PETAL PHYSICS SIMULATION ENGAGEMENT (RUNS GLOBALLY & CONTINUOUSLY)
 // ==========================================================================
 const container = document.getElementById('petal-container');
-const totalPetals = 24; // Increased count to balance visibility across spacious translucent layout
+const totalPetals = 24; 
 const petalsArray = [];
 
 let mouseX = -1000; let mouseY = -1000; let isUserInteracting = false;
