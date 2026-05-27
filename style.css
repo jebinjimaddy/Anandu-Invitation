@@ -25,8 +25,8 @@ html, body {
     height: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
-    background-color: #141416;
-    color: #ffffff;
+    background-color: #0B1315; /* Default Base: Deep Obsidian Teal */
+    color: #F4F7F6; /* Light Alabaster Slate for crisp text readability */
     font-family: 'Montserrat', sans-serif;
     -webkit-text-size-adjust: 100%;
 }
@@ -86,13 +86,13 @@ html {
     50% { transform: translateX(40px) rotate(180deg) rotateY(360deg); }
 }
 
-/* --- Typography Mapping --- */
+/* --- Typography Mapping (Opposite/Complementary High-Contrast Palette) --- */
 
 /* 1. Couple Names Specific Styling (Mollani Font) */
 .couple-names-text {
     font-family: 'Mollani', sans-serif;
-    color: #FFB200;
-    text-shadow: 4px 4px 0px #7A1CAC;
+    color: #FF9F66; /* Vibrant Sun-Kissed Coral Gold (Completely opposite to Teal) */
+    text-shadow: 4px 4px 0px #064663; /* Very deep ocean shadow drop */
 }
 
 h1.couple-names-text {
@@ -110,91 +110,109 @@ h1.couple-names-text {
 .section-title {
     font-family: 'DhVanolines', sans-serif;
     font-size: 2.8rem;
-    color: #FFB200;
+    color: #FF9F66;
     letter-spacing: 1px;
-    text-shadow: 3px 3px 0px #7A1CAC;
+    text-shadow: 3px 3px 0px #064663;
     margin-bottom: 10px;
 }
 
-/* 3. Global Interactive Button Typography (Dh Vanolines Font) */
+/* 3. Global Interactive Button Typography */
 .button-text {
     font-family: 'DhVanolines', sans-serif;
     letter-spacing: 1px;
 }
 
-/* --- New Countdown Timer Component Layout --- */
-#countdown-panel {
-    background-color: #111014;
+/* --- Base Floating Transparent Layout Updates --- */
+.content {
+    max-width: 460px;
+    width: 90%;
+    z-index: 2;
+    padding: 40px 25px;
+    box-sizing: border-box;
+    
+    /* Transparent Frosted Glass tint matching the local panel color */
+    background: rgba(11, 27, 30, 0.75); 
+    border: 2px solid rgba(255, 159, 102, 0.25); /* Subtle opposite color border tint */
+    box-shadow: 6px 6px 0px rgba(6, 70, 99, 0.8);
+    
+    animation: cardFloat 6s ease-in-out infinite;
 }
 
+/* Specific floating variations so all panels don't bob identically */
+#hero .content { animation-duration: 5s; }
+#countdown-panel .content { animation-duration: 6.5s; background: rgba(11, 19, 21, 0.85); }
+#details .content { animation-duration: 5.5s; background: rgba(5, 33, 38, 0.8); }
+#rsvp .content { animation-duration: 7s; background: rgba(14, 34, 38, 0.8); }
+
+/* --- Countdown Timer Component Layout --- */
 .time-left-subtitle {
     font-size: 0.8rem;
     letter-spacing: 5px;
-    color: #8E8A94;
+    color: #A5C0CB;
     margin-top: 0;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     font-weight: 700;
 }
 
 .timer-container {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
     max-width: 100%;
     margin: 0 auto;
 }
 
 .time-block {
-    background: #1D1B22;
-    border: 2px solid #2B2933;
-    min-width: 75px;
-    padding: 15px 10px;
+    background: rgba(6, 70, 99, 0.4); 
+    border: 1px solid rgba(165, 192, 203, 0.3);
+    min-width: 70px;
+    padding: 12px 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 4px 4px 0px #7A1CAC;
+    box-shadow: 3px 3px 0px #FF9F66; /* High contrast block accent */
 }
 
 .time-number {
     font-family: 'DhVanolines', sans-serif;
-    font-size: 2rem;
-    color: #FFB200;
+    font-size: 1.8rem;
+    color: #FF9F66;
     margin-bottom: 5px;
 }
 
 .time-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #A4A0A9;
+    color: #F4F7F6;
     font-weight: bold;
 }
 
-/* --- Styled Abstract Color Textures --- */
+/* --- Styled Background Textures --- */
 .graffiti-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.18;
+    opacity: 0.3;
     pointer-events: none;
     z-index: 1;
 }
 
 .texture-1 {
-    background-image: radial-gradient(circle at 15% 25%, #7A1CAC 15%, transparent 30%), 
-                      radial-gradient(circle at 80% 70%, #FFB200 10%, transparent 25%);
+    background-image: radial-gradient(circle at 15% 25%, #064663 20%, transparent 40%), 
+                      radial-gradient(circle at 80% 70%, #FF9F66 10%, transparent 30%);
     filter: blur(50px);
 }
 
 .texture-2 {
-    background: linear-gradient(45deg, rgba(0,0,0,0) 45%, #7A1CAC 50%, rgba(0,0,0,0) 55%);
+    background: linear-gradient(45deg, rgba(0,0,0,0) 45%, #064663 50%, rgba(0,0,0,0) 55%);
     background-size: 80px 80px;
 }
 
 .texture-3 {
-    background: radial-gradient(#FFB200 12%, transparent 13%);
+    background: radial-gradient(#FF9F66 8%, transparent 10%);
     background-size: 35px 35px;
 }
 
@@ -206,7 +224,7 @@ h1.couple-names-text {
     width: 100vw;
     height: 100vh;
     height: 100dvh;
-    background-color: #0F0E11;
+    background-color: #070F11; /* Darkest shade of midnight teal */
     z-index: 2000;
     display: flex;
     justify-content: center;
@@ -221,6 +239,13 @@ h1.couple-names-text {
     pointer-events: none;
 }
 
+#invitation-curtain .content {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    animation: none;
+}
+
 .curtain-content {
     text-align: center;
     padding: 20px;
@@ -231,32 +256,32 @@ h1.couple-names-text {
 .curtain-subtitle {
     font-size: 0.8rem;
     letter-spacing: 5px;
-    color: #8E8A94;
+    color: #A5C0CB;
     margin-bottom: 15px;
     font-weight: 700;
 }
 
 #open-btn {
     background: transparent;
-    color: #FFB200;
-    border: 3px solid #FFB200;
+    color: #FF9F66;
+    border: 3px solid #FF9F66;
     padding: 14px 42px;
     font-weight: 700;
     font-size: 1.1rem;
     cursor: pointer;
-    box-shadow: 4px 4px 0px #7A1CAC;
+    box-shadow: 4px 4px 0px #064663;
     transition: all 0.2s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
 #open-btn:hover {
-    background: #FFB200;
-    color: #000000;
+    background: #FF9F66;
+    color: #0B1315;
     box-shadow: 0px 0px 0px transparent;
     transform: translateY(4px);
 }
 
-/* --- Responsive Panel Grid --- */
+/* --- Responsive Panel Grid (Progressive Teal Shade Shifts) --- */
 .panel {
     width: 100%;
     height: 100vh;
@@ -271,21 +296,18 @@ h1.couple-names-text {
 }
 
 #hero {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center/cover;
+    /* Base panel background shades */
+    background: linear-gradient(rgba(11,19,21,0.65), rgba(11,19,21,0.85)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center/cover;
 }
 
-#details { background-color: #1A191F; }
-#rsvp { background-color: #111014; }
+#countdown-panel { background-color: #0E1A1D; } /* Shade 1: Muted Charcoal Teal */
+#details { background-color: #09252A; }         /* Shade 2: Deep Sea Teal */
+#rsvp { background-color: #051C20; }            /* Shade 3: Pine Shadow Teal */
 
-.content {
-    max-width: 500px;
-    width: 100%;
-    z-index: 2;
-}
-
-.subtitle { letter-spacing: 6px; font-size: 0.85rem; color: #FFB200; font-weight: bold; }
-.date { font-size: 1.6rem; letter-spacing: 4px; margin-top: 25px; font-weight: 300; }
-.time { font-size: 1.1rem; color: #A4A0A9; }
+.subtitle { letter-spacing: 6px; font-size: 0.85rem; color: #FF9F66; font-weight: bold; }
+.date { font-size: 1.6rem; letter-spacing: 4px; margin-top: 25px; font-weight: 300; color: #F4F7F6; }
+.time { font-size: 1.1rem; color: #A5C0CB; }
+.rsvp-sub { color: #A5C0CB; }
 
 .venue {
     font-size: 1rem;
@@ -297,21 +319,21 @@ h1.couple-names-text {
 .divider {
     width: 60px;
     border: 0;
-    border-top: 2px dashed #7A1CAC;
+    border-top: 2px dashed #FF9F66;
     margin: 25px auto;
 }
 
 .quote {
     font-style: italic;
-    color: #8E8A94;
+    color: #A5C0CB;
     font-size: 0.95rem;
 }
 
 .scroll-indicator {
-    margin-top: 40px;
+    margin-top: 35px;
     font-size: 0.8rem;
     letter-spacing: 3px;
-    color: #FFB200;
+    color: #FF9F66;
     font-weight: bold;
     animation: bounce 2s infinite;
 }
@@ -322,15 +344,15 @@ h1.couple-names-text {
     top: 15px;
     right: 15px;
     z-index: 1800;
-    background: rgba(15, 14, 17, 0.9);
-    border: 2px solid #7A1CAC;
+    background: rgba(11, 19, 21, 0.9);
+    border: 2px solid #064663;
     color: white;
     padding: 8px 14px;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     font-weight: bold;
-    box-shadow: 2px 2px 0px #FFB200;
+    box-shadow: 2px 2px 0px #FF9F66;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -339,8 +361,8 @@ h1.couple-names-text {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    color: #FFB200;
-    border: 2px solid #FFB200;
+    color: #FF9F66;
+    border: 2px solid #FF9F66;
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: bold;
@@ -349,8 +371,8 @@ h1.couple-names-text {
 }
 
 .map-btn:hover {
-    background: #FFB200;
-    color: #000000;
+    background: #FF9F66;
+    color: #0B1315;
 }
 
 /* --- RSVP Form Architecture --- */
@@ -360,8 +382,8 @@ h1.couple-names-text {
     max-width: 280px;
     margin: 12px auto;
     padding: 12px;
-    border: 2px solid #2B2933;
-    background: #1D1B22;
+    border: 2px solid #064663;
+    background: rgba(11, 19, 21, 0.6);
     color: white;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
@@ -369,32 +391,41 @@ h1.couple-names-text {
 }
 
 .rsvp-form input:focus, .rsvp-form select:focus {
-    border-color: #FFB200;
+    border-color: #FF9F66;
     outline: none;
 }
 
 .submit-btn {
-    background: #7A1CAC;
+    background: #064663;
     color: white;
     border: none;
     padding: 12px 35px;
     font-size: 1.1rem;
     cursor: pointer;
-    box-shadow: 3px 3px 0px #FFB200;
+    box-shadow: 3px 3px 0px #FF9F66;
     transition: transform 0.1s;
     -webkit-tap-highlight-color: transparent;
 }
 
-/* --- Keyframe Layouts --- */
+/* ==========================================================================
+   INTERACTIVE KEYFRAMES
+   ========================================================================== */
+@keyframes cardFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
     40% { transform: translateY(-8px); }
     60% { transform: translateY(-4px); }
 }
 
-/* Fix for ultra-small mobile widths */
+/* Scale styling handling for ultra narrow screens */
 @media (max-width: 360px) {
-    .timer-container { gap: 8px; }
-    .time-block { min-width: 65px; padding: 10px 5px; }
-    .time-number { font-size: 1.6rem; }
+    .timer-container { gap: 6px; }
+    .time-block { min-width: 60px; padding: 10px 4px; }
+    .time-number { font-size: 1.5rem; }
+    .content { padding: 30px 15px; }
 }
