@@ -10,8 +10,10 @@ const dashboardView = document.getElementById('dashboard-viewport');
 
 music.volume = 0.4;
 
-// FIXED: Created a unified sequence trigger function
-function openEnvelopeSequence() {
+function openEnvelopeSequence(e) {
+    // Prevent accidental double firing from bubbling events
+    if(e) e.stopPropagation(); 
+    
     if (envelopeOverlay.classList.contains('envelope-opened')) return;
     
     envelopeOverlay.classList.add('envelope-opened');
@@ -28,7 +30,7 @@ function openEnvelopeSequence() {
     });
 }
 
-// FIXED: Assigned action listeners to button AND seal background wrapper to bypass tap blocking
+// Attach action listeners directly to interactive components
 if(openEnvelopeBtn) openEnvelopeBtn.addEventListener('click', openEnvelopeSequence);
 if(waxSealContainer) waxSealContainer.addEventListener('click', openEnvelopeSequence);
 

@@ -91,7 +91,6 @@ html, body {
     border-radius: 0 0 12px 12px;
 }
 
-/* FIXED: Re-verified properties for top opening flap rendering */
 .envelope-flap-top {
     position: absolute; top: 0; left: 0; width: 100%; height: 150px;
     background-color: #6D1714;
@@ -105,14 +104,15 @@ html, body {
     filter: drop-shadow(0px 8px 6px rgba(0,0,0,0.4));
 }
 
+/* FIXED: Lifted z-index to 20 so it sits completely on top of code shapes and remains clickable */
 #wax-seal-container {
     position: absolute; top: 115px; left: 50%;
     transform: translateX(-50%);
-    z-index: 10;
+    z-index: 20;
     text-align: center;
     width: 100%;
-    transition: opacity 0.4s ease;
-    cursor: pointer; /* Intuitively clickable area */
+    transition: opacity 0.4s ease, visibility 0.4s;
+    cursor: pointer;
 }
 
 .wax-seal-stamp {
@@ -135,7 +135,8 @@ html, body {
     box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3); transition: transform 0.2s ease;
 }
 
-#envelope-overlay.envelope-opened #wax-seal-container { opacity: 0; pointer-events: none; }
+/* FIXED: Changed pointer-events and visibility flags during animation states */
+#envelope-overlay.envelope-opened #wax-seal-container { opacity: 0; visibility: hidden; pointer-events: none; }
 #envelope-overlay.envelope-opened .envelope-flap-top { transform: rotateX(180deg); z-index: 1; transition-delay: 0s; }
 #envelope-overlay.envelope-opened .envelope-inner-letter { transform: translateY(-160px) translateZ(10px); }
 #envelope-overlay.envelope-opened { opacity: 0; visibility: hidden; pointer-events: none; transition-delay: 1.6s; }
