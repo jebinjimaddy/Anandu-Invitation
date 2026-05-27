@@ -4,12 +4,16 @@
 const music = document.getElementById('bg-music');
 const toggleBtn = document.getElementById('music-toggle');
 const openEnvelopeBtn = document.getElementById('open-envelope-btn');
+const waxSealContainer = document.getElementById('wax-seal-container');
 const envelopeOverlay = document.getElementById('envelope-overlay');
 const dashboardView = document.getElementById('dashboard-viewport');
 
 music.volume = 0.4;
 
-openEnvelopeBtn.addEventListener('click', () => {
+// FIXED: Created a unified sequence trigger function
+function openEnvelopeSequence() {
+    if (envelopeOverlay.classList.contains('envelope-opened')) return;
+    
     envelopeOverlay.classList.add('envelope-opened');
     
     setTimeout(() => {
@@ -22,7 +26,11 @@ openEnvelopeBtn.addEventListener('click', () => {
     }).catch(err => {
         console.log("Audio contexts locked until secondary interaction.", err);
     });
-});
+}
+
+// FIXED: Assigned action listeners to button AND seal background wrapper to bypass tap blocking
+if(openEnvelopeBtn) openEnvelopeBtn.addEventListener('click', openEnvelopeSequence);
+if(waxSealContainer) waxSealContainer.addEventListener('click', openEnvelopeSequence);
 
 toggleBtn.addEventListener('click', () => {
     if (music.paused) {
