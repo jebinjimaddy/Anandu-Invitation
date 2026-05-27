@@ -1,3 +1,84 @@
+/* ==========================================================================
+   1. CUSTOM FONT DECLARATION
+   ========================================================================== */
+@font-face {
+    font-family: 'CustomGraffiti'; /* The name you will use throughout your CSS */
+    src: url('fonts/MyCustomGraffiti.woff2') format('woff2'), /* Most optimized format */
+         url('fonts/Hugh\ is\ Life\ Personal\ Use\ .ttf') format('truetype'); /* Fallback for older devices */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Prevents invisible text while loading */
+}
+
+/* --- Global Resets & Smooth Scroll --- */
+html {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* ... (Keep your Flower Fall Overlay styles here) ... */
+
+/* ==========================================================================
+   2. APPLYING THE CUSTOM FONT
+   ========================================================================== */
+.tag-text {
+    font-family: 'CustomGraffiti', 'Permanent Marker', cursive; /* Uses custom font first, falls back to Google Font */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #00ffcc;
+    text-shadow: 3px 3px 0px #ff0055, -1px -1px 0px #000;
+}
+
+h1.tag-text {
+    font-size: 4rem;
+    transform: rotate(-2deg);
+    margin: 20px 0;
+}
+
+.section-title {
+    font-family: 'CustomGraffiti', 'Permanent Marker', cursive; /* Swapped out here too */
+    font-size: 2.8rem;
+    color: #ff0055;
+    letter-spacing: 2px;
+}
+
+#open-btn {
+    background: transparent;
+    color: #00ffcc;
+    border: 3px solid #00ffcc;
+    padding: 15px 40px;
+    font-family: 'CustomGraffiti', sans-serif; /* Applied to button */
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #ff0055;
+    transition: all 0.2s ease;
+}
+
+.submit-btn {
+    background: #ff0055;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-family: 'CustomGraffiti', sans-serif; /* Applied to submit button */
+    font-size: 1.1rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 4px 4px 0px #00ffcc;
+    transition: transform 0.1s;
+}
+
+/* ... (Rest of your CSS file remains exactly the same) ... */
 /* --- Global Resets & Smooth Scroll --- */
 html {
     scroll-behavior: smooth;
@@ -299,7 +380,7 @@ h1.tag-text {
     color: white;
     border: none;
     padding: 14px 40px;
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Rockybilly Regular', cursive;
     font-size: 1.1rem;
     cursor: pointer;
     letter-spacing: 1px;
