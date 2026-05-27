@@ -91,8 +91,8 @@ html {
 /* 1. Couple Names Specific Styling (Mollani Font) */
 .couple-names-text {
     font-family: 'Mollani', sans-serif;
-    color: #FFB200; /* Bright Amber Gold */
-    text-shadow: 4px 4px 0px #7A1CAC; /* Deep Rich Violet Offset */
+    color: #FFB200;
+    text-shadow: 4px 4px 0px #7A1CAC;
 }
 
 h1.couple-names-text {
@@ -113,12 +113,61 @@ h1.couple-names-text {
     color: #FFB200;
     letter-spacing: 1px;
     text-shadow: 3px 3px 0px #7A1CAC;
+    margin-bottom: 10px;
 }
 
 /* 3. Global Interactive Button Typography (Dh Vanolines Font) */
 .button-text {
     font-family: 'DhVanolines', sans-serif;
     letter-spacing: 1px;
+}
+
+/* --- New Countdown Timer Component Layout --- */
+#countdown-panel {
+    background-color: #111014;
+}
+
+.time-left-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    color: #8E8A94;
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.timer-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.time-block {
+    background: #1D1B22;
+    border: 2px solid #2B2933;
+    min-width: 75px;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 4px 0px #7A1CAC;
+}
+
+.time-number {
+    font-family: 'DhVanolines', sans-serif;
+    font-size: 2rem;
+    color: #FFB200;
+    margin-bottom: 5px;
+}
+
+.time-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #A4A0A9;
+    font-weight: bold;
 }
 
 /* --- Styled Abstract Color Textures --- */
@@ -341,4 +390,11 @@ h1.couple-names-text {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
     40% { transform: translateY(-8px); }
     60% { transform: translateY(-4px); }
+}
+
+/* Fix for ultra-small mobile widths */
+@media (max-width: 360px) {
+    .timer-container { gap: 8px; }
+    .time-block { min-width: 65px; padding: 10px 5px; }
+    .time-number { font-size: 1.6rem; }
 }
