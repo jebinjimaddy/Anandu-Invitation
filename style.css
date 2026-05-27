@@ -209,14 +209,19 @@ h1.couple-names-text {
 }
 
 #hero .content { animation-duration: 5s; }
-#family-panel .content { animation-duration: 5.8s; background: rgba(254, 249, 241, 0.9); }
-#countdown-panel .content { animation-duration: 6.5s; background: rgba(253, 247, 237, 0.9); }
-#schedule-panel .content.timeline-content { animation-duration: 0s; } /* Disable floating on timeline for seamless line path alignment */
+#family-panel .content { animation-duration: 5.8s; }
+#countdown-panel .content { animation-duration: 6.5s; }
+#schedule-panel .content.timeline-content { animation-duration: 0s; } 
 #venue-panel .content { animation-duration: 6s; }
 #rsvp .content { animation-duration: 7s; }
 
+/* Custom Textures from 6676.jpg applied inside cards */
+.patterned-card {
+    background: linear-gradient(rgba(255, 251, 245, 0.85), rgba(255, 251, 245, 0.85)), url('6676.jpg') repeat center center/auto !important;
+}
+
 /* ==========================================================================
-   VISUAL JOURNEY TIMELINE ARCHITECTURE (TRANSPARENT BACKGROUNDS)
+   VISUAL JOURNEY TIMELINE ARCHITECTURE
    ========================================================================== */
 .timeline-subtitle {
     font-size: 0.75rem;
@@ -231,7 +236,7 @@ h1.couple-names-text {
     position: relative;
     width: 100%;
     margin: 15px 0 5px 0;
-    padding-left: 24px; /* Space on left for tracking journey path */
+    padding-left: 24px; 
     text-align: left;
     box-sizing: border-box;
 }
@@ -245,12 +250,6 @@ h1.couple-names-text {
     height: calc(100% - 30px);
     border-left: 2px dashed rgba(200, 90, 50, 0.45);
     z-index: 1;
-    animation: pathTravel 3s linear infinite;
-}
-
-@keyframes pathTravel {
-    from { stroke-dashoffset: 0; background-position-y: 0px; }
-    to { stroke-dashoffset: 20; background-position-y: 20px; }
 }
 
 .journey-node {
@@ -286,7 +285,7 @@ h1.couple-names-text {
 
 /* Semi-Transparent Glass Journey Node Cards */
 .transparent-card {
-    background: rgba(255, 255, 255, 0.35) !important;
+    background: rgba(255, 255, 255, 0.4) !important;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px dashed rgba(200, 122, 83, 0.3) !important;
@@ -297,7 +296,7 @@ h1.couple-names-text {
     transition: background 0.3s ease;
 }
 .transparent-card:hover {
-    background: rgba(255, 251, 245, 0.65) !important;
+    background: rgba(255, 251, 245, 0.75) !important;
 }
 
 .transparent-card h3 {
@@ -432,7 +431,7 @@ h1.couple-names-text {
     transform: translateY(3px);
 }
 
-/* --- Responsive Panel Grid Background Shifts --- */
+/* --- Panel Grid Layouts & Imagery Setups --- */
 .panel {
     width: 100%;
     height: 100vh;
@@ -446,11 +445,15 @@ h1.couple-names-text {
     overflow: hidden;
 }
 
+/* Hero Section with 6662.jpg as rich background */
 #hero {
-    background: linear-gradient(rgba(250,246,240,0.65), rgba(250,246,240,0.88)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center/cover;
+    background: linear-gradient(rgba(250,246,240,0.55), rgba(250,246,240,0.85)), url('6662.jpg') no-repeat center center/cover;
 }
 
-#family-panel { background-color: #FAF2E6; }
+/* Other Sections with subtle background accents */
+.asset-bg-panel {
+    background-color: #FAF2E6;
+}
 #countdown-panel { background-color: #F7F1E6; }
 #schedule-panel { background-color: #F4ECE0; }
 #venue-panel { background-color: #EFE6DA; }
