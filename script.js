@@ -48,7 +48,7 @@ function updateCountdown() {
 
     if (difference < 0) {
         clearInterval(timerInterval);
-        document.querySelector(".timer-container").innerHTML = "<p style='font-family:\"DhVanolines\",sans-serif; color:#FF9F66; font-size:1.8rem;'>JUST MARRIED!</p>";
+        document.querySelector(".timer-container").innerHTML = "<p style='font-family:\"DhVanolines\",sans-serif; color:#C85A32; font-size:1.8rem;'>JUST MARRIED!</p>";
     }
 }
 

@@ -17,7 +17,7 @@
     font-display: swap;
 }
 
-/* --- Global Resets & Mobile Multi-Browser Smooth Scroll --- */
+/* --- Global Resets & Mobile Light Theme Palette --- */
 html, body {
     margin: 0;
     padding: 0;
@@ -25,8 +25,8 @@ html, body {
     height: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
-    background-color: #0B1315; /* Default Base: Deep Obsidian Teal */
-    color: #F4F7F6; /* Light Alabaster Slate for crisp text readability */
+    background-color: #FAF6F0; /* Soft Warm Traditional Ivory Base */
+    color: #4A3E3D; /* Deep Terracotta Earth for ultra-readable light contrast */
     font-family: 'Montserrat', sans-serif;
     -webkit-text-size-adjust: 100%;
 }
@@ -39,7 +39,7 @@ html {
     box-sizing: inherit;
 }
 
-/* --- Flower Fall Overlay Engine --- */
+/* --- Rose/Lotus Petal Fall Overlay Engine --- */
 #petal-container {
     position: fixed;
     top: 0;
@@ -53,16 +53,16 @@ html {
 
 .petal {
     position: absolute;
-    background: linear-gradient(135deg, #ffb7c5, #ff8da1);
+    background: linear-gradient(135deg, #FF7E95, #E64C65); /* Rich traditional pink/rose notes */
     border-radius: 15% 70% 15% 70%;
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     top: -20px;
-    opacity: 0.8;
+    opacity: 0.75;
     animation: fall linear infinite, sway ease-in-out infinite;
 }
 
-/* Custom timing offsets for natural variance */
+/* Custom variance timing setups */
 .petal:nth-child(1)  { left: 10%; width: 14px; height: 12px; animation-duration: 7s, 3s; animation-delay: 0s, 0s; }
 .petal:nth-child(2)  { left: 25%; width: 18px; height: 16px; animation-duration: 9s, 4s; animation-delay: 1s, 0.5s; }
 .petal:nth-child(3)  { left: 40%; width: 12px; height: 11px; animation-duration: 6s, 2.5s; animation-delay: 0.5s, 1s; }
@@ -80,25 +80,82 @@ html {
     0% { top: -5%; }
     100% { top: 105%; }
 }
-
 @keyframes sway {
     0%, 100% { transform: translateX(0) rotate(0deg) rotateY(0deg); }
-    50% { transform: translateX(40px) rotate(180deg) rotateY(360deg); }
+    50% { transform: translateX(35px) rotate(180deg) rotateY(180deg); }
 }
 
-/* --- Typography Mapping (Opposite/Complementary High-Contrast Palette) --- */
+/* ==========================================================================
+   SOUTHERN WEDDING ELEMENTS (MANTAPA & JASMINE)
+   ========================================================================== */
+.south-elements-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
 
-/* 1. Couple Names Specific Styling (Mollani Font) */
+/* Elegant Curved Wooden/Golden Arch frame for Altar Canopy */
+.mantapa-arch {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: 35px;
+    background: radial-gradient(circle at top, transparent 20%, #D4A373 21%, #C87A53 35%, transparent 38%);
+    background-size: 40px 45px;
+    border-bottom: 4px double #B5653C;
+    opacity: 0.6;
+}
+
+.standard-arch {
+    height: 20px;
+    background-size: 30px 30px;
+}
+
+/* Traditional Carved Mandap Pillars on Screen Outer Borders */
+.mantapa-pillar {
+    position: absolute;
+    top: 0;
+    width: 12px;
+    height: 100%;
+    background: linear-gradient(90deg, #C87A53, #E6BA94, #B5653C);
+    box-shadow: inset 1px 0 3px rgba(0,0,0,0.1);
+    opacity: 0.35;
+}
+.pillar-left { left: 8px; border-right: 2px solid #9A4416; }
+.pillar-right { right: 8px; border-left: 2px solid #9A4416; }
+
+/* Hanging Jasmine Flower Garlands Layout (Mulle Strings) */
+.jasmine-garland {
+    position: absolute;
+    top: 0;
+    left: 12%;
+    width: 6px;
+    height: 75%;
+    background-image: radial-gradient(#FFFFFF 45%, #E6C687 55%, transparent 65%);
+    background-size: 8px 14px;
+    background-repeat: repeat-y;
+    opacity: 0.7;
+    filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.06));
+}
+.right-garland { left: auto; right: 12%; }
+.short-garland { height: 40%; }
+
+/* --- Typography Mapping (Opposite High Contrast Earthy Warm tones) --- */
 .couple-names-text {
     font-family: 'Mollani', sans-serif;
-    color: #FF9F66; /* Vibrant Sun-Kissed Coral Gold (Completely opposite to Teal) */
-    text-shadow: 4px 4px 0px #064663; /* Very deep ocean shadow drop */
+    color: #C85A32; /* Warm Brick Ochre Coral */
+    text-shadow: 2px 2px 0px #F5E6D3, 4px 4px 0px rgba(181, 101, 60, 0.25);
 }
 
 h1.couple-names-text {
-    font-size: 3.8rem;
-    transform: rotate(-1deg);
-    margin: 25px 0;
+    font-size: 3.5rem;
+    transform: rotate(-0.5deg);
+    margin: 20px 0;
 }
 
 .curtain-names {
@@ -106,49 +163,46 @@ h1.couple-names-text {
     margin-bottom: 45px;
 }
 
-/* 2. Rest of Heading Elements (Dh Vanolines Font) */
 .section-title {
     font-family: 'DhVanolines', sans-serif;
     font-size: 2.8rem;
-    color: #FF9F66;
+    color: #C85A32;
     letter-spacing: 1px;
-    text-shadow: 3px 3px 0px #064663;
-    margin-bottom: 10px;
+    text-shadow: 2px 2px 0px #F5E6D3;
+    margin-bottom: 8px;
 }
 
-/* 3. Global Interactive Button Typography */
 .button-text {
     font-family: 'DhVanolines', sans-serif;
     letter-spacing: 1px;
 }
 
-/* --- Base Floating Transparent Layout Updates --- */
+/* --- Base Floating Card Structures (Lighter Tint Setup) --- */
 .content {
-    max-width: 460px;
-    width: 90%;
+    max-width: 440px;
+    width: 88%;
     z-index: 2;
     padding: 40px 25px;
     box-sizing: border-box;
     
-    /* Transparent Frosted Glass tint matching the local panel color */
-    background: rgba(11, 27, 30, 0.75); 
-    border: 2px solid rgba(255, 159, 102, 0.25); /* Subtle opposite color border tint */
-    box-shadow: 6px 6px 0px rgba(6, 70, 99, 0.8);
+    /* Elegant Semi-Transparent Cream Soft Card Base */
+    background: rgba(255, 251, 245, 0.88); 
+    border: 1px solid rgba(200, 122, 83, 0.3);
+    box-shadow: 0 10px 30px rgba(181, 101, 60, 0.08), 5px 5px 0px rgba(181, 101, 60, 0.2);
     
     animation: cardFloat 6s ease-in-out infinite;
 }
 
-/* Specific floating variations so all panels don't bob identically */
 #hero .content { animation-duration: 5s; }
-#countdown-panel .content { animation-duration: 6.5s; background: rgba(11, 19, 21, 0.85); }
-#details .content { animation-duration: 5.5s; background: rgba(5, 33, 38, 0.8); }
-#rsvp .content { animation-duration: 7s; background: rgba(14, 34, 38, 0.8); }
+#countdown-panel .content { animation-duration: 6.5s; background: rgba(253, 247, 237, 0.9); }
+#details .content { animation-duration: 5.5s; }
+#rsvp .content { animation-duration: 7s; }
 
 /* --- Countdown Timer Component Layout --- */
 .time-left-subtitle {
     font-size: 0.8rem;
     letter-spacing: 5px;
-    color: #A5C0CB;
+    color: #8A7674;
     margin-top: 0;
     margin-bottom: 30px;
     font-weight: 700;
@@ -163,20 +217,20 @@ h1.couple-names-text {
 }
 
 .time-block {
-    background: rgba(6, 70, 99, 0.4); 
-    border: 1px solid rgba(165, 192, 203, 0.3);
+    background: rgba(255, 255, 255, 0.9); 
+    border: 1px solid rgba(200, 122, 83, 0.4);
     min-width: 70px;
     padding: 12px 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 3px 3px 0px #FF9F66; /* High contrast block accent */
+    box-shadow: 3px 3px 0px #C85A32;
 }
 
 .time-number {
     font-family: 'DhVanolines', sans-serif;
     font-size: 1.8rem;
-    color: #FF9F66;
+    color: #C85A32;
     margin-bottom: 5px;
 }
 
@@ -184,39 +238,11 @@ h1.couple-names-text {
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #F4F7F6;
+    color: #5A4B4A;
     font-weight: bold;
 }
 
-/* --- Styled Background Textures --- */
-.graffiti-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.3;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.texture-1 {
-    background-image: radial-gradient(circle at 15% 25%, #064663 20%, transparent 40%), 
-                      radial-gradient(circle at 80% 70%, #FF9F66 10%, transparent 30%);
-    filter: blur(50px);
-}
-
-.texture-2 {
-    background: linear-gradient(45deg, rgba(0,0,0,0) 45%, #064663 50%, rgba(0,0,0,0) 55%);
-    background-size: 80px 80px;
-}
-
-.texture-3 {
-    background: radial-gradient(#FF9F66 8%, transparent 10%);
-    background-size: 35px 35px;
-}
-
-/* --- Cross-Browser Fixed Curtain --- */
+/* --- Fixed Opacity Curtain Layer --- */
 #invitation-curtain {
     position: fixed;
     top: 0;
@@ -224,7 +250,7 @@ h1.couple-names-text {
     width: 100vw;
     height: 100vh;
     height: 100dvh;
-    background-color: #070F11; /* Darkest shade of midnight teal */
+    background-color: #FAF4EB;
     z-index: 2000;
     display: flex;
     justify-content: center;
@@ -256,32 +282,32 @@ h1.couple-names-text {
 .curtain-subtitle {
     font-size: 0.8rem;
     letter-spacing: 5px;
-    color: #A5C0CB;
+    color: #8A7674;
     margin-bottom: 15px;
     font-weight: 700;
 }
 
 #open-btn {
     background: transparent;
-    color: #FF9F66;
-    border: 3px solid #FF9F66;
-    padding: 14px 42px;
+    color: #C85A32;
+    border: 2px solid #C85A32;
+    padding: 13px 40px;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     cursor: pointer;
-    box-shadow: 4px 4px 0px #064663;
+    box-shadow: 4px 4px 0px rgba(181, 101, 60, 0.3);
     transition: all 0.2s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
 #open-btn:hover {
-    background: #FF9F66;
-    color: #0B1315;
+    background: #C85A32;
+    color: #FFFFFF;
     box-shadow: 0px 0px 0px transparent;
-    transform: translateY(4px);
+    transform: translateY(3px);
 }
 
-/* --- Responsive Panel Grid (Progressive Teal Shade Shifts) --- */
+/* --- Responsive Panel Shade Increments (Lighter Ochre/Champagne steps) --- */
 .panel {
     width: 100%;
     height: 100vh;
@@ -296,36 +322,35 @@ h1.couple-names-text {
 }
 
 #hero {
-    /* Base panel background shades */
-    background: linear-gradient(rgba(11,19,21,0.65), rgba(11,19,21,0.85)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center/cover;
+    background: linear-gradient(rgba(250,246,240,0.6), rgba(250,246,240,0.85)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center/cover;
 }
 
-#countdown-panel { background-color: #0E1A1D; } /* Shade 1: Muted Charcoal Teal */
-#details { background-color: #09252A; }         /* Shade 2: Deep Sea Teal */
-#rsvp { background-color: #051C20; }            /* Shade 3: Pine Shadow Teal */
+#countdown-panel { background-color: #F7F1E6; } /* Step 1: Cream Altar Tint */
+#details { background-color: #F3EAE0; }         /* Step 2: Soft Sandalwood */
+#rsvp { background-color: #EDE2D5; }            /* Step 3: Deep Warm Ivory Biscuit */
 
-.subtitle { letter-spacing: 6px; font-size: 0.85rem; color: #FF9F66; font-weight: bold; }
-.date { font-size: 1.6rem; letter-spacing: 4px; margin-top: 25px; font-weight: 300; color: #F4F7F6; }
-.time { font-size: 1.1rem; color: #A5C0CB; }
-.rsvp-sub { color: #A5C0CB; }
+.subtitle { letter-spacing: 6px; font-size: 0.85rem; color: #C85A32; font-weight: bold; }
+.date { font-size: 1.6rem; letter-spacing: 4px; margin-top: 25px; font-weight: 300; color: #4A3E3D; }
+.time { font-size: 1.1rem; color: #7A6563; }
+.rsvp-sub { color: #7A6563; }
 
 .venue {
     font-size: 1rem;
     line-height: 1.5;
     margin: 15px 0;
-    color: #E2DFE5;
+    color: #4A3E3D;
 }
 
 .divider {
     width: 60px;
     border: 0;
-    border-top: 2px dashed #FF9F66;
+    border-top: 2px dashed #C85A32;
     margin: 25px auto;
 }
 
 .quote {
     font-style: italic;
-    color: #A5C0CB;
+    color: #7A6563;
     font-size: 0.95rem;
 }
 
@@ -333,7 +358,7 @@ h1.couple-names-text {
     margin-top: 35px;
     font-size: 0.8rem;
     letter-spacing: 3px;
-    color: #FF9F66;
+    color: #C85A32;
     font-weight: bold;
     animation: bounce 2s infinite;
 }
@@ -344,15 +369,15 @@ h1.couple-names-text {
     top: 15px;
     right: 15px;
     z-index: 1800;
-    background: rgba(11, 19, 21, 0.9);
-    border: 2px solid #064663;
-    color: white;
+    background: rgba(250, 246, 240, 0.9);
+    border: 1px solid #C87A53;
+    color: #4A3E3D;
     padding: 8px 14px;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     font-weight: bold;
-    box-shadow: 2px 2px 0px #FF9F66;
+    box-shadow: 2px 2px 0px #C85A32;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -361,18 +386,17 @@ h1.couple-names-text {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    color: #FF9F66;
-    border: 2px solid #FF9F66;
+    color: #C85A32;
+    border: 2px solid #C85A32;
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: bold;
     transition: all 0.2s ease;
     -webkit-tap-highlight-color: transparent;
 }
-
 .map-btn:hover {
-    background: #FF9F66;
-    color: #0B1315;
+    background: #C85A32;
+    color: #FFFFFF;
 }
 
 /* --- RSVP Form Architecture --- */
@@ -382,27 +406,26 @@ h1.couple-names-text {
     max-width: 280px;
     margin: 12px auto;
     padding: 12px;
-    border: 2px solid #064663;
-    background: rgba(11, 19, 21, 0.6);
-    color: white;
+    border: 1px solid rgba(200, 122, 83, 0.5);
+    background: #FFFFFF;
+    color: #4A3E3D;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     border-radius: 0px;
 }
-
 .rsvp-form input:focus, .rsvp-form select:focus {
-    border-color: #FF9F66;
+    border-color: #C85A32;
     outline: none;
 }
 
 .submit-btn {
-    background: #064663;
+    background: #C85A32;
     color: white;
     border: none;
     padding: 12px 35px;
     font-size: 1.1rem;
     cursor: pointer;
-    box-shadow: 3px 3px 0px #FF9F66;
+    box-shadow: 3px 3px 0px rgba(74, 62, 61, 0.3);
     transition: transform 0.1s;
     -webkit-tap-highlight-color: transparent;
 }
@@ -412,17 +435,16 @@ h1.couple-names-text {
    ========================================================================== */
 @keyframes cardFloat {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
     100% { transform: translateY(0px); }
 }
 
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-8px); }
-    60% { transform: translateY(-4px); }
+    40% { transform: translateY(-6px); }
+    60% { transform: translateY(-3px); }
 }
 
-/* Scale styling handling for ultra narrow screens */
 @media (max-width: 360px) {
     .timer-container { gap: 6px; }
     .time-block { min-width: 60px; padding: 10px 4px; }
