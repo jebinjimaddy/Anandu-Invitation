@@ -2,55 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Our Wedding Invitation</title>
-                <link rel="stylesheet" href="style.css">
-                    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-                    </head>
-                    <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding Invitation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
 
-                        <button id="music-toggle" class="audio-btn">🎵 Play Music</button>
-                            <audio id="bg-music" loop>
-                                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-                                        </audio>
+    <div id="invitation-curtain">
+        <div class="curtain-content">
+            <p class="curtain-subtitle">YOU ARE INVITED TO THE WEDDING OF</p>
+            <h2 class="curtain-names">Alex & Sam</h2>
+            <button id="open-btn">Open Invitation ✨</button>
+        </div>
+    </div>
 
-                                            <section id="hero" class="panel">
-                                                    <div class="content fade-in">
-                                                                <p class="subtitle">THE WEDDING OF</p>
-                                                                            <h1>Anandu & Navya</h1>
-                                                                                        <p class="date">12 . 7 . 2026</p>
-                                                                                                    <div class="scroll-indicator">↓ Scroll to Open ↓</div>
-                                                                                                            </div>
-                                                                                                                </section>
+    <button id="music-toggle" class="audio-btn">🔊 Music On</button>
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
-                                                                                                                    <section id="details" class="panel">
-                                                                                                                            <div class="content">
-                                                                                                                                        <h2>The Celebration</h2>
-                                                                                                                                                    <p class="time"><Sunday - 10:30AM - 12:30PM></Sunday-10:30Am></p>
-                                                                                                                                                                <p class="venue"><strong>The Glass Greenhouse</strong><br>123 Orchid Lane, California</p>
-                                                                                                                                                                            <hr class="divider">
-                                                                                                                                                                                        <p class="quote">"Forever is a long time, but I wouldn't mind spending it by your side."</p>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                    </section>
+    <section id="hero" class="panel">
+        <div class="content">
+            <p class="subtitle">THE WEDDING OF</p>
+            <h1>Alex & Sam</h1>
+            <p class="date">08 . 15 . 2026</p>
+            <div class="scroll-indicator">↓ Scroll Down ↓</div>
+        </div>
+    </section>
 
-                                                                                                                                                                                                        <section id="rsvp" class="panel">
-                                                                                                                                                                                                                <div class="content">
-                                                                                                                                                                                                                            <h2>Are You Coming?</h2>
-                                                                                                                                                                                                                                        <p>Please respond by July 1st, 2026</p>
-                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                <form class="rsvp-form">
-                                                                                                                                                                                                                                                                                <input type="text" placeholder="Your Full Name" required>
-                                                                                                                                                                                                                                                                                                <select required>
-                                                                                                                                                                                                                                                                                                                    <option value="" disabled selected>Will you attend?</option>
-                                                                                                                                                                                                                                                                                                                                        <option value="yes">Joyfully Accept</option>
-                                                                                                                                                                                                                                                                                                                                                            <option value="no">Regretfully Decline</option>
-                                                                                                                                                                                                                                                                                                                                                                            </select>
-                                                                                                                                                                                                                                                                                                                                                                                            <button type="submit" class="submit-btn">Send Response</button>
-                                                                                                                                                                                                                                                                                                                                                                                                        </form>
-                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                    </section>
+    <section id="details" class="panel">
+        <div class="content">
+            <h2>The Celebration</h2>
+            <p class="time">Saturday at 4:00 PM</p>
+            <p class="venue"><strong>The Glass Greenhouse</strong><br>123 Orchid Lane, California</p>
+            <hr class="divider">
+            <p class="quote">"Forever is a long time, but I wouldn't mind spending it by your side."</p>
+        </div>
+    </section>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                        <script src="script.js"></script>
-                                                                                                                                                                                                                                                                                                                                                                                                                        </body>
-                                                                                                                                                                                                                                                                                                                                                                                                                        </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                        
+    <section id="rsvp" class="panel">
+        <div class="content">
+            <h2>Are You Coming?</h2>
+            <p>Please respond by July 1st, 2026</p>
+            
+            <form class="rsvp-form" onsubmit="event.preventDefault(); alert('RSVP Demo Received!');">
+                <input type="text" placeholder="Your Full Name" required>
+                <select required>
+                    <option value="" disabled selected>Will you attend?</option>
+                    <option value="yes">Joyfully Accept</option>
+                    <option value="no">Regretfully Decline</option>
+                </select>
+                <button type="submit" class="submit-btn">Send Response</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
