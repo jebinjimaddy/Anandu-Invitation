@@ -1,23 +1,32 @@
 // ==========================================================================
-// AUDIO & CURTAIN OVERLAY SYSTEMS
+// 3D WEDDING CARD DOOR TIMING SYSTEM
 // ==========================================================================
 const music = document.getElementById('bg-music');
 const toggleBtn = document.getElementById('music-toggle');
 const openBtn = document.getElementById('open-btn');
-const curtain = document.getElementById('invitation-curtain');
+const card3DWrapper = document.getElementById('card-wrapper-3d');
+const mainLayout = document.getElementById('main-invitation-layout');
 
 music.volume = 0.4;
 
 openBtn.addEventListener('click', () => {
-    curtain.classList.add('fade-away');
+    // 1. Reveal hidden structural panels right behind the doors
+    mainLayout.classList.remove('hidden-view');
     
+    // 2. Add 3D rotation animation states to css elements
+    card3DWrapper.classList.add('card-is-opening');
+    
+    // 3. Audio Handlers
     music.play().then(() => {
         toggleBtn.textContent = "🔊 Music On";
     }).catch(error => {
-        console.log("Audio auto-play blocked by browser security.", error);
+        console.log("Audio blocked by browser permissions layout.", error);
     });
 
-    document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
+    // 4. Smooth scroll frame down to hero view
+    setTimeout(() => {
+        document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
+    }, 400);
 });
 
 toggleBtn.addEventListener('click', () => {
@@ -69,11 +78,10 @@ let mouseX = -1000;
 let mouseY = -1000;
 let isUserInteracting = false;
 
-// Tap Explosion State Variables
 let tapX = -1000;
 let tapY = -1000;
 let tapShockwaveRadius = 0;
-const maxShockwaveRadius = 220; // Distance the tap blast travels outward
+const maxShockwaveRadius = 220; 
 
 window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
@@ -93,15 +101,13 @@ window.addEventListener('mouseout', () => {
     isUserInteracting = false;
 });
 
-// Trigger Shockwave on Click/Tap
 function triggerScatterBlast(clientX, clientY) {
     tapX = clientX;
     tapY = clientY;
-    tapShockwaveRadius = 10; // Start shockwave ring
+    tapShockwaveRadius = 10; 
 }
 
 window.addEventListener('mousedown', (e) => {
-    // Ignore clicks if clicking links/buttons to prevent breaking UI interactions
     if(e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return;
     triggerScatterBlast(e.clientX, e.clientY);
 });
@@ -144,7 +150,6 @@ class YellowPetal {
     }
 
     update() {
-        // Base environment gravitational pull
         this.y += this.speedY;
         this.swayAngle += this.swaySpeed;
         this.x += this.speedX + Math.sin(this.swayAngle) * this.swayRadius;
@@ -155,16 +160,13 @@ class YellowPetal {
 
         let appliedForceThisFrame = false;
 
-        // 1. CLICK / TAP EXPLOSION ENGINE (Takes absolute priority)
         if (tapShockwaveRadius > 0) {
             const dxTap = currentTotalX - tapX;
             const dyTap = currentTotalY - tapY;
             const distToTap = Math.sqrt(dxTap * dxTap + dyTap * dyTap);
 
-            // If a petal gets caught inside the expanding shockwave perimeter ring
             if (distToTap < tapShockwaveRadius + 60 && distToTap > tapShockwaveRadius - 60) {
                 const blastAngle = Math.atan2(dyTap, dxTap);
-                // Push them away rapidly proportional to proximity
                 const power = (maxShockwaveRadius - tapShockwaveRadius) / maxShockwaveRadius;
                 this.offsetX += Math.cos(blastAngle) * power * 18;
                 this.offsetY += Math.sin(blastAngle) * power * 18;
@@ -172,7 +174,6 @@ class YellowPetal {
             }
         }
 
-        // 2. CURSOR FOLLOW TRACTION (Runs when tap shockwaves aren't actively clearing area)
         if (!appliedForceThisFrame && isUserInteracting) {
             const diffX = mouseX - currentTotalX;
             const diffY = mouseY - currentTotalY;
@@ -185,11 +186,9 @@ class YellowPetal {
                 const proximityScale = (attractionRadius - distance) / attractionRadius;
                 const targetedPullVelocity = proximityScale * 3.8; 
 
-                // Pull vectors toward pointer coordinates
                 this.offsetX += Math.cos(angle) * targetedPullVelocity * 0.16;
                 this.offsetY += Math.sin(angle) * targetedPullVelocity * 0.16;
             } else {
-                // Natural friction decay
                 this.offsetX *= 0.94;
                 this.offsetY *= 0.94;
             }
@@ -202,25 +201,21 @@ class YellowPetal {
         this.el.style.left = `${this.x + this.offsetX}px`;
         this.el.style.transform = `rotate(${this.rotation}deg) rotateY(${this.rotation * 0.3}deg)`;
 
-        // Respawn conditions
         if (this.y > window.innerHeight + 20 || this.x < -20 || this.x > window.innerWidth + 20) {
             this.reset();
         }
     }
 }
 
-// Instantiate Petals
 for (let i = 0; i < totalPetals; i++) {
     petalsArray.push(new YellowPetal());
 }
 
-// Animation Orchestration Loop
 function animatePetals() {
-    // Expand the global tap ripple boundaries incrementally across frames
     if (tapShockwaveRadius > 0) {
         tapShockwaveRadius += 6; 
         if (tapShockwaveRadius > maxShockwaveRadius) {
-            tapShockwaveRadius = 0; // Terminate wave calculation
+            tapShockwaveRadius = 0; 
             tapX = -1000;
             tapY = -1000;
         }
