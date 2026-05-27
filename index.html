@@ -5,217 +5,181 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Anandu & Navya's Wedding Invitation</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div id="petal-container" aria-hidden="true"></div>
-
-    <div id="card-wrapper-3d">
-        <div class="card-gate left-gate">
-            <div class="gate-surface-design">
-                <div class="gate-royal-border"></div>
-                <div class="jasmine-garland"></div>
-            </div>
-        </div>
-        
-        <div class="card-gate right-gate">
-            <div class="gate-surface-design">
-                <div class="gate-royal-border"></div>
-                <div class="jasmine-garland right-garland"></div>
-            </div>
-        </div>
-
-        <div id="lock-medallion-container">
-            <div class="medallion-seal">
-                <div class="seal-inner-emblem">🔱</div>
-                <p class="seal-initials">A & N</p>
-                <button id="open-btn" class="button-text pulse-glow-btn">Open Box ✨</button>
-            </div>
-        </div>
-    </div>
 
     <button id="music-toggle" class="audio-btn">🔊 Music On</button>
     <audio id="bg-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="book-viewport" class="hidden-view">
-        <div class="wedding-book">
-
-            <div class="book-page active-page" id="page-1" style="z-index: 6;">
-                <div class="page-content-wrapper hero-page-bg">
-                    <div class="south-elements-overlay">
-                        <div class="mantapa-arch"></div>
-                        <div class="jasmine-garland"></div>
-                        <div class="jasmine-garland right-garland"></div>
-                    </div>
-                    <div class="card-inner-body">
-                        <div class="couple-photo-frame">
-                            <img src="couple-portrait.jpg" alt="Anandu and Navya" class="couple-photo-img" onerror="this.style.display='none';">
-                            <div class="frame-placeholder-initials">A & N</div>
-                        </div>
-                        <p class="subtitle">WE CORDIALLY INVITE YOU TO THE WEDDING OF</p>
-                        <h1 class="couple-names-text">Anandu & Navya</h1>
-                        <p class="date">Sunday, 12th July 2026</p>
-                        
-                        <button class="turn-page-btn button-text next-trigger" data-next="page-2">View Blessings →</button>
-                    </div>
+    <div id="surprise-box-overlay">
+        <div class="box-scene-3d">
+            <div id="wedding-gift-box">
+                <div class="box-face box-front"></div>
+                <div class="box-face box-back"></div>
+                <div class="box-face box-left"></div>
+                <div class="box-face box-right"></div>
+                <div class="box-face box-bottom"></div>
+                <div class="box-face box-lid">
+                    <div class="lid-top"></div>
+                    <div class="lid-skirt-front"></div>
+                    <div class="lid-skirt-back"></div>
+                    <div class="lid-skirt-left"></div>
+                    <div class="lid-skirt-right"></div>
                 </div>
+                <div class="ribbon-v"></div>
+                <div class="ribbon-h"></div>
             </div>
-
-            <div class="book-page" id="page-2" style="z-index: 5;">
-                <div class="page-content-wrapper patterned-card">
-                    <div class="south-elements-overlay">
-                        <div class="mantapa-arch standard-arch"></div>
-                        <div class="jasmine-garland short-garland"></div>
-                        <div class="jasmine-garland short-garland right-garland"></div>
-                    </div>
-                    <div class="card-inner-body">
-                        <h2 class="section-title">With Family Blessings</h2>
-                        <hr class="divider">
-                        <div class="family-container">
-                            <p class="family-line"><strong>Anandu Krishnan</strong><br><span class="parent-sub">S/o Mrs. Rajani & Mr. Anil Kumar (Bengaluru)</span></p>
-                            <p class="amp-divider">&</p>
-                            <p class="family-line"><strong>Navya John</strong><br><span class="parent-sub">D/o Mrs. Annie Robert & Mr. John Robert (Bengaluru)</span></p>
-                        </div>
-                        
-                        <div class="page-navigation-row">
-                            <button class="turn-page-btn button-text prev-trigger" data-prev="page-1">← Back</button>
-                            <button class="turn-page-btn button-text next-trigger" data-next="page-3">Countdown →</button>
-                        </div>
-                    </div>
-                </div>
+            
+            <div id="box-ui-trigger-layer">
+                <p class="box-hint-text">You have received an invitation</p>
+                <button id="open-box-btn" class="button-text">Unbox Invitation ✨</button>
             </div>
-
-            <div class="book-page" id="page-3" style="z-index: 4;">
-                <div class="page-content-wrapper patterned-card">
-                    <div class="south-elements-overlay">
-                        <div class="mantapa-arch standard-arch"></div>
-                    </div>
-                    <div class="card-inner-body">
-                        <h2 class="section-title">Counting Down</h2>
-                        <p class="time-left-subtitle">UNTIL THE BIG DAY</p>
-                        
-                        <div class="timer-container">
-                            <div class="time-block">
-                                <span id="days" class="time-number">00</span>
-                                <span class="time-label">Days</span>
-                            </div>
-                            <div class="time-block">
-                                <span id="hours" class="time-number">00</span>
-                                <span class="time-label">Hrs</span>
-                            </div>
-                            <div class="time-block">
-                                <span id="minutes" class="time-number">00</span>
-                                <span class="time-label">Mins</span>
-                            </div>
-                            <div class="time-block">
-                                <span id="seconds" class="time-number">00</span>
-                                <span class="time-label">Secs</span>
-                            </div>
-                        </div>
-                        
-                        <div class="page-navigation-row">
-                            <button class="turn-page-btn button-text prev-trigger" data-prev="page-2">← Back</button>
-                            <button class="turn-page-btn button-text next-trigger" data-next="page-4">Schedule →</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="book-page" id="page-4" style="z-index: 3;">
-                <div class="page-content-wrapper patterned-card">
-                    <div class="south-elements-overlay">
-                        <div class="jasmine-garland short-garland"></div>
-                        <div class="jasmine-garland short-garland right-garland"></div>
-                    </div>
-                    <div class="card-inner-body">
-                        <h2 class="section-title">The Program</h2>
-                        <p class="timeline-subtitle">FOLLOW OUR SPECIAL DAY</p>
-                        
-                        <div class="timeline-journey">
-                            <div class="timeline-path"></div>
-                            <div class="journey-node">
-                                <div class="node-marker shadow-marker">💍</div>
-                                <div class="node-card transparent-card">
-                                    <h3>Wedding Ceremony</h3>
-                                    <p class="journey-time">10:30 AM — 12:30 PM</p>
-                                    <p class="journey-desc">Traditional Muhurtham inside the venue halls.</p>
-                                </div>
-                            </div>
-                            <div class="journey-node">
-                                <div class="node-marker shadow-marker">🍽️</div>
-                                <div class="node-card transparent-card">
-                                    <h3>Grand Feast</h3>
-                                    <p class="journey-time">1:00 PM Onwards</p>
-                                    <p class="journey-desc">Celebrations followed by traditional lunch catering.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="page-navigation-row">
-                            <button class="turn-page-btn button-text prev-trigger" data-prev="page-3">← Back</button>
-                            <button class="turn-page-btn button-text next-trigger" data-next="page-5">Venue →</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="book-page" id="page-5" style="z-index: 2;">
-                <div class="page-content-wrapper patterned-card">
-                    <div class="south-elements-overlay">
-                        <div class="mantapa-pillar pillar-left"></div>
-                        <div class="mantapa-pillar pillar-right"></div>
-                    </div>
-                    <div class="card-inner-body">
-                        <h2 class="section-title">The Venue</h2>
-                        <hr class="divider">
-                        <p class="venue">
-                            <span class="venue-title">Tamara Weddings & Events Venue</span><br>
-                            # 24, J.P. Nagar 9th Phase, Bannerghatta Road,<br>
-                            Bengaluru - 560108.
-                        </p>
-                        
-                        <a href="https://maps.google.com" target="_blank" class="map-btn button-text" rel="noopener">
-                            📍 View on Google Maps
-                        </a>
-                        
-                        <p class="wishes-note">Best wishes from: Athul, Melvin & Family</p>
-
-                        <div class="page-navigation-row">
-                            <button class="turn-page-btn button-text prev-trigger" data-prev="page-4">← Back</button>
-                            <button class="turn-page-btn button-text next-trigger" data-next="page-6">RSVP →</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="book-page" id="page-6" style="z-index: 1;">
-                <div class="page-content-wrapper patterned-card">
-                    <div class="card-inner-body">
-                        <h2 class="section-title">Are You Coming?</h2>
-                        <p class="rsvp-sub">Please respond by July 1st, 2026</p>
-                        
-                        <form class="rsvp-form" onsubmit="event.preventDefault(); alert('RSVP Received! See you there!');">
-                            <input type="text" placeholder="Your Full Name" required>
-                            <select required>
-                                <option value="" disabled selected>Will you attend?</option>
-                                <option value="yes">Joyfully Accept</option>
-                                <option value="no">Regretfully Decline</option>
-                            </select>
-                            <button type="submit" class="submit-btn button-text">Send Response</button>
-                        </form>
-
-                        <div class="page-navigation-row" style="margin-top: 20px;">
-                            <button class="turn-page-btn button-text prev-trigger" data-prev="page-5">← Back to Venue</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
+
+    <main id="dashboard-viewport" class="dashboard-hidden">
+        <div class="dashboard-grid-container">
+            
+            <section class="dash-card hero-panel interactive-tilt-card">
+                <div class="south-elements-overlay">
+                    <div class="mantapa-arch"></div>
+                    <div class="jasmine-garland"></div>
+                    <div class="jasmine-garland right-garland"></div>
+                </div>
+                
+                <div class="card-body-content">
+                    <div class="couple-photo-frame">
+                        <img src="couple-portrait.jpg" alt="Anandu and Navya" class="couple-photo-img" onerror="this.style.display='none';">
+                        <div class="frame-placeholder-initials">A & N</div>
+                    </div>
+                    <p class="subtitle">WE CORDIALLY INVITE YOU TO THE WEDDING OF</p>
+                    <h1 class="couple-names-text">Anandu & Navya</h1>
+                    <p class="wedding-date-hero">Sunday, 12th July 2026</p>
+                </div>
+            </section>
+
+            <section class="dash-card timer-panel interactive-tilt-card">
+                <div class="card-body-content">
+                    <h2 class="section-title">The Countdown</h2>
+                    <p class="dash-subtext">CELEBRATION TIME LOCK</p>
+                    
+                    <div class="timer-container">
+                        <div class="time-block">
+                            <span id="days" class="time-number">00</span>
+                            <span class="time-label">Days</span>
+                        </div>
+                        <div class="time-block">
+                            <span id="hours" class="time-number">00</span>
+                            <span class="time-label">Hrs</span>
+                        </div>
+                        <div class="time-block">
+                            <span id="minutes" class="time-number">00</span>
+                            <span class="time-label">Mins</span>
+                        </div>
+                        <div class="time-block">
+                            <span id="seconds" class="time-number">00</span>
+                            <span class="time-label">Secs</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dash-card family-panel interactive-tilt-card">
+                <div class="card-body-content">
+                    <h2 class="section-title">With Family Blessings</h2>
+                    <hr class="card-divider">
+                    <div class="family-container">
+                        <p class="family-line"><strong>Anandu Krishnan</strong><br><span class="parent-sub">S/o Mrs. Rajani & Mr. Anil Kumar</span></p>
+                        <p class="amp-divider">&</p>
+                        <p class="family-line"><strong>Navya John</strong><br><span class="parent-sub">D/o Mrs. Annie Robert & Mr. John Robert</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dash-card schedule-panel interactive-tilt-card">
+                <div class="card-body-content">
+                    <h2 class="section-title">The Schedule</h2>
+                    <p class="dash-subtext">TIMELINE OF OCCASIONS</p>
+                    
+                    <div class="timeline-journey">
+                        <div class="timeline-path"></div>
+                        
+                        <div class="journey-node">
+                            <div class="node-marker">💍</div>
+                            <div class="node-info">
+                                <h3>Wedding Ceremony</h3>
+                                <p class="node-time">10:30 AM — 12:30 PM</p>
+                                <p class="node-desc">Traditional Holy Matrimony & Muhurtham ritual sets.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="journey-node">
+                            <div class="node-marker">🍽️</div>
+                            <div class="node-info">
+                                <h3>Grand Reception Feast</h3>
+                                <p class="node-time">1:00 PM Onwards</p>
+                                <p class="node-desc">Formal modern stage greetings followed by a traditional lunch feast.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dash-card venue-map-panel interactive-tilt-card">
+                <div class="card-body-content map-split-layout">
+                    
+                    <div class="venue-details-text">
+                        <h2 class="section-title">The Venue</h2>
+                        <p class="venue-address">
+                            <span class="venue-highlight">Tamara Weddings & Events Venue</span><br>
+                            # 24, J.P. Nagar 9th Phase, Bannerghatta Road, Anjanapura Post, Bengaluru - 560108.
+                        </p>
+                        <a href="https://maps.google.com/?q=Tamara+Weddings+J.P.+Nagar+Bengaluru" target="_blank" class="map-action-btn button-text" rel="noopener">
+                            🗺️ Open External Maps
+                        </a>
+                    </div>
+                    
+                    <div class="embedded-map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m14!1m8!1m3!1d15558.125791225586!2d77.5750274!3d12.8734997!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae153e3fb24249%3A0x64cf517e47fca385!2sTamara%20Weddings%20and%20Events%20Venue!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="dash-card rsvp-panel interactive-tilt-card">
+                <div class="card-body-content">
+                    <h2 class="section-title">Are You Coming?</h2>
+                    <p class="dash-subtext">RSVP BY JULY 1ST, 2026</p>
+                    
+                    <form class="rsvp-form" onsubmit="event.preventDefault(); alert('RSVP Received! Thank you for updating us.');">
+                        <input type="text" placeholder="Your Full Name" required>
+                        <select required>
+                            <option value="" disabled selected>Will you attend?</option>
+                            <option value="yes">Joyfully Accept</option>
+                            <option value="no">Regretfully Decline</option>
+                        </select>
+                        <button type="submit" class="submit-btn button-text">Submit Response</button>
+                    </form>
+                    
+                    <p class="wishes-note">Warmly Welcomed by: Athul, Melvin & Family Members</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
