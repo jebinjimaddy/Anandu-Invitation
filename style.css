@@ -22,7 +22,7 @@ html, body {
 }
 
 /* ==========================================================================
-   2. 3D ENVELOPE UNSEALING SYSTEM (FIXED DOWNWARD ORIENTATION)
+   2. 3D ENVELOPE UNSEALING SYSTEM (POLYGON CLIP-PATH ENGINE)
    ========================================================================== */
 #envelope-overlay {
     position: fixed;
@@ -46,7 +46,7 @@ html, body {
 #wedding-envelope {
     position: relative;
     width: 100%; height: 260px;
-    background-color: #5E1210;
+    background-color: #450b0a; /* Darker interior shadow color */
     border-radius: 0 0 12px 12px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
     transform-style: preserve-3d;
@@ -54,7 +54,7 @@ html, body {
     transition: transform 1.2s ease;
 }
 
-/* Base Pocket & Backside Panel */
+/* Base Backside Panel Pocket background */
 .envelope-pocket {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background-color: #500E0D;
@@ -62,34 +62,13 @@ html, body {
     z-index: 2;
 }
 
-/* Diagonal Cut Front Panels (Forms the secure envelope front pocket layout) */
-.envelope-body-front {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(30deg, #601412 40%, transparent 40.5%),
-                linear-gradient(-30deg, #56100E 40%, transparent 40.5%);
-    z-index: 4;
-    border-radius: 0 0 12px 12px;
-}
-
-/* FIXED: 3D Rotating Top Flap (Points down naturally over the pocket) */
-.envelope-flap-top {
-    position: absolute; top: 0; left: 0; width: 100%; height: 135px;
-    background: linear-gradient(29deg, #6D1714 50%, transparent 50.5%),
-                linear-gradient(-29deg, #6D1714 50%, transparent 50.5%);
-    background-size: 50.5% 100%;
-    background-repeat: no-repeat;
-    background-position: left top, right top;
-    transform-origin: top center;
-    transform: rotateX(0deg);
-    z-index: 5;
-    transition: transform 0.6s ease, z-index 0.3s;
-    transition-delay: 0.4s;
-    filter: drop-shadow(0px 6px 6px rgba(0,0,0,0.35));
-}
-
 /* Inside Letter Card Preview Frame */
 .envelope-inner-letter {
-    position: absolute; bottom: 5px; left: 5%; width: 90%; height: 240px;
+    position: absolute; 
+    top: 10px; /* Aligned securely inside the pocket */
+    left: 5%; 
+    width: 90%; 
+    height: 240px;
     background: #FFFDF9;
     border: 1px solid #E6BA94;
     border-radius: 8px;
@@ -110,9 +89,37 @@ html, body {
 .preview-title { font-size: 0.68rem; letter-spacing: 3px; color: #C85A32; margin: 0 0 5px 0; font-weight: bold;}
 .letter-preview-content h3 { font-family: 'Mollani', sans-serif; color: #4A3E3D; margin: 0; font-size: 1.4rem; }
 
-/* Wax Seal Placement (Locks the tip of the downward triangle flap) */
+/* FIXED: Front pocket sides and bottom flap using a precise polygon layout mask */
+.envelope-body-front {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #5E1210;
+    /* Draws an open pocket silhouette: Left-top -> Right-top -> Right-bottom -> Left-bottom */
+    clip-path: polygon(0% 45%, 50% 65%, 100% 45%, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(0% 45%, 50% 65%, 100% 45%, 100% 100%, 0% 100%);
+    z-index: 4;
+    border-radius: 0 0 12px 12px;
+}
+
+/* FIXED: Top Flap points downwards perfectly from the absolute top boundary edge */
+.envelope-flap-top {
+    position: absolute; top: 0; left: 0; width: 100%; height: 150px;
+    background-color: #6D1714;
+    /* Draws a clean triangle pointing directly down: Left-top -> Right-top -> Center-bottom */
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+    transform-origin: top center;
+    transform: rotateX(0deg);
+    z-index: 5;
+    transition: transform 0.6s ease, z-index 0.3s;
+    transition-delay: 0.4s;
+    filter: drop-shadow(0px 8px 6px rgba(0,0,0,0.4));
+}
+
+/* Wax Seal Placement (Anchored cleanly over the point of the downward triangle flap) */
 #wax-seal-container {
-    position: absolute; top: 105px; left: 50%;
+    position: absolute; 
+    top: 115px; /* Centered exactly over the 150px triangle tip intersection */
+    left: 50%;
     transform: translateX(-50%);
     z-index: 10;
     text-align: center;
@@ -147,7 +154,7 @@ html, body {
 }
 #envelope-overlay.envelope-opened .envelope-flap-top {
     transform: rotateX(180deg);
-    z-index: 1; /* Drop depth index behind the pocket frame when flipped up open */
+    z-index: 1; /* Flips all the way up behind the envelope during open action */
     transition-delay: 0s;
 }
 #envelope-overlay.envelope-opened .envelope-inner-letter {
