@@ -26,7 +26,7 @@ html, body {
     box-sizing: border-box;
     overflow-x: hidden;
     background-color: #FAF6F0; /* Soft Warm Traditional Ivory Base */
-    color: #4A3E3D; /* Deep Terracotta Earth for ultra-readable light contrast */
+    color: #4A3E3D; /* Deep Terracotta Earth for readability */
     font-family: 'Montserrat', sans-serif;
     -webkit-text-size-adjust: 100%;
 }
@@ -53,7 +53,7 @@ html {
 
 .petal {
     position: absolute;
-    background: linear-gradient(135deg, #FF7E95, #E64C65); /* Rich traditional pink/rose notes */
+    background: linear-gradient(135deg, #FF7E95, #E64C65);
     border-radius: 15% 70% 15% 70%;
     width: 14px;
     height: 14px;
@@ -62,7 +62,6 @@ html {
     animation: fall linear infinite, sway ease-in-out infinite;
 }
 
-/* Custom variance timing setups */
 .petal:nth-child(1)  { left: 10%; width: 14px; height: 12px; animation-duration: 7s, 3s; animation-delay: 0s, 0s; }
 .petal:nth-child(2)  { left: 25%; width: 18px; height: 16px; animation-duration: 9s, 4s; animation-delay: 1s, 0.5s; }
 .petal:nth-child(3)  { left: 40%; width: 12px; height: 11px; animation-duration: 6s, 2.5s; animation-delay: 0.5s, 1s; }
@@ -98,7 +97,6 @@ html {
     z-index: 1;
 }
 
-/* Elegant Curved Wooden/Golden Arch frame for Altar Canopy */
 .mantapa-arch {
     position: absolute;
     top: 0;
@@ -116,7 +114,6 @@ html {
     background-size: 30px 30px;
 }
 
-/* Traditional Carved Mandap Pillars on Screen Outer Borders */
 .mantapa-pillar {
     position: absolute;
     top: 0;
@@ -129,7 +126,6 @@ html {
 .pillar-left { left: 8px; border-right: 2px solid #9A4416; }
 .pillar-right { right: 8px; border-left: 2px solid #9A4416; }
 
-/* Hanging Jasmine Flower Garlands Layout (Mulle Strings) */
 .jasmine-garland {
     position: absolute;
     top: 0;
@@ -145,17 +141,16 @@ html {
 .right-garland { left: auto; right: 12%; }
 .short-garland { height: 40%; }
 
-/* --- Typography Mapping (Opposite High Contrast Earthy Warm tones) --- */
+/* --- Typography Mapping --- */
 .couple-names-text {
     font-family: 'Mollani', sans-serif;
-    color: #C85A32; /* Warm Brick Ochre Coral */
+    color: #C85A32;
     text-shadow: 2px 2px 0px #F5E6D3, 4px 4px 0px rgba(181, 101, 60, 0.25);
 }
 
 h1.couple-names-text {
-    font-size: 3.5rem;
-    transform: rotate(-0.5deg);
-    margin: 20px 0;
+    font-size: 3.4rem;
+    margin: 15px 0 25px 0;
 }
 
 .curtain-names {
@@ -177,19 +172,36 @@ h1.couple-names-text {
     letter-spacing: 1px;
 }
 
-/* --- Base Floating Card Structures (Lighter Tint Setup) --- */
+/* Parent Line Details Layout styling */
+.family-line {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    color: #4A3E3D;
+    margin: 10px 0;
+}
+.parent-sub {
+    font-size: 0.85rem;
+    color: #7A6563;
+    display: inline-block;
+    margin-top: 3px;
+}
+.amp-divider {
+    font-family: 'Mollani', sans-serif;
+    font-size: 1.6rem;
+    color: #C87A53;
+    margin: 5px 0;
+}
+
+/* --- Base Floating Card Structures --- */
 .content {
-    max-width: 440px;
+    max-width: 450px;
     width: 88%;
     z-index: 2;
-    padding: 40px 25px;
+    padding: 35px 22px;
     box-sizing: border-box;
-    
-    /* Elegant Semi-Transparent Cream Soft Card Base */
     background: rgba(255, 251, 245, 0.88); 
     border: 1px solid rgba(200, 122, 83, 0.3);
     box-shadow: 0 10px 30px rgba(181, 101, 60, 0.08), 5px 5px 0px rgba(181, 101, 60, 0.2);
-    
     animation: cardFloat 6s ease-in-out infinite;
 }
 
@@ -198,7 +210,7 @@ h1.couple-names-text {
 #details .content { animation-duration: 5.5s; }
 #rsvp .content { animation-duration: 7s; }
 
-/* --- Countdown Timer Component Layout --- */
+/* --- Countdown Timer Layout --- */
 .time-left-subtitle {
     font-size: 0.8rem;
     letter-spacing: 5px;
@@ -242,7 +254,7 @@ h1.couple-names-text {
     font-weight: bold;
 }
 
-/* --- Fixed Opacity Curtain Layer --- */
+/* --- Fixed Curtain Overlay --- */
 #invitation-curtain {
     position: fixed;
     top: 0;
@@ -274,16 +286,17 @@ h1.couple-names-text {
 
 .curtain-content {
     text-align: center;
-    padding: 20px;
+    padding: 24px;
     z-index: 2;
     width: 100%;
 }
 
 .curtain-subtitle {
     font-size: 0.8rem;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
+    line-height: 1.6;
     color: #8A7674;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     font-weight: 700;
 }
 
@@ -307,7 +320,7 @@ h1.couple-names-text {
     transform: translateY(3px);
 }
 
-/* --- Responsive Panel Shade Increments (Lighter Ochre/Champagne steps) --- */
+/* --- Responsive Panel Grid Background Shifts --- */
 .panel {
     width: 100%;
     height: 100vh;
@@ -322,40 +335,55 @@ h1.couple-names-text {
 }
 
 #hero {
-    background: linear-gradient(rgba(250,246,240,0.6), rgba(250,246,240,0.85)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center/cover;
+    background: linear-gradient(rgba(250,246,240,0.65), rgba(250,246,240,0.88)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center/cover;
 }
 
-#countdown-panel { background-color: #F7F1E6; } /* Step 1: Cream Altar Tint */
-#details { background-color: #F3EAE0; }         /* Step 2: Soft Sandalwood */
-#rsvp { background-color: #EDE2D5; }            /* Step 3: Deep Warm Ivory Biscuit */
+#countdown-panel { background-color: #F7F1E6; }
+#details { background-color: #F3EAE0; }
+#rsvp { background-color: #EDE2D5; }
 
 .subtitle { letter-spacing: 6px; font-size: 0.85rem; color: #C85A32; font-weight: bold; }
-.date { font-size: 1.6rem; letter-spacing: 4px; margin-top: 25px; font-weight: 300; color: #4A3E3D; }
+.date { font-size: 1.5rem; letter-spacing: 2px; margin-top: 25px; font-weight: 700; color: #C85A32; }
 .time { font-size: 1.1rem; color: #7A6563; }
 .rsvp-sub { color: #7A6563; }
 
+.event-schedule {
+    text-align: left;
+    display: inline-block;
+    margin: 10px 0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+.event-schedule p { margin: 6px 0; }
+
 .venue {
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 0.98rem;
+    line-height: 1.6;
     margin: 15px 0;
     color: #4A3E3D;
+}
+.venue-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #C85A32;
+}
+
+.wishes-note {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #7A6563;
+    margin-top: 15px;
 }
 
 .divider {
     width: 60px;
     border: 0;
     border-top: 2px dashed #C85A32;
-    margin: 25px auto;
-}
-
-.quote {
-    font-style: italic;
-    color: #7A6563;
-    font-size: 0.95rem;
+    margin: 20px auto;
 }
 
 .scroll-indicator {
-    margin-top: 35px;
+    margin-top: 30px;
     font-size: 0.8rem;
     letter-spacing: 3px;
     color: #C85A32;
@@ -384,7 +412,7 @@ h1.couple-names-text {
 /* --- Map Button --- */
 .map-btn {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 5px;
     padding: 10px 20px;
     color: #C85A32;
     border: 2px solid #C85A32;
@@ -450,4 +478,5 @@ h1.couple-names-text {
     .time-block { min-width: 60px; padding: 10px 4px; }
     .time-number { font-size: 1.5rem; }
     .content { padding: 30px 15px; }
+    h1.couple-names-text { font-size: 2.8rem; }
 }

@@ -28,7 +28,7 @@ toggleBtn.addEventListener('click', () => {
 });
 
 // ==========================================================================
-// COUNTDOWN TIMER ENGINE
+// COUNTDOWN TIMER ENGINE (Target Date: July 12, 2026 at 10:30 AM)
 // ==========================================================================
 const targetDate = new Date("July 12, 2026 10:30:00").getTime();
 
