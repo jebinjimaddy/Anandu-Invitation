@@ -141,4 +141,68 @@ class YellowPetal {
                 
                 // Calculate pull velocity scaling based on proximity
                 const proximityScale = (attractionRadius - distance) / attractionRadius;
-                const targetedPullVelocity = proximityScale * 3.5;
+                const targetedPullVelocity = proximityScale * 3.5; 
+
+                // Blend pointer pull vectors cleanly over existing offsets
+                this.offsetX += Math.cos(angle) * targetedPullVelocity * 0.15;
+                this.offsetY += Math.sin(angle) * targetedPullVelocity * 0.15;
+            } else {
+                // Smooth friction dampening back to standard trajectories
+                this.offsetX *= 0.94;
+                this.offsetY *= 0.94;
+            }
+        } else {
+            this.offsetX *= 0.94;
+            this.offsetY *= 0.94;
+        }
+
+        this.el.style.top = `${this.y + this.offsetY}px`;
+        this.el.style.left = `${this.x + this.offsetX}px`;
+        this.el.style.transform = `rotate(${this.rotation}deg) rotateY(${this.rotation * 0.3}deg)`;
+
+        // Reset if petals pass layout borders
+        if (this.y > window.innerHeight + 20 || this.x < -20 || this.x > window.innerWidth + 20) {
+            this.reset();
+        }
+    }
+}
+
+for (let i = 0; i < totalPetals; i++) {
+    petalsArray.push(new YellowPetal());
+}
+
+function animatePetals() {
+    for (let i = 0; i < petalsArray.length; i++) {
+        petalsArray[i].update();
+    }
+    requestAnimationFrame(animatePetals);
+}
+animatePetals();
+
+// ==========================================================================
+// SMART 3D PERSPECTIVE HOVER CORNER TILT FOR FLOATING CARDS
+// ==========================================================================
+const cards = document.querySelectorAll('.interactive-tilt-card');
+
+cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        
+        const cardWidth = rect.width;
+        const cardHeight = rect.height;
+        const centerX = rect.left + cardWidth / 2;
+        const centerY = rect.top + cardHeight / 2;
+        
+        const mouseRelativeX = e.clientX - centerX;
+        const mouseRelativeY = e.clientY - centerY;
+
+        const tiltX = (mouseRelativeY / (cardHeight / 2)) * -12;
+        const tiltY = (mouseRelativeX / (cardWidth / 2)) * 12;
+
+        card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.03, 1.03, 1.03)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    });
+});
