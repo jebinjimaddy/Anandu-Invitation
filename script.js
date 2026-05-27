@@ -1,9 +1,8 @@
 // ==========================================================================
-// 1. 3D ENVELOPE OPENING & INITIAL ENTRY
+// 1. 3D ENVELOPE OPENING VIA INTEGRATED SEAL CLICK
 // ==========================================================================
 const music = document.getElementById('bg-music');
 const toggleBtn = document.getElementById('music-toggle');
-const openEnvelopeBtn = document.getElementById('open-envelope-btn');
 const waxSealContainer = document.getElementById('wax-seal-container');
 const envelopeOverlay = document.getElementById('envelope-overlay');
 const dashboardView = document.getElementById('dashboard-viewport');
@@ -28,7 +27,6 @@ function openEnvelopeSequence(e) {
     });
 }
 
-if(openEnvelopeBtn) openEnvelopeBtn.addEventListener('click', openEnvelopeSequence);
 if(waxSealContainer) waxSealContainer.addEventListener('click', openEnvelopeSequence);
 
 toggleBtn.addEventListener('click', () => {
@@ -101,7 +99,7 @@ updateCountdown();
 const timerInterval = setInterval(updateCountdown, 1000);
 
 // ==========================================================================
-// 4. FLOWER PETAL PHYSICS SIMULATION ENGAGEMENT
+// 4. FLOWER PETAL PHYSICS SIMULATION ENGAGEMENT (RUNS GLOBALLY & CONTINUOUSLY)
 // ==========================================================================
 const container = document.getElementById('petal-container');
 const totalPetals = 14;
@@ -115,7 +113,9 @@ window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.cli
 window.addEventListener('touchmove', (e) => { if(e.touches.length > 0) { mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY; isUserInteracting = true; } });
 window.addEventListener('mouseout', () => { isUserInteracting = false; });
 
-function triggerScatterBlast(clientX, clientY) { tapX = clientX; tapY = clientY; tapShockwaveRadius = 10; }
+function triggerScatterBlast(clientX, clientY) { 
+    tapX = clientX; tapY = clientY; tapShockwaveRadius = 10; 
+}
 
 window.addEventListener('mousedown', (e) => {
     if(e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT' || e.target.tagName === 'IFRAME') return;
@@ -128,11 +128,11 @@ window.addEventListener('touchstart', (e) => {
     }
 });
 
-class YellowPetal {
+class IvoryPetal {
     constructor() {
         this.el = document.createElement('div');
         this.el.className = 'petal';
-        container.appendChild(this.el);
+        if(container) container.appendChild(this.el);
         this.reset();
     }
     reset() {
@@ -171,7 +171,9 @@ class YellowPetal {
     }
 }
 
-for (let i = 0; i < totalPetals; i++) { petalsArray.push(new YellowPetal()); }
+if (container) {
+    for (let i = 0; i < totalPetals; i++) { petalsArray.push(new IvoryPetal()); }
+}
 
 function animatePetals() {
     if (tapShockwaveRadius > 0) { tapShockwaveRadius += 5; if (tapShockwaveRadius > maxShockwaveRadius) { tapShockwaveRadius = 0; tapX = -1000; tapY = -1000; } }
