@@ -59,26 +59,34 @@ updateCountdown();
 const timerInterval = setInterval(updateCountdown, 1000);
 
 // ==========================================================================
-// HIGHLY INTERACTIVE MOUSE-EVADING YELLOW PETALS ENGINE
+// NEW: INTERACTIVE CURSOR-ATTRACTING YELLOW PETALS ENGINE
 // ==========================================================================
 const container = document.getElementById('petal-container');
 const totalPetals = 15;
 const petalsArray = [];
 
-// Mouse track coordinates
+// Track screen interactions
 let mouseX = -1000;
 let mouseY = -1000;
+let isUserInteracting = false;
 
 window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    isUserInteracting = true;
 });
 
 window.addEventListener('touchmove', (e) => {
     if(e.touches.length > 0) {
         mouseX = e.touches[0].clientX;
         mouseY = e.touches[0].clientY;
+        isUserInteracting = true;
     }
+});
+
+// Clear track coordinates when user leaves the window space
+window.addEventListener('mouseout', () => {
+    isUserInteracting = false;
 });
 
 class YellowPetal {
@@ -112,6 +120,7 @@ class YellowPetal {
     }
 
     update() {
+        // Natural gravity and wind sway calculations
         this.y += this.speedY;
         this.swayAngle += this.swaySpeed;
         this.x += this.speedX + Math.sin(this.swayAngle) * this.swayRadius;
@@ -120,27 +129,36 @@ class YellowPetal {
         const currentTotalX = this.x + this.offsetX;
         const currentTotalY = this.y + this.offsetY;
 
-        const diffX = currentTotalX - mouseX;
-        const diffY = currentTotalY - mouseY;
-        const distance = Math.sqrt(diffX * diffX + diffY * diffY);
-        const evasionRadius = 90; 
+        // Inverted physics logic: Calculate distance vectors toward the cursor position
+        if (isUserInteracting) {
+            const diffX = mouseX - currentTotalX;
+            const diffY = mouseY - currentTotalY;
+            const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+            const attractionRadius = 250; // Distance thresholds where petals hear the pull
 
-        if (distance < evasionRadius) {
-            const force = (evasionRadius - distance) / evasionRadius;
-            const pushX = (diffX / distance) * force * 12;
-            const pushY = (diffY / distance) * force * 12;
-            
-            this.offsetX += pushX;
-            this.offsetY += pushY;
+            if (distance < attractionRadius && distance > 10) {
+                // Stronger pull parameters based on how close the leaf is
+                const pullForce = (attractionRadius - distance) / attractionRadius;
+                
+                // Pull step speeds smoothly blending with default fall velocities
+                this.offsetX += (diffX / distance) * pullForce * 1.8;
+                this.offsetY += (diffY / distance) * pullForce * 1.8;
+            } else {
+                // Return smoothly to normal fall trajectories when outside cursor radius
+                this.offsetX *= 0.96;
+                this.offsetY *= 0.96;
+            }
         } else {
-            this.offsetX *= 0.95;
-            this.offsetY *= 0.95;
+            // Apply air resistance dampening when no user cursor exists
+            this.offsetX *= 0.96;
+            this.offsetY *= 0.96;
         }
 
         this.el.style.top = `${this.y + this.offsetY}px`;
         this.el.style.left = `${this.x + this.offsetX}px`;
         this.el.style.transform = `rotate(${this.rotation}deg) rotateY(${this.rotation * 0.5}deg)`;
 
+        // Reset positions immediately if leaves slip cleanly past the screen borders
         if (this.y > window.innerHeight + 20 || this.x < -20 || this.x > window.innerWidth + 20) {
             this.reset();
         }
