@@ -14,7 +14,6 @@ openEnvelopeBtn.addEventListener('click', () => {
     
     setTimeout(() => {
         dashboardView.classList.remove('dashboard-hidden');
-        // Instantly force initialization of active state check on entry
         handleScrollTransition();
     }, 600);
     
@@ -43,7 +42,7 @@ const scrollCards = document.querySelectorAll('.dash-card');
 const observerOptions = {
     root: document.querySelector('.dashboard-scroll-container'),
     rootMargin: '0px',
-    threshold: 0.35 // Trigger fade when 35% of the card is visible on viewport
+    threshold: 0.35 
 };
 
 const cardObserver = new IntersectionObserver((entries) => {
@@ -58,7 +57,6 @@ const cardObserver = new IntersectionObserver((entries) => {
 
 scrollCards.forEach(card => cardObserver.observe(card));
 
-// Fallback manual trigger validation helper
 function handleScrollTransition() {
     scrollCards.forEach(card => {
         const rect = card.getBoundingClientRect();

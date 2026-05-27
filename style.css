@@ -153,7 +153,6 @@ html, body {
     pointer-events: none;
 }
 
-/* Scroll snap container forces cards to align perfectly to the screen center */
 .dashboard-scroll-container {
     width: 100%;
     height: 100vh;
@@ -161,9 +160,10 @@ html, body {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    position: relative;
+    z-index: 2; /* Sits above the falling petals background layer */
 }
 
-/* Cards act as full-page layout blocks */
 .dash-card {
     width: 100%;
     height: 100vh;
@@ -176,25 +176,25 @@ html, body {
     box-sizing: border-box;
     position: relative;
     
-    /* INTERACTIVE STATE ENGINE: Subtle default hidden transition baseline */
     opacity: 0;
     transform: scale(0.92) translateY(40px);
     transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
                 transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* TRIGGERED WHEN SCROLLED INTO FOCUS: Card fades in and springs up cleanly */
 .dash-card.active-card {
     opacity: 1;
     transform: scale(1) translateY(0);
 }
 
+/* FIXED: Changed background color opacity to 0.78 & increased blur to see petals behind */
 .card-body-content {
     width: 100%;
     max-width: 680px;
-    background: rgba(255, 251, 245, 0.94);
-    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(200, 122, 83, 0.22);
+    background: rgba(255, 251, 245, 0.78); 
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(200, 122, 83, 0.25);
     border-radius: 28px;
     padding: 45px 35px;
     box-shadow: 0 20px 45px rgba(181, 101, 60, 0.08);
@@ -218,10 +218,25 @@ html, body {
 }
 
 /* ==========================================================================
-   5. DECORATIONS & TIMERS
+   5. DECORATIONS, TIMERS, & BACKGROUND PETALS
    ========================================================================== */
-#petal-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1500; pointer-events: none; }
-.petal { position: absolute; background: linear-gradient(135deg, #FFD700, #FFA500); border-radius: 15% 70% 15% 70%; opacity: 0.85; filter: drop-shadow(1px 2px 3px rgba(212, 130, 0, 0.15)); will-change: transform, top, left; }
+/* FIXED: z-index lowered to 1 so petals run behind cards but stay above main background canvas */
+#petal-container { 
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    z-index: 1; 
+    pointer-events: none; 
+}
+
+.petal { 
+    position: absolute; 
+    background: linear-gradient(135deg, #FFD700, #FFA500); 
+    border-radius: 15% 70% 15% 70%; 
+    opacity: 0.85; 
+    filter: drop-shadow(1px 2px 3px rgba(212, 130, 0, 0.15)); 
+    will-change: transform, top, left; 
+}
 
 .south-elements-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
 .mantapa-arch { position: absolute; top: 0; left: 5%; width: 90%; height: 35px; background: radial-gradient(circle at top, transparent 20%, #D4A373 21%, #C87A53 35%, transparent 38%) 0 0/40px 45px; border-bottom: 4px double #B5653C; opacity: 0.4; }
